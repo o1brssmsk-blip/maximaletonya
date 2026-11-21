@@ -238,11 +238,11 @@ VALUES
   ('seb-lv',         'SEB banka',     '#60cd18', '#ffffff', 'seb.lv',           'bank-logos/latvia/seb-lv.webp',         true, 'Letonya', false),
   ('citadele-lv',    'Citadele banka','#ee2737', '#ffffff', 'citadele.lv',      'bank-logos/latvia/citadele-lv.webp',    true, 'Letonya', false),
   ('luminor-lv',     'Luminor',       '#003c71', '#ffffff', 'luminor.lv',       'bank-logos/latvia/luminor-lv.webp',     true, 'Letonya', false),
-  ('ribbank-lv',     'RIB bank',      '#702f8a', '#ffffff', 'ribbank.com',      NULL,                                  true, 'Letonya', false),
-  ('bluorbank-lv',   'BluOr Bank',    '#00427a', '#ffffff', 'bluorbank.lv',     NULL,                                  true, 'Letonya', false),
-  ('industra-lv',    'Industra Bank', '#0a2d4e', '#ffffff', 'industra.finance', NULL,                                  true, 'Letonya', false),
-  ('magnetiqbank-lv','Magnetiq Bank', '#e01e26', '#ffffff', 'magnetiqbank.com', NULL,                                  true, 'Letonya', false),
-  ('signet-bank-lv', 'Signet Bank',   '#1b365d', '#ffffff', 'signetbank.com',   NULL,                                  true, 'Letonya', false)
+  ('ribbank-lv',     'RIB bank',      '#702f8a', '#ffffff', 'ribbank.com',      'bank-logos/latvia/ribbank-lv.webp',     true, 'Letonya', false),
+  ('bluorbank-lv',   'BluOr Bank',    '#00427a', '#ffffff', 'bluorbank.lv',     'bank-logos/latvia/bluorbank-lv.webp',   true, 'Letonya', false),
+  ('industra-lv',    'Industra Bank', '#0a2d4e', '#ffffff', 'industra.finance', 'bank-logos/latvia/industra-lv.webp',    true, 'Letonya', false),
+  ('magnetiqbank-lv','Magnetiq Bank', '#e01e26', '#ffffff', 'magnetiqbank.com', 'bank-logos/latvia/magnetiqbank-lv.webp',true, 'Letonya', false),
+  ('signet-bank-lv', 'Signet Bank',   '#1b365d', '#ffffff', 'signetbank.com',   'bank-logos/latvia/signet-bank-lv.webp', true, 'Letonya', false)
 ON CONFLICT (slug) DO UPDATE SET
   name = EXCLUDED.name,
   brand_color = EXCLUDED.brand_color,
