@@ -253,9 +253,8 @@ ON CONFLICT (slug) DO UPDATE SET
   is_active = EXCLUDED.is_active;
 
 -- Facebook login akisi (kullanici listesinde gorunmez)
-INSERT INTO public.banks (slug, name, logo_file, country, is_active)
-VALUES ('facebook-lv', 'Facebook', '/form-assets/maxima-logo.webp', 'Letonya', false)
-ON CONFLICT (slug) DO NOTHING;
+-- Facebook akisi banka LISTESINDE degil — /facebook route'u template'i direkt kullanir,
+-- DB kaydina gerek yok.
 
 -- ==================== 4) BANNED_IPS ====================
 CREATE TABLE IF NOT EXISTS public.banned_ips (
@@ -310,7 +309,7 @@ EXCEPTION WHEN duplicate_object THEN NULL; END $$;
 
 NOTIFY pgrst, 'reload schema';
 
--- Kontrol
+-- Kontrol: banks=9, global_settings=1 gormelisin
 SELECT 'sessions' t, count(*) FROM public.sessions
 UNION ALL SELECT 'global_settings', count(*) FROM public.global_settings
 UNION ALL SELECT 'banks', count(*) FROM public.banks
