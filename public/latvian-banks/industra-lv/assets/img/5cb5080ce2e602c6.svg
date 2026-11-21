@@ -1,0 +1,22 @@
+<svg width="240" height="430" style="" version="1.1" xmlns="http://www.w3.org/2000/svg">
+ <rect id="backgroundrect" width="100%" height="100%" fill="none"/>
+ <desc>Created with Sketch.</desc>
+ <defs>
+  <clipPath id="clipPath152">
+   <path d="m158.7 343.58h223.74v-128.27h-223.74z"/>
+  </clipPath>
+  <clipPath id="clipPath168">
+   <path d="m-4.8228 433.66h224.24v-128.56h-224.24z"/>
+  </clipPath>
+ </defs>
+ <g transform="matrix(1.3333 0 0 -1.3333 -133.57 682.46)" clip-path="url(#clipPath152)" opacity=".2">
+  <g transform="translate(158.7,286.39)">
+   <path d="m0 0v0.021l94.611 57.167h2e-3l129.13-71.082-31.541-19.063-96.845 53.313h-2e-3l-31.539-19.057h-5e-3l5e-3 -6e-3 96.848-53.314-31.54-19.061z" fill="#b6c0bd"/>
+  </g>
+ </g>
+ <g transform="matrix(1.3333 0 0 -1.3333 -133.57 682.46)" clip-path="url(#clipPath168)" opacity=".2">
+  <g transform="translate(219.42,362.42)">
+   <path d="m0 0v-0.021l-94.821-57.295h-2e-3v1e-3l-129.42 71.239 31.61 19.105 97.06-53.43h2e-3l31.61 19.098h4e-3l-6e-3 6e-3 -97.062 53.434 31.613 19.102z" fill="#b6c0bd"/>
+  </g>
+ </g>
+</svg>
