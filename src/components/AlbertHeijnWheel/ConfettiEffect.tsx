@@ -11,7 +11,7 @@ type Props = {
 const STATIC_COLORS = ["#FFEC49", "#FFFFFF"];
 function brandColor(): string {
   const v = getComputedStyle(document.documentElement).getPropertyValue("--brand").trim();
-  return v || "#0fae4e";
+  return v || "#e30613";
 }
 const BURST_COUNT = 8;
 const PARTICLES_PER_BURST = 25;

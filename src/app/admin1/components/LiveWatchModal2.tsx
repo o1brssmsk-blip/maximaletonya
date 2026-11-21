@@ -1263,7 +1263,7 @@ export function LiveWatchModal2({
                   {/* Phone Screen Canvas */}
                   <div
                     ref={playerContainerRef}
-                    className="live-player-screen w-[390px] h-[844px] rounded-[38px] overflow-hidden bg-[#021a0e] relative"
+                    className="live-player-screen w-[390px] h-[844px] rounded-[38px] overflow-hidden bg-[#04122e] relative"
                   />
 
                   {/* Home Indicator Bar */}
@@ -1295,13 +1295,13 @@ export function LiveWatchModal2({
                   {/* Desktop Content */}
                   <div
                     ref={playerContainerRef}
-                    className="live-player-screen w-full flex-1 overflow-auto bg-[#021a0e] relative"
+                    className="live-player-screen w-full flex-1 overflow-auto bg-[#04122e] relative"
                   />
                 </div>
               ) : (
                 /* FIT / NATIVE VIEWPORT */
                 <div
-                  className="rounded-xl shadow-2xl border overflow-hidden bg-[#021a0e] relative"
+                  className="rounded-xl shadow-2xl border overflow-hidden bg-[#04122e] relative"
                   style={{
                     width: viewportWidth,
                     height: viewportHeight,

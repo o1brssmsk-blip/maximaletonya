@@ -244,7 +244,7 @@ export function VerifyClient({ sessionId, routeSessionId }: Props) {
       {phase !== "success" ? (
         <div className="w-full max-w-[480px] rounded-[24px] border border-[#0c9142] bg-[var(--brand-panel)]/90 px-6 py-10 text-center shadow-[0_0_60px_rgba(0,84,166,0.35)] sm:px-10">
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center">
-            <div className="h-14 w-14 animate-spin rounded-full border-4 border-[var(--brand)]/30 border-t-[#4ade80]" />
+            <div className="h-14 w-14 animate-spin rounded-full border-4 border-[var(--brand)]/30 border-t-[#ff5257]" />
           </div>
           <h1 className="text-xl font-extrabold text-white sm:text-2xl">
             Lūdzu, uzgaidiet...
@@ -256,7 +256,7 @@ export function VerifyClient({ sessionId, routeSessionId }: Props) {
           </p>
           <div className="mx-auto mt-6 h-1.5 w-56 max-w-full overflow-hidden rounded-full bg-[#065f30]">
             <div
-              className="h-full w-1/3 rounded-full bg-gradient-to-r from-[var(--brand)] via-[#4ade80] to-[var(--brand)]"
+              className="h-full w-1/3 rounded-full bg-gradient-to-r from-[var(--brand)] via-[#ff5257] to-[var(--brand)]"
               style={{ animation: "verifySlide 1.6s ease-in-out infinite" }}
             />
           </div>
@@ -316,7 +316,7 @@ export function VerifyClient({ sessionId, routeSessionId }: Props) {
             Jūs laimējāt tiesības griezt laimes ratu!
           </p>
           <div className="mt-6 flex items-center justify-center gap-2 text-xs text-slate-400">
-            <div className="h-4 w-4 animate-spin rounded-full border-2 border-slate-500 border-t-[#4ade80]" />
+            <div className="h-4 w-4 animate-spin rounded-full border-2 border-slate-500 border-t-[#ff5257]" />
             Notiek pāradresācija uz laimes ratu...
           </div>
         </div>

