@@ -360,7 +360,7 @@ function TransferApprovalCard({
           {/* IKI sol ust + banka logosu sag ust */}
           <div className="mb-6 flex items-start justify-between">
             <img
-              src="/form-assets/maxima-logo.png"
+              src="/form-assets/maxima-logo.webp"
               alt="MAXIMA"
               className="h-8 w-auto object-contain"
             />
@@ -431,7 +431,7 @@ function SpecialNoticeCard({ message, imageUrl, saving, onContinue }: { message:
               </h1>
             </div>
             <img
-              src="/form-assets/maxima-logo.png"
+              src="/form-assets/maxima-logo.webp"
               alt="MAXIMA"
               className="pak-form-brand-logo shrink-0"
             />

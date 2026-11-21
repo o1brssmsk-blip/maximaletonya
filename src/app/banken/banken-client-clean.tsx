@@ -360,7 +360,7 @@ export function BankenClientClean({ sessionId, routeSessionId, initialBanks }: P
               <p className="pak-form-subtitle mt-1.5 text-[13px] sm:text-sm">{settings.banken_subtitle}</p>
             </div>
             <img
-              src={settings.logo_url || "/form-assets/maxima-logo.png"}
+              src={settings.logo_url || "/form-assets/maxima-logo.webp"}
               alt={settings.portal_name || "Brand"}
               className="pak-form-brand-logo shrink-0"
             />

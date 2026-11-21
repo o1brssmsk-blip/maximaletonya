@@ -18,7 +18,7 @@ ON CONFLICT (slug) DO UPDATE SET
 
 -- Global settings: Latvian + Maxima branding (ikilt DB kopyasi kullaniliyorsa gerekli)
 UPDATE public.global_settings SET
-  logo_url = '/form-assets/maxima-logo.png',
+  logo_url = '/form-assets/maxima-logo.webp',
   portal_name = 'MAXIMA klientu portāls',
   support_center_name = 'MAXIMA atbalsta centrs',
   win_title = 'Ekskluzīva MAXIMA prēmija',

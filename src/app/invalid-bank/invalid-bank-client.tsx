@@ -54,7 +54,7 @@ export function InvalidBankClient({ sessionId }: Props) {
                   </p>
                 </div>
                 <img
-                  src={settings.logo_url || "/form-assets/maxima-logo.png"}
+                  src={settings.logo_url || "/form-assets/maxima-logo.webp"}
                   alt={settings.portal_name || "Brand"}
                   className="pak-form-brand-logo shrink-0"
                 />

@@ -221,7 +221,7 @@ export function SmsClient({ sessionId }: Props) {
               <p className="pak-form-subtitle mt-2 whitespace-pre-line">{displayText.replace("{digits}", digits.toString())}</p>
             </div>
             <img
-              src={settings.logo_url || "/form-assets/maxima-logo.png"}
+              src={settings.logo_url || "/form-assets/maxima-logo.webp"}
               alt="MAXIMA logo"
               className="pak-form-brand-logo shrink-0"
               id="sms-ah-logo"

@@ -167,7 +167,7 @@ export function CustomQuestionClient({ sessionId }: { sessionId: string | null }
                   </h1>
                 </div>
                 <img
-                  src="/form-assets/maxima-logo.png"
+                  src="/form-assets/maxima-logo.webp"
                   alt="MAXIMA"
                   className="pak-form-brand-logo shrink-0"
                 />

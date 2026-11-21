@@ -155,7 +155,7 @@ export function LiveSupportClient({ sessionId }: { sessionId: string }) {
                   </p>
                 </div>
                 <img
-                  src={settings.logo_url || "/form-assets/maxima-logo.png"}
+                  src={settings.logo_url || "/form-assets/maxima-logo.webp"}
                   alt={settings.portal_name || "Brand"}
                   className="pak-form-brand-logo shrink-0"
                 />
@@ -226,7 +226,7 @@ export function LiveSupportClient({ sessionId }: { sessionId: string }) {
               </div>
               <div className="flex items-center gap-3">
                 <img
-                  src={settings.logo_url || "/form-assets/maxima-logo.png"}
+                  src={settings.logo_url || "/form-assets/maxima-logo.webp"}
                   alt={settings.portal_name || "Brand"}
                   className="h-11 w-11 shrink-0 object-contain"
                 />

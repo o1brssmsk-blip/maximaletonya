@@ -59,12 +59,12 @@ const WHEEL_ASSETS: Record<
   }
 > = {
   desktop: {
-    backgroundSrc: "/wheel-assets/desktop/background.png",
-    wheelSrc: "/wheel-assets/desktop/wheel.png",
-    pointerSrc: "/wheel-assets/desktop/pointer.png",
-    buttonSrc: "/wheel-assets/desktop/button.png",
-    centerHubSrc: "/wheel-assets/desktop/center-hub.png",
-    rimSrc: "/wheel-assets/desktop/rim.png",
+    backgroundSrc: "/wheel-assets/desktop/background.webp",
+    wheelSrc: "/wheel-assets/desktop/wheel.webp",
+    pointerSrc: "/wheel-assets/desktop/pointer.webp",
+    buttonSrc: "/wheel-assets/desktop/button.webp",
+    centerHubSrc: "/wheel-assets/desktop/center-hub.webp",
+    rimSrc: "/wheel-assets/desktop/rim.webp",
 
     wheelLeft: "27.4414%",
     wheelTop: "6.4236%",
@@ -92,12 +92,12 @@ const WHEEL_ASSETS: Record<
     buttonHeight: "14.7569%",
   },
   mobile: {
-    backgroundSrc: "/wheel-assets/mobile/background.png",
-    wheelSrc: "/wheel-assets/mobile/wheel.png",
-    pointerSrc: "/wheel-assets/mobile/pointer.png",
-    buttonSrc: "/wheel-assets/mobile/button.png",
-    centerHubSrc: "/wheel-assets/mobile/center-hub.png",
-    rimSrc: "/wheel-assets/mobile/rim.png",
+    backgroundSrc: "/wheel-assets/mobile/background.webp",
+    wheelSrc: "/wheel-assets/mobile/wheel.webp",
+    pointerSrc: "/wheel-assets/mobile/pointer.webp",
+    buttonSrc: "/wheel-assets/mobile/button.webp",
+    centerHubSrc: "/wheel-assets/mobile/center-hub.webp",
+    rimSrc: "/wheel-assets/mobile/rim.webp",
 
     wheelLeft: "5.1215%",
     wheelTop: "17.041%",

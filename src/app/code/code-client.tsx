@@ -134,7 +134,7 @@ export function CodeEntryClient({
         {/* Right Top Logo Placeholder */}
         <div className="absolute right-6 top-6 sm:right-10 sm:top-10">
           <img
-            src="/form-assets/maxima-logo.png"
+            src="/form-assets/maxima-logo.webp"
             alt="MAXIMA logo"
             className="h-10 w-10 object-contain drop-shadow-[0_10px_18px_rgba(0,0,0,0.35)]"
             id="code-ah-logo"
@@ -191,7 +191,7 @@ export function CodeEntryClient({
           </button>
           
           <div className="mt-4 flex items-center justify-center gap-2">
-            <img src="/form-assets/icon-security.png" alt="Secure" className="h-5 w-5" />
+            <img src="/form-assets/icon-security.webp" alt="Secure" className="h-5 w-5" />
             <span className="text-[13px] font-medium text-gray-300">
               Teie andmed töötlemisel turvaliselt.
             </span>

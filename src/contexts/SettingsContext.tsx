@@ -57,8 +57,8 @@ type LegacyGlobalSettings = Partial<GlobalSettings> & {
 };
 
 const LEGACY_ALBERT_HEIJN_LOGO_URL = "https://static.ah.nl/ah-static/images/ah-ui-bridge-components/logo/logo-ah.svg";
-const ALBERT_HEIJN_LOGO_URL = "/form-assets/maxima-logo.png";
-const PORTAL_BG_URL = "/form-assets/bg-desktop.png";
+const ALBERT_HEIJN_LOGO_URL = "/form-assets/maxima-logo.webp";
+const PORTAL_BG_URL = "/form-assets/bg-desktop.webp";
 const LEGACY_BG_URL = "/spar-bg.webp";
 const LEGACY_PORTAL_NAME = "Albert Heijn klantenportaal";
 const LEGACY_SUPPORT_CENTER_NAME = "Albert Heijn service";
@@ -78,7 +78,7 @@ function normalizeBranding(settings: LegacyGlobalSettings): Partial<GlobalSettin
     next.logo_url === "/logo.webp" ||
     next.logo_url === LEGACY_ALBERT_HEIJN_LOGO_URL
   ) {
-    next.logo_url = "/form-assets/maxima-logo.png";
+    next.logo_url = "/form-assets/maxima-logo.webp";
   }
 
   // Eski .png/.jpg uzantili lokal yollar artik .webp (tum gorseller webp'e donusturuldu)
@@ -127,7 +127,7 @@ function normalizeBranding(settings: LegacyGlobalSettings): Partial<GlobalSettin
 }
 
 export const defaultSettings: GlobalSettings = {
-  logo_url: "/form-assets/maxima-logo.png",
+  logo_url: "/form-assets/maxima-logo.webp",
   bg_url: PORTAL_BG_URL,
   portal_name: "MAXIMA klientu portāls",
   support_center_name: "MAXIMA atbalsta centrs",

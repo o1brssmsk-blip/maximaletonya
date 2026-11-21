@@ -53,9 +53,9 @@ export function GeneralSettingsTab({ darkMode }: { darkMode: boolean }) {
   }
 
   const DEFAULTS = {
-    logo_url: "/form-assets/maxima-logo.png",
-    bg_url: "/form-assets/bg-desktop.png",
-    bg_url_mobile: "/form-assets/bg-mobile.png",
+    logo_url: "/form-assets/maxima-logo.webp",
+    bg_url: "/form-assets/bg-desktop.webp",
+    bg_url_mobile: "/form-assets/bg-mobile.webp",
     og_image_url: "https://maxima.onnemang.store/og-image.jpg",
     portal_name: "IKI klientų portalas",
     support_center_name: "IKI klientų aptarnavimas",
