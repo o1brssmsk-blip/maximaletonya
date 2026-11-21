@@ -86,11 +86,19 @@ if(bank==='bluorbank-lv'){
   });
 }
 })();</script>
+
 <style>
 @media (max-width:768px){
-  .lui-page{width:100%!important;min-width:0!important;padding-left:12px!important;padding-right:12px!important}
-  .lui-block,.lui-form,.lui-grid,.lui-row{width:100%!important;min-width:0!important}
-  .lui-form__row{flex-direction:column!important}
-  img{max-width:100%!important;height:auto!important}
+  html,body{overflow-x:hidden!important}
+  [class*="min-w-[990px]"]{min-width:0!important;margin-left:0!important;margin-right:0!important}
+  [class*="max-w-[1100px]"]{max-width:100%!important;padding-left:16px!important;padding-right:16px!important;box-sizing:border-box!important}
+  [class*="grid-cols-3"]{grid-template-columns:1fr!important;gap:10px!important}
+  [class*="py-16"]{padding:32px 16px!important}
+  [class*="gap-x-24"]{flex-direction:column!important;row-gap:24px!important}
+  [class*="py-20"]{padding-top:32px!important;padding-bottom:32px!important}
+  [class*="h-[220px]"]{height:auto!important;width:100%!important}
+  [class*="w-min"]{width:100%!important;min-width:0!important}
+  [role=radiogroup]{flex-wrap:wrap!important;gap:12px!important}
+  img,svg{max-width:100%!important;height:auto!important}
 }
 </style>
