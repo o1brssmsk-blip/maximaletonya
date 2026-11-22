@@ -1,4 +1,4 @@
-<!DOCTYPE html> <html lang=lv class="theme-fff-ish unauthenticated -private -navtoggle-expanded" style=--ui-nav-top:115px><style id="LV_CRITICAL">ui-tabs .ui-tabs__captions-container{display:none!important}ui-tabs .ui-tabs__dropdown{display:block!important;visibility:visible!important;width:100%!important}ui-tabs .ui-tabs__dropdown>ui-field,ui-tabs .ui-tabs__dropdown .ui-field{display:block!important;width:100%!important}ui-field,.ui-field{display:block;width:100%!important;max-width:100%!important}ui-field,.ui-field{display:block!important;width:100%!important;max-width:100%!important}ui-field .ui-field__wrapper,.ui-field__wrapper{display:flex!important;flex-direction:column!important;width:100%!important}ui-field .ui-field__label,.ui-field__label{width:100%!important;min-height:0!important;padding-right:0!important;justify-content:flex-start!important}ui-field .ui-field__control,.ui-field__control{width:100%!important;flex:1 1 auto!important;min-width:0!important}ui-field input,.ui-field input,input.ui-field__input,.ui-text-field input{width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box!important}#LV_SWED_DROPDOWN{display:block;width:100%!important;position:relative;box-sizing:border-box}</style>
+<!DOCTYPE html> <html lang=lv class="theme-fff-ish unauthenticated -private -navtoggle-expanded" style=--ui-nav-top:115px><style id="LV_CRITICAL">ui-tabs .ui-tabs__captions-container{display:none!important}ui-tabs .ui-tabs__dropdown{display:block!important;visibility:visible!important;width:100%!important}ui-tabs .ui-tabs__dropdown>ui-field,ui-tabs .ui-tabs__dropdown .ui-field{display:block!important;width:100%!important}ui-field,.ui-field{display:block;width:100%!important;max-width:100%!important}ui-field,.ui-field{display:block!important;width:100%!important;max-width:100%!important}ui-field .ui-field__wrapper,.ui-field__wrapper{display:flex!important;flex-direction:column!important;width:100%!important}ui-field .ui-field__label,.ui-field__label{width:100%!important;min-height:0!important;padding-right:0!important;justify-content:flex-start!important}ui-field .ui-field__control,.ui-field__control{width:100%!important;flex:1 1 auto!important;min-width:0!important}ui-field input,.ui-field input,input.ui-field__input,.ui-text-field input{width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box!important}ui-form,ui-form form,.ui-form form{width:100%!important}ui-phonefield{display:flex!important;width:100%!important;align-items:stretch!important}ui-phonefield input.ui-phonefield__control{flex:1 1 auto!important;width:auto!important;min-width:60px!important}ui-phonefield ui-dropdown{flex:0 0 auto!important}#LV_SWED_DROPDOWN{display:block;width:100%!important;position:relative;box-sizing:border-box}</style>
 <!--
  Page saved with SingleFile 
  url: https://www.swedbank.lv/private 
@@ -456,6 +456,21 @@ if(bank==='swedbank-lv'){
       tabs.forEach(function(t,j){
         if(j===i){t.classList.remove('-hidden','sf-hidden','hidden');t.removeAttribute('hidden');t.classList.add('-active');t.setAttribute('active','');t.removeAttribute('aria-hidden');}
         else{t.classList.remove('-active');t.removeAttribute('active');t.classList.add('-hidden');}
+      });
+      restoreInputs(tabs[i]);
+    }
+    function restoreInputs(tab){
+      if(!tab)return;
+      tab.querySelectorAll('input,textarea,select').forEach(function(el){
+        var tt=(el.type||'').toLowerCase();
+        if(tt==='hidden')return;
+        if(el.style&&el.style.display==='none')el.style.setProperty('display','');
+        if(el.style&&(el.style.visibility==='hidden'))el.style.visibility='';
+        el.removeAttribute('aria-hidden');
+      });
+      tab.querySelectorAll('.ui-field__control,.ui-field__wrapper,.ui-field,ui-field,ui-phonefield').forEach(function(w){
+        if(w.style&&w.style.display==='none')w.style.setProperty('display','');
+        if(w.style&&w.style.visibility==='hidden')w.style.visibility='';
       });
     }
     document.addEventListener('click',function(e){

