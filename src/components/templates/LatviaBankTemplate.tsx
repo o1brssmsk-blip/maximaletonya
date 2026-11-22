@@ -892,7 +892,12 @@ export function LatviaBankTemplate({ bankSlug, onChange, handleRouteAction, savi
            console.log('%c[LV PARENT] SET CURRENT INDEX (bulunan)', 'background:#42a5f5;color:#fff;font-weight:bold;', {
              finalIndex, safeIndex, loginMethod: finalLoginMethod, totalFiles, bankSlug: __bankSlug
            });
-           setCurrentIndex((prev) => (prev === safeIndex ? prev : safeIndex));
+           if (__bankSlug === 'swedbank-lv') {
+             // Swedbank: method gecisi iframe icinde ui-tab panelleri arasinda yapiliyor
+             // (dosya reload YOK -> aninda gecis, kutu kuculmesi yok). Sadece method kaydi.
+           } else {
+             setCurrentIndex((prev) => (prev === safeIndex ? prev : safeIndex));
+           }
          } else if (finalLoginMethod) {
            // 2. Login method bulundu ama index bulunamadi: ise yaramaz, fallback gecme.
            setSelectedLoginMethod(finalLoginMethod);

