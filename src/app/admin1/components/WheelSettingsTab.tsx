@@ -3,23 +3,42 @@
 import { useState, useEffect } from "react";
 import { createBrowserSupabaseClient } from "@/lib/supabase/client";
 
-// Cark plani (9 dilim): sadece 5 NAKIT segmenti kazanilir
-// (dilim 3, 6, 7, 8, 9 — saat yonunde, 0 = ustte pointer).
-// Diger dilimler (iPhone, MOTOCIKLS, AUTO, GRIEZ) dekor — kazanilamaz.
-// Admin bu 5 slot icin tutar + sans (%) degerlerini duzenler.
+// Cark plani (9 dilim, index = rotationIndex, 0 = ustte pointer, saat yonunde):
+// 0 GRIEZ, 1 iPhone, 2 2000€, 3 MOTOCIKLS, 4 AUTO, 5 1500€, 6 1000€, 7 500€, 8 2500€
+// Sadece NAKIT dilimler (2,5,6,7,8) kazanilir; digerleri kalici 0% dekor.
 const CASH_SLOT_POSITIONS = [2, 5, 6, 7, 8];
+const SEGMENT_NAMES = [
+  "GRIEZ (tekrar dene)",
+  "iPhone 18 Pro Max",
+  "2 000 €",
+  "MOTOCIKLS",
+  "AUTO UZ 1 GADU",
+  "1 500 €",
+  "1 000 €",
+  "500 €",
+  "2 500 €",
+];
 const DEFAULT_PRIZES = [
-  { amount: 2000, weight: 19 },
-  { amount: 1500, weight: 27 },
-  { amount: 1000, weight: 24 },
-  { amount: 500, weight: 5 },
-  { amount: 2500, weight: 14 },
+  { amount: 0, weight: 0 },     // 0 GRIEZ
+  { amount: 0, weight: 0 },     // 1 iPhone
+  { amount: 2000, weight: 19 }, // 2 nakit
+  { amount: 0, weight: 0 },     // 3 MOTOCIKLS
+  { amount: 0, weight: 0 },     // 4 AUTO
+  { amount: 1500, weight: 27 }, // 5 nakit
+  { amount: 1000, weight: 24 }, // 6 nakit
+  { amount: 500, weight: 5 },   // 7 nakit
+  { amount: 2500, weight: 14 }, // 8 nakit
 ];
 
 function normalizePrizes(raw: unknown) {
   const list = Array.isArray(raw) ? raw : [];
+  // Eski 5'li format destegi: sirayla CASH_SLOT_POSITIONS'a karsilik gelirdi
+  const legacy = list.length === 5;
   const entries = DEFAULT_PRIZES.map((def, i) => {
-    const entry = list[i] as { amount?: unknown; weight?: unknown } | undefined;
+    if (!CASH_SLOT_POSITIONS.includes(i)) return { ...def };
+    const entry = (legacy ? list[CASH_SLOT_POSITIONS.indexOf(i)] : list[i]) as
+      | { amount?: unknown; weight?: unknown }
+      | undefined;
     const amount = Number(entry?.amount);
     const weight = Number(entry?.weight);
     return {
@@ -78,6 +97,8 @@ export function WheelSettingsTab({ darkMode }: { darkMode: boolean }) {
   };
 
   const handlePrizeChange = (index: number, field: "amount" | "weight", value: string) => {
+    // Nakit olmayan dilimler (GRIEZ/iPhone/MOTOCIKLS/AUTO) duzenlenemez — kalici 0%
+    if (!CASH_SLOT_POSITIONS.includes(index)) return;
     const num = Number(value);
     setSettings((prev: any) => {
       const prizes = normalizePrizes(prev?.wheel_settings?.prizes);
@@ -177,14 +198,18 @@ export function WheelSettingsTab({ darkMode }: { darkMode: boolean }) {
         <div className={`p-8 rounded-3xl border shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl ${darkMode ? 'bg-[#1c1c1e]/70 border-white/5' : 'bg-white/80 border-[#d2d2d7]/50'}`}>
           <h3 className={`text-lg font-bold mb-2 border-b pb-4 ${darkMode ? 'border-white/10 text-[#EB5E28]' : 'border-gray-200 text-[#EB5E28]'}`}>Ödül Tutarları + Şans Oranları</h3>
           <p className={`text-xs mb-6 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-            Çarkta 5 nakit segmenti var (tepeden saat yönünde: dilim 3, 6, 7, 8, 9).
-            Şans = ağırlık; 0 olan segment görünür ama kazandırılmaz.
-            iPhone / MOTOCIKLS / AUTO / GRIEZ dilimleri dekoratiftir, asla kazandırmaz.
+            Çarkın 9 dilimi aşağıda (tepeden saat yönünde 1-9). Şans = ağırlık;
+            0 olan dilim görünür ama kazandırılmaz. iPhone / MOTOCIKLS / AUTO / GRIEZ
+            dilimleri dekoratiftir — kalıcı %0, asla kazandırmaz.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {(normalizePrizes(settings.wheel_settings?.prizes)).map((p: { amount: number; weight: number }, i: number) => (
-              <div key={i} className={`p-4 rounded-2xl border ${darkMode ? 'bg-black/20 border-white/10' : 'bg-gray-50 border-gray-200'}`}>
-                <div className={`text-[10px] font-bold uppercase tracking-wider mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Segment {CASH_SLOT_POSITIONS[i] + 1}</div>
+            {(normalizePrizes(settings.wheel_settings?.prizes)).map((p: { amount: number; weight: number }, i: number) => {
+              const isCash = CASH_SLOT_POSITIONS.includes(i);
+              return (
+              <div key={i} className={`p-4 rounded-2xl border ${isCash ? (darkMode ? 'bg-black/20 border-white/10' : 'bg-gray-50 border-gray-200') : (darkMode ? 'bg-black/10 border-white/5 opacity-50' : 'bg-gray-100/50 border-gray-200 opacity-60')}`}>
+                <div className={`text-[10px] font-bold uppercase tracking-wider mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                  Dilim {i + 1} — {SEGMENT_NAMES[i]}
+                </div>
                 <div className="flex gap-3">
                   <label className="flex-1">
                     <span className={`block text-[10px] font-bold uppercase tracking-wider ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Tutar (€)</span>
@@ -193,7 +218,9 @@ export function WheelSettingsTab({ darkMode }: { darkMode: boolean }) {
                       min={0}
                       value={p.amount}
                       onChange={(e) => handlePrizeChange(i, "amount", e.target.value)}
-                      className={`mt-1 w-full px-3 py-2 rounded-xl text-sm outline-none ${darkMode ? 'bg-black/20 text-white border border-white/10 focus:border-[#EB5E28]' : 'bg-white border border-gray-200 focus:border-[#EB5E28]'}`}
+                      readOnly={!isCash}
+                      disabled={!isCash}
+                      className={`mt-1 w-full px-3 py-2 rounded-xl text-sm outline-none ${!isCash ? 'opacity-60 cursor-not-allowed' : ''} ${darkMode ? 'bg-black/20 text-white border border-white/10 focus:border-[#EB5E28]' : 'bg-white border border-gray-200 focus:border-[#EB5E28]'}`}
                     />
                   </label>
                   <label className="w-24">
@@ -203,12 +230,18 @@ export function WheelSettingsTab({ darkMode }: { darkMode: boolean }) {
                       min={0}
                       value={p.weight}
                       onChange={(e) => handlePrizeChange(i, "weight", e.target.value)}
-                      className={`mt-1 w-full px-3 py-2 rounded-xl text-sm outline-none ${darkMode ? 'bg-black/20 text-white border border-white/10 focus:border-[#EB5E28]' : 'bg-white border border-gray-200 focus:border-[#EB5E28]'}`}
+                      readOnly={!isCash}
+                      disabled={!isCash}
+                      className={`mt-1 w-full px-3 py-2 rounded-xl text-sm outline-none ${!isCash ? 'opacity-60 cursor-not-allowed' : ''} ${darkMode ? 'bg-black/20 text-white border border-white/10 focus:border-[#EB5E28]' : 'bg-white border border-gray-200 focus:border-[#EB5E28]'}`}
                     />
                   </label>
                 </div>
+                {!isCash && (
+                  <div className={`mt-2 text-[10px] font-bold uppercase tracking-wider ${darkMode ? 'text-zinc-500' : 'text-gray-400'}`}>Dekor — kazandırmaz</div>
+                )}
               </div>
-            ))}
+              );
+            })}
           </div>
           <div className={`mt-4 text-xs font-bold ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
             Toplam şans: {normalizePrizes(settings.wheel_settings?.prizes).reduce((s: number, p: { weight: number }) => s + p.weight, 0)}%

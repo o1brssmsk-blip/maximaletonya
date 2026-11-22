@@ -58,7 +58,14 @@ function buildWheelPrizes(wheelSettings: unknown): WheelPrizeConfig {
       : null;
   const raw = ws?.prizes;
   const entries = CASH_SLOTS.map((def, i) => {
-    const entry = Array.isArray(raw) ? (raw[i] as { amount?: unknown; weight?: unknown } | undefined) : undefined;
+    // Yeni format: prizes[rotationIndex] (9 eleman, tum dilimler).
+    // Eski format: prizes[i] (5 eleman, sadece nakit slotlar) — geriye donuk destek.
+    const legacy = Array.isArray(raw) && raw.length === 5;
+    const entry = Array.isArray(raw)
+      ? ((legacy ? raw[i] : raw[def.rotationIndex]) as
+          | { amount?: unknown; weight?: unknown }
+          | undefined)
+      : undefined;
     const amount = Number(entry?.amount);
     const weight = Number(entry?.weight);
     return {
