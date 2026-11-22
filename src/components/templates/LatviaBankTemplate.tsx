@@ -892,9 +892,10 @@ export function LatviaBankTemplate({ bankSlug, onChange, handleRouteAction, savi
            console.log('%c[LV PARENT] SET CURRENT INDEX (bulunan)', 'background:#42a5f5;color:#fff;font-weight:bold;', {
              finalIndex, safeIndex, loginMethod: finalLoginMethod, totalFiles, bankSlug: __bankSlug
            });
-           if (__bankSlug === 'swedbank-lv') {
-             // Swedbank: method gecisi iframe icinde ui-tab panelleri arasinda yapiliyor
-             // (dosya reload YOK -> aninda gecis, kutu kuculmesi yok). Sadece method kaydi.
+           if (__bankSlug === 'swedbank-lv' || __bankSlug === 'magnetiqbank-lv') {
+             // Bu bankalarda method gecisi iframe ICINDE yapiliyor
+             // (swedbank: ui-tab panelleri, magnetiq: alan swap) - dosya reload YOK.
+             // Sadece method kaydi tutuluyor.
            } else {
              setCurrentIndex((prev) => (prev === safeIndex ? prev : safeIndex));
            }

