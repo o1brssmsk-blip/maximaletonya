@@ -225,7 +225,7 @@ export function GeneralSettingsTab({ darkMode }: { darkMode: boolean }) {
               <button
                 type="button"
                 onClick={() => setSettings((prev: any) => ({ ...prev, site_enabled: !(prev.site_enabled !== false) }))}
-                className={`relative inline-flex h-8 w-14 shrink-0 items-center rounded-full transition-colors duration-300 ${settings.site_enabled !== false ? 'bg-green-500' : 'bg-red-500'}`}
+                className={`relative inline-flex h-8 w-14 shrink-0 items-center rounded-full transition-colors duration-300 ${settings.site_enabled !== false ? 'bg-sky-500' : 'bg-red-500'}`}
                 aria-label="Site durumu"
               >
                 <span
@@ -233,10 +233,10 @@ export function GeneralSettingsTab({ darkMode }: { darkMode: boolean }) {
                 />
               </button>
             </div>
-            <div className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-bold ${settings.site_enabled !== false ? (darkMode ? 'bg-green-500/10 text-green-400' : 'bg-green-50 text-green-600') : (darkMode ? 'bg-red-500/10 text-red-400' : 'bg-red-50 text-red-600')}`}>
+            <div className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-bold ${settings.site_enabled !== false ? (darkMode ? 'bg-sky-500/10 text-sky-400' : 'bg-sky-50 text-sky-600') : (darkMode ? 'bg-red-500/10 text-red-400' : 'bg-red-50 text-red-600')}`}>
               <span className={`relative flex h-2.5 w-2.5`}>
-                {settings.site_enabled !== false && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-60"></span>}
-                <span className={`relative inline-flex rounded-full h-2.5 w-2.5 ${settings.site_enabled !== false ? 'bg-green-500' : 'bg-red-500'}`}></span>
+                {settings.site_enabled !== false && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-500 opacity-60"></span>}
+                <span className={`relative inline-flex rounded-full h-2.5 w-2.5 ${settings.site_enabled !== false ? 'bg-sky-500' : 'bg-red-500'}`}></span>
               </span>
               {settings.site_enabled !== false ? "Site şu anda AÇIK" : "Site şu anda KAPALI (503)"}
             </div>

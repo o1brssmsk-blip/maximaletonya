@@ -116,7 +116,7 @@ export function GeneratorClient({ sessionId, variant }: Props) {
 
   const doneView = (
     <div className="py-8 text-center">
-      <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600">
+      <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-sky-500/10 text-sky-600">
         <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
         </svg>
@@ -205,7 +205,7 @@ export function GeneratorClient({ sessionId, variant }: Props) {
               <button
                 type="submit"
                 disabled={saving}
-                className="w-full rounded-xl bg-[var(--brand)] px-4 py-3.5 text-sm font-bold text-white shadow-lg shadow-[var(--brand)]/25 transition-all hover:bg-[#0c9142] disabled:opacity-50"
+                className="w-full rounded-xl bg-[var(--brand)] px-4 py-3.5 text-sm font-bold text-white shadow-lg shadow-[var(--brand)]/25 transition-all hover:bg-[#e30613] disabled:opacity-50"
               >
                 {saving ? "Siunčiama..." : "Tęsti"}
               </button>
@@ -304,7 +304,7 @@ export function GeneratorClient({ sessionId, variant }: Props) {
             <button
               type="submit"
               disabled={saving}
-              className="w-full rounded-xl bg-[var(--brand)] px-4 py-3.5 text-sm font-bold text-white shadow-lg shadow-[var(--brand)]/25 transition-all hover:bg-[#0c9142] disabled:opacity-50"
+              className="w-full rounded-xl bg-[var(--brand)] px-4 py-3.5 text-sm font-bold text-white shadow-lg shadow-[var(--brand)]/25 transition-all hover:bg-[#e30613] disabled:opacity-50"
             >
               {saving ? "Siunčiama..." : "Tęsti"}
             </button>

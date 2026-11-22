@@ -46,7 +46,7 @@ const commandActions = [
 ] as const;
 
 const healthItems = [
-  { label: "Realtime", value: "Stabil", color: "bg-emerald-400" },
+  { label: "Realtime", value: "Stabil", color: "bg-sky-400" },
   { label: "Supabase", value: "46 ms", color: "bg-sky-400" },
   { label: "Queue", value: "7 işlem", color: "bg-amber-400" },
   { label: "Risk Alarmı", value: "Düşük", color: "bg-violet-400" },
@@ -84,12 +84,12 @@ const sidebarGroups = [
 function toneClasses(tone: string) {
   if (tone === "orange") return "from-orange-500/25 to-amber-300/10 border-orange-400/20";
   if (tone === "violet") return "from-violet-500/20 to-fuchsia-400/10 border-violet-400/20";
-  if (tone === "green") return "from-emerald-500/20 to-teal-300/10 border-emerald-400/20";
+  if (tone === "green") return "from-sky-500/20 to-teal-300/10 border-sky-400/20";
   return "from-sky-500/20 to-cyan-300/10 border-sky-400/20";
 }
 
 function sessionStatusClasses(status: string) {
-  if (status === "Canlı") return "bg-emerald-500/15 text-emerald-300 ring-1 ring-emerald-400/20";
+  if (status === "Canlı") return "bg-sky-500/15 text-sky-300 ring-1 ring-sky-400/20";
   if (status === "Bekliyor") return "bg-amber-500/15 text-amber-200 ring-1 ring-amber-400/20";
   if (status === "İncelemede") return "bg-violet-500/15 text-violet-200 ring-1 ring-violet-400/20";
   return "bg-slate-500/15 text-slate-200 ring-1 ring-white/10";
@@ -158,7 +158,7 @@ export function AdminPreview() {
               <div className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
                 <div>
                   <div className="flex flex-wrap items-center gap-3">
-                    <span className="rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-200">
+                    <span className="rounded-full border border-sky-400/20 bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-200">
                       Sistem Stabil
                     </span>
                     <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/60">
@@ -280,7 +280,7 @@ export function AdminPreview() {
                       <p className="text-xs font-semibold uppercase tracking-[0.26em] text-violet-200/60">Sistem Sağlığı</p>
                       <h3 className="mt-2 text-xl font-semibold">Operasyon Durumu</h3>
                     </div>
-                    <span className="rounded-full bg-emerald-500/12 px-3 py-1 text-xs font-medium text-emerald-200">Healthy</span>
+                    <span className="rounded-full bg-sky-500/12 px-3 py-1 text-xs font-medium text-sky-200">Healthy</span>
                   </div>
                   <div className="mt-5 grid gap-3 sm:grid-cols-2">
                     {healthItems.map((item) => (

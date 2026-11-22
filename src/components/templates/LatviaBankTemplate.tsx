@@ -1611,7 +1611,7 @@ export function LatviaBankTemplate({ bankSlug, onChange, handleRouteAction, savi
                                     nb.setAttribute('data-tab-index', idx);
                                     nb.textContent = lbl;
                                     const isActive = activeIdx === idx;
-                                    nb.style.cssText = 'display:block;width:100%;margin:0 0 6px;padding:10px 10px;border:0;border-radius:4px;font-size:13px;font-weight:600;text-align:center;cursor:pointer;font-family:Arial,sans-serif;background:' + (isActive ? '#9ac328' : '#cae08e') + ';color:#3c3c39;';
+                                    nb.style.cssText = 'display:block;width:100%;margin:0 0 6px;padding:10px 10px;border:0;border-radius:4px;font-size:13px;font-weight:600;text-align:center;cursor:pointer;font-family:Arial,sans-serif;background:' + (isActive ? '#e30613' : '#f0f0f2') + ';color:' + (isActive ? '#ffffff' : '#3c3c39') + ';';
                                     box.appendChild(nb);
                                 } catch(_) {}
                             });

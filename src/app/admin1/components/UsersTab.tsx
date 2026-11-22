@@ -121,7 +121,7 @@ export function UsersTab({ darkMode }: { darkMode: boolean }) {
                     <td className={`px-6 py-4 font-bold text-base ${darkMode ? 'text-white' : 'text-gray-900'}`}>{u.username}</td>
                     <td className="px-6 py-4 opacity-80">{u.email}</td>
                     <td className="px-6 py-4">
-                      <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wide shadow-sm ${u.role === 'super_admin' ? 'bg-blue-500/10 text-blue-500 border border-blue-500/20' : 'bg-green-500/10 text-green-500 border border-green-500/20'}`}>
+                      <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wide shadow-sm ${u.role === 'super_admin' ? 'bg-blue-500/10 text-blue-500 border border-blue-500/20' : 'bg-sky-500/10 text-sky-500 border border-sky-500/20'}`}>
                         {u.role === 'super_admin' ? 'SUPER ADMIN' : 'ADMIN'}
                       </span>
                     </td>

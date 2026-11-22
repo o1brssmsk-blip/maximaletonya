@@ -525,7 +525,7 @@ export function BanksTab({ darkMode }: { darkMode: boolean }) {
                     <button
                       onClick={validateDesignWithAI}
                       disabled={aiAnalyzing || isValidating || !editingBank.design?.visualTree}
-                      className="flex-1 bg-green-600/10 border-2 border-green-500/30 hover:bg-green-600/20 text-green-600 dark:text-green-400 font-bold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm"
+                      className="flex-1 bg-sky-600/10 border-2 border-sky-500/30 hover:bg-sky-600/20 text-sky-600 dark:text-sky-400 font-bold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm"
                     >
                       {isValidating ? "Doğrulanıyor..." : "✅ Tasarımı Doğrula"}
                     </button>

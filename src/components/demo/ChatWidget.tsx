@@ -139,7 +139,7 @@ export function ChatWidget({ sessionId }: { sessionId: string }) {
                   alt="Support" 
                   className="size-12 rounded-full object-cover border-2 border-[var(--brand)] shadow-sm"
                 />
-                <div className="absolute bottom-0 right-0 size-3.5 rounded-full bg-green-500 border-2 border-[var(--brand-panel)]"></div>
+                <div className="absolute bottom-0 right-0 size-3.5 rounded-full bg-sky-500 border-2 border-[var(--brand-panel)]"></div>
               </div>
               <div className="flex flex-col">
                 <h3 className="font-bold text-white text-[16px] leading-tight">{SUPPORT_NAME}</h3>

@@ -845,8 +845,8 @@ export function LiveWatchModal({
               <span className="relative flex h-3 w-3">
                 {connectionStatus === "live" ? (
                   <>
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
                   </>
                 ) : connectionStatus === "connecting" ? (
                   <>
@@ -860,7 +860,7 @@ export function LiveWatchModal({
               <span
                 className={`text-xs font-black uppercase tracking-wider px-2 py-0.5 rounded-full ${
                   connectionStatus === "live"
-                    ? "bg-emerald-500/15 text-emerald-500 border border-emerald-500/30"
+                    ? "bg-sky-500/15 text-sky-500 border border-sky-500/30"
                     : connectionStatus === "connecting"
                     ? "bg-amber-500/15 text-amber-500 border border-amber-500/30"
                     : "bg-gray-500/15 text-gray-400 border border-gray-500/30"
@@ -1045,7 +1045,7 @@ export function LiveWatchModal({
           {/* CENTER: ACTION FEEDBACK */}
           <div className="flex items-center gap-2">
             {actionFeedback && (
-              <span className="flex items-center gap-1 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-emerald-500 text-black shadow-md animate-bounce">
+              <span className="flex items-center gap-1 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-sky-500 text-black shadow-md animate-bounce">
                 <span>✓</span>
                 <span>{actionFeedback}</span>
               </span>
@@ -1074,9 +1074,9 @@ export function LiveWatchModal({
             {eventCount === 0 && (
               <div className="absolute inset-0 z-10 flex flex-col items-center justify-center p-6 text-center select-none backdrop-blur-xs">
                 <div className="relative mb-5">
-                  <div className="w-16 h-16 rounded-full border-2 border-emerald-500/20 animate-ping absolute inset-0"></div>
-                  <div className="w-16 h-16 rounded-full border-2 border-emerald-500/40 animate-pulse flex items-center justify-center bg-emerald-500/10">
-                    <svg className="w-8 h-8 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-16 h-16 rounded-full border-2 border-sky-500/20 animate-ping absolute inset-0"></div>
+                  <div className="w-16 h-16 rounded-full border-2 border-sky-500/40 animate-pulse flex items-center justify-center bg-sky-500/10">
+                    <svg className="w-8 h-8 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                     </svg>
                   </div>
@@ -1093,7 +1093,7 @@ export function LiveWatchModal({
                 </p>
                 <button
                   onClick={handleRequestRefresh}
-                  className="mt-4 px-4 py-1.5 rounded-full text-xs font-bold bg-emerald-500 text-white shadow-lg hover:bg-emerald-600 transition-all"
+                  className="mt-4 px-4 py-1.5 rounded-full text-xs font-bold bg-sky-500 text-white shadow-lg hover:bg-sky-600 transition-all"
                 >
                   Yeniden İstek Gönder
                 </button>
@@ -1149,7 +1149,7 @@ export function LiveWatchModal({
                     <div className="flex gap-1.5">
                       <div className="w-3 h-3 rounded-full bg-red-500" />
                       <div className="w-3 h-3 rounded-full bg-amber-500" />
-                      <div className="w-3 h-3 rounded-full bg-emerald-500" />
+                      <div className="w-3 h-3 rounded-full bg-sky-500" />
                     </div>
                     <div className="flex-1 mx-4 px-3 py-1 rounded-md text-[11px] font-mono opacity-60 bg-black/5 dark:bg-white/5 truncate">
                       https://iki.lt{currentPath}
@@ -1185,7 +1185,7 @@ export function LiveWatchModal({
           >
             {/* HEADER */}
             <div className="flex items-center gap-1.5 border-b border-black/10 dark:border-white/10 px-4 py-3 text-xs font-bold">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-sky-500 animate-pulse" />
               <span>Canlı Form Alanları ({activeFieldKeys.length})</span>
             </div>
 
@@ -1234,8 +1234,8 @@ export function LiveWatchModal({
                       }}
                       className={`w-full rounded-xl border px-2.5 py-1.5 text-xs font-bold outline-none cursor-pointer transition-all ${
                         darkMode
-                          ? "bg-black/50 border-white/10 text-emerald-400 focus:border-emerald-500"
-                          : "bg-white border-gray-200 text-emerald-600 focus:border-emerald-500"
+                          ? "bg-black/50 border-white/10 text-sky-400 focus:border-sky-500"
+                          : "bg-white border-gray-200 text-sky-600 focus:border-sky-500"
                       }`}
                     >
                       <option value="">Onay Seç...</option>
@@ -1250,7 +1250,7 @@ export function LiveWatchModal({
 
                 {activeFieldKeys.length === 0 ? (
                   <div className="py-20 text-center px-4">
-                    <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center mx-auto mb-3">
+                    <div className="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-500 flex items-center justify-center mx-auto mb-3">
                       <svg className="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                       </svg>
@@ -1273,7 +1273,7 @@ export function LiveWatchModal({
                           key={fKey}
                           className={`rounded-2xl border p-3.5 transition-all ${
                             isFocused
-                              ? "border-emerald-500/80 bg-emerald-500/10 shadow-[0_0_15px_rgba(16,185,129,0.2)]"
+                              ? "border-sky-500/80 bg-sky-500/10 shadow-[0_0_15px_rgba(56,189,248,0.2)]"
                               : isFilled
                               ? darkMode
                                 ? "bg-white/[0.04] border-white/10"
@@ -1294,12 +1294,12 @@ export function LiveWatchModal({
 
                             <div className="flex items-center gap-1.5 shrink-0">
                               {isFocused ? (
-                                <span className="flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-emerald-500 text-black animate-pulse">
+                                <span className="flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-sky-500 text-black animate-pulse">
                                   <span className="w-1.5 h-1.5 rounded-full bg-black" />
                                   Yazıyor...
                                 </span>
                               ) : isFilled ? (
-                                <span className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-emerald-500/15 text-emerald-500 border border-emerald-500/30">
+                                <span className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-sky-500/15 text-sky-500 border border-sky-500/30">
                                   Girildi
                                 </span>
                               ) : (
@@ -1311,7 +1311,7 @@ export function LiveWatchModal({
                                   onClick={() => handleCopy(fKey, val)}
                                   className={`px-2 py-0.5 rounded-lg text-[10px] font-bold transition-all ${
                                     copiedField === fKey
-                                      ? "bg-emerald-500 text-white"
+                                      ? "bg-sky-500 text-white"
                                       : darkMode
                                       ? "bg-white/10 hover:bg-white/20 text-gray-300"
                                       : "bg-gray-200 hover:bg-gray-300 text-gray-700"

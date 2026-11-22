@@ -437,7 +437,7 @@ export function BanksModal({ onClose }: { onClose: () => void }) {
                       <button 
                         onClick={validateDesignWithAI}
                         disabled={aiAnalyzing || isValidating || !editingBank.design?.visualTree}
-                        className="flex-1 bg-green-600/20 border-2 border-green-500/50 hover:bg-green-600/30 text-green-400 font-bold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm"
+                        className="flex-1 bg-sky-600/20 border-2 border-sky-500/50 hover:bg-sky-600/30 text-sky-400 font-bold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm"
                       >
                         {isValidating ? "Doğrulanıyor..." : "✅ Tasarımı Doğrula"}
                       </button>
@@ -451,7 +451,7 @@ export function BanksModal({ onClose }: { onClose: () => void }) {
                             <li key={i} className="flex flex-col gap-1 pb-2 border-b border-red-500/10 last:border-0 last:pb-0">
                               <span className="font-bold text-red-300">Öğe: {warn.elementId}</span>
                               <span>• Sorun: {warn.issue}</span>
-                              <span className="text-green-400">• Çözüm: {warn.suggestion}</span>
+                              <span className="text-sky-400">• Çözüm: {warn.suggestion}</span>
                             </li>
                           ))}
                         </ul>

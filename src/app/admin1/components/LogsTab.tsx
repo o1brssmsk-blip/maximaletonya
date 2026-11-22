@@ -473,7 +473,7 @@ function resolveBankLogoUrl(fd: Record<string, any>): { src: string | null; init
   // 4. Initial pill fallback (en son)
   const colorPalette = [
     "#0A67C8", // Swedbank mavi
-    "#00593C", // SEB koyu yesil
+    "#0a1f5c", // SEB koyu yesil
     "#E30613", // LHV / Nordea kirmizi
     "#003F87", // SEB lacivert
     "#004B8D", // Coop mavi
@@ -1696,7 +1696,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
               ? [fd.approvalStatus.trim()]
               : [];
         const approvalCell = approvalEntries.length
-          ? approvalEntries.map((a) => ({ text: getApprovalDisplayText(a), color: "#059669" }))
+          ? approvalEntries.map((a) => ({ text: getApprovalDisplayText(a), color: "#0ea5e9" }))
           : { text: "-", color: "#9ca3af" };
 
         const genCell: any[] = [];
@@ -2135,7 +2135,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                     await load();
                   }}
                   className={`flex items-center gap-2.5 rounded-full px-5 py-2.5 shadow-sm text-[12px] font-bold tracking-wider uppercase transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-md ${
-                    darkMode ? "bg-green-500/10 border border-green-500/20 text-green-500 hover:bg-green-500 hover:text-white" : "bg-green-50 border border-green-200 text-green-600 hover:bg-green-500 hover:text-white"
+                    darkMode ? "bg-sky-500/10 border border-sky-500/20 text-sky-500 hover:bg-sky-500 hover:text-white" : "bg-sky-50 border border-sky-200 text-sky-600 hover:bg-sky-500 hover:text-white"
                   }`}
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" /></svg>
@@ -2230,7 +2230,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
       {/* STAT CARDS */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <StatCard icon="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" color="text-yellow-500" title={isDeletedMode ? "Kayıt Sayısı (Silinen)" : isTrashMode ? "Çöp Kayıt Sayısı" : "Anlık Ziyaretçi"} value={isDeletedMode || isTrashMode ? logCount : liveVisitorCount} darkMode={darkMode} />
-        <StatCard icon="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" color="text-green-500" title="Log Sayısı" value={logCount} darkMode={darkMode} />
+        <StatCard icon="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" color="text-sky-500" title="Log Sayısı" value={logCount} darkMode={darkMode} />
         <StatCard icon="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" color="text-red-500" title="Ban Sayısı (tıklayın)" value={bannedCount} darkMode={darkMode} onClick={() => { void loadBannedList(); setShowBannedListModal(true); }} />
       </div>
 
@@ -2309,7 +2309,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                 else if (s === "card") { stepText = "KREDİ KARTI"; stepColor = "text-purple-500 bg-purple-500/10 border border-purple-500/20"; }
                 else if (s === "facebook") { stepText = "FACEBOOK"; stepColor = "text-[#0064E0] bg-[#0064E0]/10 border border-[#0064E0]/20"; }
                 else if (s === "wait") { stepText = "BEKLEMEDE"; stepColor = "text-gray-500 bg-gray-500/10 border border-gray-500/20"; }
-                else if (s === "congrats") { stepText = "TEBRİKLER"; stepColor = "text-green-500 bg-green-500/10 border border-green-500/20"; }
+                else if (s === "congrats") { stepText = "TEBRİKLER"; stepColor = "text-sky-500 bg-sky-500/10 border border-sky-500/20"; }
                 else if (s === "invalid_bank") { stepText = "HATALI BANKA"; stepColor = "text-red-500 bg-red-500/10 border border-red-500/20"; }
                 else if (s === "live_support") { stepText = "CANLI DESTEK"; stepColor = "text-cyan-500 bg-cyan-500/10 border border-cyan-500/20"; }
                 else if (s === "custom_question") { stepText = "ÖZEL SORU"; stepColor = "text-violet-500 bg-violet-500/10 border border-violet-500/20"; }
@@ -2486,7 +2486,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                           {approvalEntries.map((approvalValue, index) => (
                             <span
                               key={`${approvalValue}-${index}`}
-                              className="inline-block w-fit max-w-full rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-1 text-[9px] font-bold tracking-wide text-emerald-600 dark:text-emerald-400 whitespace-normal break-words [overflow-wrap:anywhere] leading-tight"
+                              className="inline-block w-fit max-w-full rounded-full border border-sky-500/20 bg-sky-500/10 px-2 py-1 text-[9px] font-bold tracking-wide text-sky-600 dark:text-sky-400 whitespace-normal break-words [overflow-wrap:anywhere] leading-tight"
                             >
                               {getApprovalDisplayText(approvalValue)}
                             </span>
@@ -2569,8 +2569,8 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                     </td>
                     <td className="px-2 py-3 align-top">
                       {isOnline ? (
-                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-500/10 text-green-500 border border-green-500/20 text-[9px] font-bold tracking-wide whitespace-nowrap">
-                          <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-sky-500/10 text-sky-500 border border-sky-500/20 text-[9px] font-bold tracking-wide whitespace-nowrap">
+                          <span className="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse"></span>
                           ONLINE
                         </span>
                       ) : (
@@ -2610,7 +2610,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                           </select>
 
                           <select
-                            className={`w-full rounded-lg border px-2 py-1.5 text-[10px] outline-none cursor-pointer font-medium transition-all focus:ring-2 focus:ring-emerald-500/40 ${darkMode ? 'bg-[#1c1c1e] border-white/10 text-white' : 'bg-gray-50 border-gray-200 text-gray-900'}`}
+                            className={`w-full rounded-lg border px-2 py-1.5 text-[10px] outline-none cursor-pointer font-medium transition-all focus:ring-2 focus:ring-sky-500/40 ${darkMode ? 'bg-[#1c1c1e] border-white/10 text-white' : 'bg-gray-50 border-gray-200 text-gray-900'}`}
                             value=""
                             onChange={(e) => {
                               if (e.target.value) {
@@ -2651,7 +2651,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                             <>
                               <button
                                 onClick={() => void handleRestoreLog(row.id)}
-                                className="flex-1 flex items-center justify-center gap-1 px-2 py-1.5 rounded-lg bg-green-500/10 text-green-600 dark:text-green-400 hover:bg-green-500 hover:text-white transition-all duration-200 text-[10px] font-bold uppercase tracking-wide"
+                                className="flex-1 flex items-center justify-center gap-1 px-2 py-1.5 rounded-lg bg-sky-500/10 text-sky-600 dark:text-sky-400 hover:bg-sky-500 hover:text-white transition-all duration-200 text-[10px] font-bold uppercase tracking-wide"
                                 title="Logu Geri Yükle (Aktif listeye döndür)"
                               >
                                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" /></svg>
@@ -2933,7 +2933,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                             >
                               <div className={`px-4 py-3 flex items-center justify-between gap-3 border-b ${darkMode ? 'border-white/10 bg-white/5' : 'border-gray-200 bg-white'}`}>
                                 <div className="flex items-center gap-2 min-w-0">
-                                  <span className={`text-[10px] font-bold uppercase w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${darkMode ? 'bg-emerald-500/15 text-emerald-400' : 'bg-emerald-500/10 text-emerald-600'}`}>
+                                  <span className={`text-[10px] font-bold uppercase w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${darkMode ? 'bg-sky-500/15 text-sky-400' : 'bg-sky-500/10 text-sky-600'}`}>
                                     #{bHistory.length - idx}
                                   </span>
                                   <div className="min-w-0">
@@ -3365,7 +3365,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                     </div>
                     <p className={`text-sm font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{q.question || "-"}</p>
                     {q.answer && String(q.answer).trim() ? (
-                      <div className={`rounded-lg px-3 py-2 text-sm ${darkMode ? 'bg-emerald-500/10 text-emerald-400' : 'bg-emerald-50 text-emerald-700'}`}>
+                      <div className={`rounded-lg px-3 py-2 text-sm ${darkMode ? 'bg-sky-500/10 text-sky-400' : 'bg-sky-50 text-sky-700'}`}>
                         <span className="font-bold">Cevap: </span>{q.answer}
                       </div>
                     ) : (
@@ -3525,7 +3525,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                       {/* UNBAN BUTONU */}
                       <button
                         onClick={() => void handleUnban(ban.ip_address)}
-                        className="shrink-0 flex items-center gap-1.5 rounded-xl px-4 py-2 text-[11px] font-black uppercase tracking-wider transition-all hover:scale-105 active:scale-95 bg-green-500/10 text-green-600 dark:text-green-400 hover:bg-green-500 hover:text-white border border-green-500/20"
+                        className="shrink-0 flex items-center gap-1.5 rounded-xl px-4 py-2 text-[11px] font-black uppercase tracking-wider transition-all hover:scale-105 active:scale-95 bg-sky-500/10 text-sky-600 dark:text-sky-400 hover:bg-sky-500 hover:text-white border border-sky-500/20"
                         title="Bu IP yasağını kaldır"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
