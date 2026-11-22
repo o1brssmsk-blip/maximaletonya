@@ -6,7 +6,7 @@ import type { ActiveWheelLayout, WheelSceneKey } from "@/app/wheel/wheel-layout"
 export type WheelPrizeLabel = {
   kind: "amount" | "message";
   rotationIndex: number;
-  popupLines: string[];
+  popupLines: readonly string[];
   // Acik (beyaz/acik renk) segment uzerinde koyu yazi icin true
   darkText?: boolean;
 };

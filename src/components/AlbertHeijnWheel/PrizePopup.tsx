@@ -13,7 +13,7 @@ type PrizePopupResult = {
   kind: "amount" | "message";
   text: string;
   amount: number | null;
-  popupLines: string[];
+  popupLines: readonly string[];
 };
 
 type Props = {

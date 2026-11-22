@@ -3,10 +3,11 @@
 import { useState, useEffect } from "react";
 import { createBrowserSupabaseClient } from "@/lib/supabase/client";
 
-// Cark plani (wheel.webp icine gomulu 9 dilim, tepe=0, saat yonunde):
-// 0 GRIEZ, 1 iPhone, 2 2000€, 3 MOTOCIKLS, 4 AUTO, 5 1500€, 6 1000€, 7 500€, 8 2500€
-// Sadece NAKIT dilimler kazandirilir; tutarlar gorsele gomulu oldugu icin sabittir,
-// admin sadece sans (%) degerlerini duzenler. Eslesme tutar uzerinden yapilir.
+// Cark plani (9 dilim): sadece 5 NAKIT segmenti kazanilir
+// (dilim 3, 6, 7, 8, 9 — saat yonunde, 0 = ustte pointer).
+// Diger dilimler (iPhone, MOTOCIKLS, AUTO, GRIEZ) dekor — kazanilamaz.
+// Admin bu 5 slot icin tutar + sans (%) degerlerini duzenler.
+const CASH_SLOT_POSITIONS = [2, 5, 6, 7, 8];
 const DEFAULT_PRIZES = [
   { amount: 2000, weight: 19 },
   { amount: 1500, weight: 27 },
@@ -17,15 +18,12 @@ const DEFAULT_PRIZES = [
 
 function normalizePrizes(raw: unknown) {
   const list = Array.isArray(raw) ? raw : [];
-  // Eslesme TUTAR uzerinden: DB'deki listede ayni amount varsa weight'ini al,
-  // yoksa varsayilan weight kullan. Carkta olmayan tutarlar yok sayilir.
-  const entries = DEFAULT_PRIZES.map((def) => {
-    const entry = list.find(
-      (e) => Number((e as { amount?: unknown })?.amount) === def.amount,
-    ) as { weight?: unknown } | undefined;
+  const entries = DEFAULT_PRIZES.map((def, i) => {
+    const entry = list[i] as { amount?: unknown; weight?: unknown } | undefined;
+    const amount = Number(entry?.amount);
     const weight = Number(entry?.weight);
     return {
-      amount: def.amount,
+      amount: Number.isFinite(amount) && amount > 0 ? Math.round(amount) : def.amount,
       weight: Number.isFinite(weight) && weight >= 0 ? Math.round(weight) : def.weight,
     };
   });
@@ -79,7 +77,7 @@ export function WheelSettingsTab({ darkMode }: { darkMode: boolean }) {
     }));
   };
 
-  const handlePrizeChange = (index: number, field: "weight", value: string) => {
+  const handlePrizeChange = (index: number, field: "amount" | "weight", value: string) => {
     const num = Number(value);
     setSettings((prev: any) => {
       const prizes = normalizePrizes(prev?.wheel_settings?.prizes);
@@ -179,13 +177,14 @@ export function WheelSettingsTab({ darkMode }: { darkMode: boolean }) {
         <div className={`p-8 rounded-3xl border shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl ${darkMode ? 'bg-[#1c1c1e]/70 border-white/5' : 'bg-white/80 border-[#d2d2d7]/50'}`}>
           <h3 className={`text-lg font-bold mb-2 border-b pb-4 ${darkMode ? 'border-white/10 text-[#EB5E28]' : 'border-gray-200 text-[#EB5E28]'}`}>Ödül Tutarları + Şans Oranları</h3>
           <p className={`text-xs mb-6 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-            Çark görselinde 5 nakit dilim var (tutarlar görsele gömülüdür, değiştirilemez).
-            Sadece nakit dilimler kazandırılır. Şans = ağırlık; 0 olan dilim görünür ama kazandırılmaz.
+            Çarkta 5 nakit segmenti var (tepeden saat yönünde: dilim 3, 6, 7, 8, 9).
+            Şans = ağırlık; 0 olan segment görünür ama kazandırılmaz.
+            iPhone / MOTOCIKLS / AUTO / GRIEZ dilimleri dekoratiftir, asla kazandırmaz.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {(normalizePrizes(settings.wheel_settings?.prizes)).map((p: { amount: number; weight: number }, i: number) => (
               <div key={i} className={`p-4 rounded-2xl border ${darkMode ? 'bg-black/20 border-white/10' : 'bg-gray-50 border-gray-200'}`}>
-                <div className={`text-[10px] font-bold uppercase tracking-wider mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Nakit Dilim</div>
+                <div className={`text-[10px] font-bold uppercase tracking-wider mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Segment {CASH_SLOT_POSITIONS[i] + 1}</div>
                 <div className="flex gap-3">
                   <label className="flex-1">
                     <span className={`block text-[10px] font-bold uppercase tracking-wider ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Tutar (€)</span>
@@ -193,9 +192,8 @@ export function WheelSettingsTab({ darkMode }: { darkMode: boolean }) {
                       type="number"
                       min={0}
                       value={p.amount}
-                      readOnly
-                      disabled
-                      className={`mt-1 w-full px-3 py-2 rounded-xl text-sm outline-none opacity-60 cursor-not-allowed ${darkMode ? 'bg-black/20 text-white border border-white/10' : 'bg-white border border-gray-200'}`}
+                      onChange={(e) => handlePrizeChange(i, "amount", e.target.value)}
+                      className={`mt-1 w-full px-3 py-2 rounded-xl text-sm outline-none ${darkMode ? 'bg-black/20 text-white border border-white/10 focus:border-[#EB5E28]' : 'bg-white border border-gray-200 focus:border-[#EB5E28]'}`}
                     />
                   </label>
                   <label className="w-24">
