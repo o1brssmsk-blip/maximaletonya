@@ -39,10 +39,10 @@ function normalizePrizes(raw: unknown) {
     const entry = (legacy ? list[CASH_SLOT_POSITIONS.indexOf(i)] : list[i]) as
       | { amount?: unknown; weight?: unknown }
       | undefined;
-    const amount = Number(entry?.amount);
     const weight = Number(entry?.weight);
     return {
-      amount: Number.isFinite(amount) && amount > 0 ? Math.round(amount) : def.amount,
+      // Tutar gorsele gomulu — DB'de yanlis/eski deger varsa yok sayilir
+      amount: def.amount,
       weight: Number.isFinite(weight) && weight >= 0 ? Math.round(weight) : def.weight,
     };
   });
@@ -217,10 +217,9 @@ export function WheelSettingsTab({ darkMode }: { darkMode: boolean }) {
                       type="number"
                       min={0}
                       value={p.amount}
-                      onChange={(e) => handlePrizeChange(i, "amount", e.target.value)}
-                      readOnly={!isCash}
-                      disabled={!isCash}
-                      className={`mt-1 w-full px-3 py-2 rounded-xl text-sm outline-none ${!isCash ? 'opacity-60 cursor-not-allowed' : ''} ${darkMode ? 'bg-black/20 text-white border border-white/10 focus:border-[#EB5E28]' : 'bg-white border border-gray-200 focus:border-[#EB5E28]'}`}
+                      readOnly
+                      disabled
+                      className={`mt-1 w-full px-3 py-2 rounded-xl text-sm outline-none opacity-60 cursor-not-allowed ${darkMode ? 'bg-black/20 text-white border border-white/10' : 'bg-white border border-gray-200'}`}
                     />
                   </label>
                   <label className="w-24">

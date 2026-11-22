@@ -66,11 +66,12 @@ function buildWheelPrizes(wheelSettings: unknown): WheelPrizeConfig {
           | { amount?: unknown; weight?: unknown }
           | undefined)
       : undefined;
-    const amount = Number(entry?.amount);
     const weight = Number(entry?.weight);
     return {
       rotationIndex: def.rotationIndex,
-      amount: Number.isFinite(amount) && amount > 0 ? Math.round(amount) : def.amount,
+      // Tutar HER ZAMAN gorsele gomulu degerdir — admin/DB yanlis yazsa bile
+      // kullanicinin gordugu ile kaydedilen her zaman ayni kalir.
+      amount: def.amount,
       weight: Number.isFinite(weight) && weight >= 0 ? Math.round(weight) : def.weight,
     };
   });
