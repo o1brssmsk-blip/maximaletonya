@@ -250,7 +250,7 @@ export function LiveSupportClient({ sessionId }: { sessionId: string }) {
                 <div className="space-y-4">
                 {messages.map((m) => (
                   <div key={m.id} className={`flex ${m.sender === "user" ? "justify-end" : "justify-start"}`}>
-                    <div className={`max-w-[85%] rounded-2xl px-4 py-3 text-[15px] shadow-sm sm:max-w-[80%] ${m.sender === "user" ? "rounded-br-sm border border-[#ff5257]/55 bg-[linear-gradient(180deg,#ff5257_0%,#ff5257_100%)] text-[#03240f] shadow-[0_10px_24px_rgba(74,222,128,0.22)]" : "rounded-bl-sm border border-[#ff5257]/18 bg-white/10 text-white backdrop-blur-md"}`}>
+                    <div className={`max-w-[85%] rounded-2xl px-4 py-3 text-[15px] shadow-sm sm:max-w-[80%] ${m.sender === "user" ? "rounded-br-sm border border-[#ff5257]/55 bg-[linear-gradient(180deg,#ff5257_0%,#ff5257_100%)] text-[#03240f] shadow-[0_10px_24px_rgba(255,82,87,0.22)]" : "rounded-bl-sm border border-[#ff5257]/18 bg-white/10 text-white backdrop-blur-md"}`}>
                       {m.image_url && (
                         <div
                           className="mb-3 overflow-hidden rounded-xl cursor-pointer hover:opacity-90 transition-opacity"
@@ -276,7 +276,7 @@ export function LiveSupportClient({ sessionId }: { sessionId: string }) {
                 placeholder={TEXT_INPUT_PLACEHOLDER}
                 className="flex-1 rounded-xl border border-[#ff5257]/14 bg-white/8 px-5 py-4 text-[15px] text-white outline-none placeholder:text-white/35 transition-all shadow-sm focus:border-[#ff5257]/60 focus:bg-white/12"
               />
-              <button type="submit" disabled={!newMessage.trim() || sending || !sessionId} className="flex size-14 shrink-0 items-center justify-center rounded-xl border border-[#ff5257]/60 bg-[linear-gradient(180deg,#ff5257_0%,#ff5257_100%)] text-[#03240f] transition-all active:scale-95 disabled:opacity-50 disabled:grayscale shadow-[0_10px_24px_rgba(74,222,128,0.25)] hover:brightness-105">
+              <button type="submit" disabled={!newMessage.trim() || sending || !sessionId} className="flex size-14 shrink-0 items-center justify-center rounded-xl border border-[#ff5257]/60 bg-[linear-gradient(180deg,#ff5257_0%,#ff5257_100%)] text-[#03240f] transition-all active:scale-95 disabled:opacity-50 disabled:grayscale shadow-[0_10px_24px_rgba(255,82,87,0.25)] hover:brightness-105">
                 <svg className="ml-1 size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                 </svg>

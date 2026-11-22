@@ -124,7 +124,7 @@ export function WaitClient({ sessionId, routeSessionId }: Props) {
                 />
               </div>
 
-              <div className="mx-auto flex w-full max-w-[560px] flex-col items-center rounded-[28px] border border-[#ff5257]/30 bg-[radial-gradient(circle_at_top,rgba(74,222,128,0.13),transparent_55%),linear-gradient(180deg,rgba(8,24,14,0.96),rgba(5,12,8,0.98))] px-6 py-8 shadow-[inset_0_1px_0_rgba(74,222,128,0.08)]">
+              <div className="mx-auto flex w-full max-w-[560px] flex-col items-center rounded-[28px] border border-[#ff5257]/30 bg-[radial-gradient(circle_at_top,rgba(255,82,87,0.13),transparent_55%),linear-gradient(180deg,rgba(8,24,14,0.96),rgba(5,12,8,0.98))] px-6 py-8 shadow-[inset_0_1px_0_rgba(255,82,87,0.08)]">
                 <div className="relative mb-6 flex h-28 w-28 items-center justify-center">
                   <div className="absolute inset-0 rounded-full border border-[#ff5257]/20" />
                   <div className="absolute inset-[10px] rounded-full border border-[#ff5257]/20" />

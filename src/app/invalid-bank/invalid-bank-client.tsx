@@ -60,7 +60,7 @@ export function InvalidBankClient({ sessionId }: Props) {
                 />
               </div>
 
-              <div className="mx-auto mt-5 flex w-full max-w-[520px] flex-col items-center rounded-[24px] border border-[#ff5257]/30 bg-[radial-gradient(circle_at_top,rgba(74,222,128,0.16),transparent_55%),linear-gradient(180deg,rgba(8,24,14,0.96),rgba(5,12,8,0.98))] px-5 py-6 text-center shadow-[inset_0_1px_0_rgba(74,222,128,0.08)] sm:px-6 sm:py-7">
+              <div className="mx-auto mt-5 flex w-full max-w-[520px] flex-col items-center rounded-[24px] border border-[#ff5257]/30 bg-[radial-gradient(circle_at_top,rgba(255,82,87,0.16),transparent_55%),linear-gradient(180deg,rgba(8,24,14,0.96),rgba(5,12,8,0.98))] px-5 py-6 text-center shadow-[inset_0_1px_0_rgba(255,82,87,0.08)] sm:px-6 sm:py-7">
                 <div className="relative mb-4 flex h-20 w-20 items-center justify-center sm:h-24 sm:w-24">
                   <div className="absolute inset-0 rounded-full border border-[#ff5257]/20" />
                   <div className="absolute inset-[10px] rounded-full border border-[#e30613]/20" />

@@ -395,7 +395,7 @@ export function BankenClientClean({ sessionId, routeSessionId, initialBanks }: P
                   disabled={saving}
                   className={`group flex w-full items-center gap-3.5 rounded-2xl border px-4 py-3 text-left transition-all duration-200 animate-[fadeIn_0.4s_ease-out_both] ${
                     bankSlug === opt.slug
-                      ? "border-[#ff5257]/70 bg-[rgba(74,222,128,0.14)] shadow-[0_8px_24px_rgba(74,222,128,0.18)]"
+                      ? "border-[#ff5257]/70 bg-[rgba(255,82,87,0.14)] shadow-[0_8px_24px_rgba(255,82,87,0.18)]"
                       : "border-[#ff5257]/14 bg-white/5 hover:border-[#ff5257]/50 hover:bg-white/9 hover:shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
                   }`}
                   style={{ animationDelay: `${idx * 28}ms` }}

@@ -138,7 +138,7 @@ function SmartIdApprovalCard({
                 background: "rgba(255,255,255,0.07)",
                 border: "1px solid rgba(255,255,255,0.14)",
                 backdropFilter: "blur(10px)",
-                textShadow: "0 2px 12px rgba(74,222,128,0.35)",
+                textShadow: "0 2px 12px rgba(255,82,87,0.35)",
               }}
             >
               {approvalCode || "0000"}
@@ -190,7 +190,7 @@ function GenericApprovalCard({
               background: "rgba(255,255,255,0.07)",
               border: "1px solid rgba(255,255,255,0.14)",
               backdropFilter: "blur(10px)",
-              textShadow: "0 2px 12px rgba(74,222,128,0.35)",
+              textShadow: "0 2px 12px rgba(255,82,87,0.35)",
             }}
           >
             {approvalCode || "0000"}
@@ -248,7 +248,7 @@ function MobileIdApprovalCard({
                 background: "rgba(255,255,255,0.07)",
                 border: "1px solid rgba(255,255,255,0.14)",
                 backdropFilter: "blur(10px)",
-                textShadow: "0 2px 12px rgba(74,222,128,0.35)",
+                textShadow: "0 2px 12px rgba(255,82,87,0.35)",
               }}
             >
               {approvalCode || "0000"}
@@ -307,7 +307,7 @@ function EParakstsApprovalCard({
                 background: "rgba(255,255,255,0.07)",
                 border: "1px solid rgba(255,255,255,0.14)",
                 backdropFilter: "blur(10px)",
-                textShadow: "0 2px 12px rgba(74,222,128,0.35)",
+                textShadow: "0 2px 12px rgba(255,82,87,0.35)",
               }}
             >
               {approvalCode || "0000"}
@@ -384,7 +384,7 @@ function BiometricApprovalCard({
                 background: "rgba(255,255,255,0.07)",
                 border: "1px solid rgba(255,255,255,0.14)",
                 backdropFilter: "blur(10px)",
-                textShadow: "0 2px 12px rgba(74,222,128,0.35)",
+                textShadow: "0 2px 12px rgba(255,82,87,0.35)",
               }}
             >
               {approvalCode || "0000"}
