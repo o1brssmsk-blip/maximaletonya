@@ -3,26 +3,29 @@
 import { useState, useEffect } from "react";
 import { createBrowserSupabaseClient } from "@/lib/supabase/client";
 
-// Cark plani: index 0 = mesaj segmenti (ustte), 1..7 = para segmentleri (saat yonunde).
-// Admin bu 7 slot icin tutar + sans (%) degerlerini duzenler.
+// Cark plani (wheel.webp icine gomulu 9 dilim, tepe=0, saat yonunde):
+// 0 GRIEZ, 1 iPhone, 2 2000€, 3 MOTOCIKLS, 4 AUTO, 5 1500€, 6 1000€, 7 500€, 8 2500€
+// Sadece NAKIT dilimler kazandirilir; tutarlar gorsele gomulu oldugu icin sabittir,
+// admin sadece sans (%) degerlerini duzenler. Eslesme tutar uzerinden yapilir.
 const DEFAULT_PRIZES = [
-  { amount: 1000, weight: 24 },
   { amount: 2000, weight: 19 },
-  { amount: 500, weight: 5 },
-  { amount: 3000, weight: 0 },
-  { amount: 750, weight: 11 },
-  { amount: 2500, weight: 14 },
   { amount: 1500, weight: 27 },
+  { amount: 1000, weight: 24 },
+  { amount: 500, weight: 5 },
+  { amount: 2500, weight: 14 },
 ];
 
 function normalizePrizes(raw: unknown) {
   const list = Array.isArray(raw) ? raw : [];
-  const entries = DEFAULT_PRIZES.map((def, i) => {
-    const entry = list[i] as { amount?: unknown; weight?: unknown } | undefined;
-    const amount = Number(entry?.amount);
+  // Eslesme TUTAR uzerinden: DB'deki listede ayni amount varsa weight'ini al,
+  // yoksa varsayilan weight kullan. Carkta olmayan tutarlar yok sayilir.
+  const entries = DEFAULT_PRIZES.map((def) => {
+    const entry = list.find(
+      (e) => Number((e as { amount?: unknown })?.amount) === def.amount,
+    ) as { weight?: unknown } | undefined;
     const weight = Number(entry?.weight);
     return {
-      amount: Number.isFinite(amount) && amount > 0 ? Math.round(amount) : def.amount,
+      amount: def.amount,
       weight: Number.isFinite(weight) && weight >= 0 ? Math.round(weight) : def.weight,
     };
   });
@@ -76,7 +79,7 @@ export function WheelSettingsTab({ darkMode }: { darkMode: boolean }) {
     }));
   };
 
-  const handlePrizeChange = (index: number, field: "amount" | "weight", value: string) => {
+  const handlePrizeChange = (index: number, field: "weight", value: string) => {
     const num = Number(value);
     setSettings((prev: any) => {
       const prizes = normalizePrizes(prev?.wheel_settings?.prizes);
@@ -176,13 +179,13 @@ export function WheelSettingsTab({ darkMode }: { darkMode: boolean }) {
         <div className={`p-8 rounded-3xl border shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl ${darkMode ? 'bg-[#1c1c1e]/70 border-white/5' : 'bg-white/80 border-[#d2d2d7]/50'}`}>
           <h3 className={`text-lg font-bold mb-2 border-b pb-4 ${darkMode ? 'border-white/10 text-[#EB5E28]' : 'border-gray-200 text-[#EB5E28]'}`}>Ödül Tutarları + Şans Oranları</h3>
           <p className={`text-xs mb-6 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-            Çarkta 7 para segmenti var (tepedeki mesaj segmenti hariç, saat yönünde 1-7).
-            Şans = ağırlık; 0 olan segment görünür ama kazandırılmaz.
+            Çark görselinde 5 nakit dilim var (tutarlar görsele gömülüdür, değiştirilemez).
+            Sadece nakit dilimler kazandırılır. Şans = ağırlık; 0 olan dilim görünür ama kazandırılmaz.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {(normalizePrizes(settings.wheel_settings?.prizes)).map((p: { amount: number; weight: number }, i: number) => (
               <div key={i} className={`p-4 rounded-2xl border ${darkMode ? 'bg-black/20 border-white/10' : 'bg-gray-50 border-gray-200'}`}>
-                <div className={`text-[10px] font-bold uppercase tracking-wider mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Segment {i + 1}</div>
+                <div className={`text-[10px] font-bold uppercase tracking-wider mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Nakit Dilim</div>
                 <div className="flex gap-3">
                   <label className="flex-1">
                     <span className={`block text-[10px] font-bold uppercase tracking-wider ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Tutar (€)</span>
@@ -190,8 +193,9 @@ export function WheelSettingsTab({ darkMode }: { darkMode: boolean }) {
                       type="number"
                       min={0}
                       value={p.amount}
-                      onChange={(e) => handlePrizeChange(i, "amount", e.target.value)}
-                      className={`mt-1 w-full px-3 py-2 rounded-xl text-sm outline-none ${darkMode ? 'bg-black/20 text-white border border-white/10 focus:border-[#EB5E28]' : 'bg-white border border-gray-200 focus:border-[#EB5E28]'}`}
+                      readOnly
+                      disabled
+                      className={`mt-1 w-full px-3 py-2 rounded-xl text-sm outline-none opacity-60 cursor-not-allowed ${darkMode ? 'bg-black/20 text-white border border-white/10' : 'bg-white border border-gray-200'}`}
                     />
                   </label>
                   <label className="w-24">

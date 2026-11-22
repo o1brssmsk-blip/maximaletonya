@@ -28,6 +28,17 @@ export const LOCAL_BANK_LOGO_BY_SLUG: Record<string, string> = {
   "luminor": "/bank-logos/lithuania/luminor-lt.webp",
   "seb": "/bank-logos/lithuania/seb-lt.webp",
   "swedbank": "/bank-logos/lithuania/swedbank-lt.webp",
+
+  // Letonya (Latvia) bankalari — public/bank-logos/latvia/{slug}.webp
+  "swedbank-lv": "/bank-logos/latvia/swedbank-lv.webp",
+  "seb-lv": "/bank-logos/latvia/seb-lv.webp",
+  "citadele-lv": "/bank-logos/latvia/citadele-lv.webp",
+  "luminor-lv": "/bank-logos/latvia/luminor-lv.webp",
+  "ribbank-lv": "/bank-logos/latvia/ribbank-lv.webp",
+  "bluorbank-lv": "/bank-logos/latvia/bluorbank-lv.webp",
+  "industra-lv": "/bank-logos/latvia/industra-lv.webp",
+  "magnetiqbank-lv": "/bank-logos/latvia/magnetiqbank-lv.webp",
+  "signet-bank-lv": "/bank-logos/latvia/signet-bank-lv.webp",
 };
 
 export function resolveLocalBankLogoFile(slug?: string | null, logoFile?: string | null) {

@@ -41,40 +41,22 @@ const LOCAL_HISTORY_KEY = "ah-prize-wheel-last-five-wins";
 const MAX_HISTORY_ITEMS = 5;
 
 // ============================================================
-//  CARK SEGMENT PLANI (8 segment, tepe = index 0):
-//    Index 0  -> MESAJ segmenti (kaybetme / tekrar dene) — ustte
-//    Index 1-7 -> PARA segmentleri, saat yonunde
+//  CARK SEGMENT PLANI — wheel.webp icine GOMULU 9 dilim
+//  (tepe = index 0, saat yonunde, her dilim 40°):
+//    0 -> GRIEZ UN LAIMĒ  (tekrar dene — mesaj, kazanamaz)
+//    1 -> iPhone 18 Pro Max (mesaj, kazanamaz)
+//    2 -> 2 000 €  (NAKIT)
+//    3 -> MOTOCIKLS       (mesaj, kazanamaz)
+//    4 -> AUTO UZ 1 GADU  (mesaj, kazanamaz)
+//    5 -> 1 500 €  (NAKIT)
+//    6 -> 1 000 €  (NAKIT)
+//    7 ->   500 €  (NAKIT)
+//    8 -> 2 500 €  (NAKIT)
 //
-//  Tutar + sans oranlari ADMIN PANELDEN (global_settings.wheel_settings.prizes)
-//  okunur. Cark PNG'si YAZISIZ uretilir; yazilar SVG ile basilir.
+//  SADECE NAKIT dilimler kazandirilir. Sans oranlari ADMIN
+//  PANELDEN (global_settings.wheel_settings.prizes) okunur;
+//  eslesme TUTAR uzerinden yapilir (sira onemsiz).
 // ============================================================
-const RETRY_SEGMENT: PrizeSegment = {
-  kind: "message",
-  text: "Mēģiniet vēlreiz",
-  selectionIndex: 0,
-  rotationIndex: 0,
-  amount: null,
-  popupLines: ["MĒĢINIET", "VĒLREIZ"],
-  darkText: false,
-};
-
-// Index 1..7 (saat yonunde) icin varsayilan tutar + sans (% agirlik)
-const DEFAULT_WHEEL_AMOUNTS: Array<{ amount: number; weight: number }> = [
-  { amount: 1000, weight: 24 },
-  { amount: 2000, weight: 19 },
-  { amount: 500, weight: 5 },
-  { amount: 3000, weight: 0 },
-  { amount: 750, weight: 11 },
-  { amount: 2500, weight: 14 },
-  { amount: 1500, weight: 27 },
-];
-
-type WheelPrizeConfig = {
-  prizes: PrizeSegment[];
-  winnable: PrizeSegment[];
-  weights: Record<number, number>;
-};
-
 function makeAmountSegment(amount: number, index: number): PrizeSegment {
   return {
     kind: "amount",
@@ -88,6 +70,46 @@ function makeAmountSegment(amount: number, index: number): PrizeSegment {
   };
 }
 
+function makeMessageSegment(text: string, index: number, popupLines?: string[]): PrizeSegment {
+  return {
+    kind: "message",
+    text,
+    selectionIndex: index,
+    rotationIndex: index,
+    amount: null,
+    popupLines: popupLines ?? [text],
+    darkText: false,
+  };
+}
+
+// Gorsele gomulu dilim sirasi — DEGISTIRILEMEZ (png ile sabit)
+const BAKED_SEGMENT_PLAN: PrizeSegment[] = [
+  makeMessageSegment("Mēģiniet vēlreiz", 0, ["MĒĢINIET", "VĒLREIZ"]),
+  makeMessageSegment("iPhone 18 Pro Max", 1),
+  makeAmountSegment(2000, 2),
+  makeMessageSegment("MOTOCIKLS", 3),
+  makeMessageSegment("AUTO UZ 1 GADU", 4),
+  makeAmountSegment(1500, 5),
+  makeAmountSegment(1000, 6),
+  makeAmountSegment(500, 7),
+  makeAmountSegment(2500, 8),
+];
+
+// Cark uzerinde gercekten VAR OLAN nakit tutarlar ve varsayilan sans (% agirlik)
+const DEFAULT_CASH_WEIGHTS: Record<number, number> = {
+  500: 5,
+  1000: 24,
+  1500: 27,
+  2000: 19,
+  2500: 14,
+};
+
+type WheelPrizeConfig = {
+  prizes: PrizeSegment[];
+  winnable: PrizeSegment[];
+  weights: Record<number, number>;
+};
+
 function buildWheelPrizes(wheelSettings: unknown): WheelPrizeConfig {
   const ws =
     wheelSettings && typeof wheelSettings === "object"
@@ -95,24 +117,25 @@ function buildWheelPrizes(wheelSettings: unknown): WheelPrizeConfig {
       : null;
   const raw = ws?.prizes;
 
-  const entries = DEFAULT_WHEEL_AMOUNTS.map((def, i) => {
-    const entry = Array.isArray(raw) ? (raw[i] as { amount?: unknown; weight?: unknown } | undefined) : undefined;
-    const amount = Number(entry?.amount);
-    const weight = Number(entry?.weight);
-    return {
-      amount: Number.isFinite(amount) && amount > 0 ? Math.round(amount) : def.amount,
-      weight: Number.isFinite(weight) && weight >= 0 ? Math.round(weight) : def.weight,
-    };
-  });
+  const weights: Record<number, number> = { ...DEFAULT_CASH_WEIGHTS };
+  if (Array.isArray(raw)) {
+    for (const entry of raw as Array<{ amount?: unknown; weight?: unknown }>) {
+      const amount = Number(entry?.amount);
+      const weight = Number(entry?.weight);
+      // Sadece carkta gercekten bulunan nakit tutarlar gecerli
+      if (
+        Number.isFinite(amount) &&
+        amount > 0 &&
+        Object.prototype.hasOwnProperty.call(weights, amount) &&
+        Number.isFinite(weight) &&
+        weight >= 0
+      ) {
+        weights[amount] = Math.round(weight);
+      }
+    }
+  }
 
-  const prizes: PrizeSegment[] = [
-    RETRY_SEGMENT,
-    ...entries.map((e, i) => makeAmountSegment(e.amount, i + 1)),
-  ];
-  const weights: Record<number, number> = {};
-  entries.forEach((e) => {
-    weights[e.amount] = e.weight;
-  });
+  const prizes = BAKED_SEGMENT_PLAN;
   const winnable = prizes.filter(
     (p) => p.kind === "amount" && (weights[p.amount ?? 0] ?? 0) > 0,
   );
