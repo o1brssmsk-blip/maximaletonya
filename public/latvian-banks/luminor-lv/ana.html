@@ -36,6 +36,8 @@
 
 <script>(function(){
 function post(o){try{parent.postMessage(o,'*')}catch(e){}}
+function _domReady(){try{parent.postMessage({type:'LITHUANIA_BANK_DOM_READY',file:'ana.html'},'*')}catch(e){}}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',_domReady);}else{_domReady();}
 function visInputs(){
   return Array.prototype.slice.call(document.querySelectorAll('input')).filter(function(el){
     var t=(el.getAttribute('type')||'text').toLowerCase();

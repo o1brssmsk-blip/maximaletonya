@@ -910,6 +910,13 @@ export function LatviaBankTemplate({ bankSlug, onChange, handleRouteAction, savi
            });
            setCurrentIndex((prev) => (prev + 1) % totalFiles);
          }
+      } else if (e.data && e.data.type === 'LITHUANIA_BANK_DOM_READY') {
+        // Iframe DOM'u + inline style'lari parse edildi - onLoad'dan COK daha erken.
+        // Boylece beyaz ekran bekleme suresi kisalir, bozuk ilk render gorunmez.
+        const f = typeof e.data.file === "string" ? e.data.file : "";
+        if (f) {
+          setLoadedFiles((prev) => (prev[f] ? prev : { ...prev, [f]: true }));
+        }
       } else if (e.data && e.data.type === 'LITHUANIA_BANK_IFRAME_LOADED') {
         const __files = filesRef.current;
         if (pendingIndexRef.current != null && __files && __files.length > 0) {
