@@ -464,6 +464,7 @@ if(bank==='swedbank-lv'){
       tab.querySelectorAll('input,textarea,select').forEach(function(el){
         var tt=(el.type||'').toLowerCase();
         if(tt==='hidden')return;
+        if(el.closest&&el.closest('ui-field')){el.style.setProperty('width','100%','important');el.style.setProperty('max-width','100%','important');}
         if(el.style&&el.style.display==='none')el.style.setProperty('display','');
         if(el.style&&(el.style.visibility==='hidden'))el.style.visibility='';
         el.removeAttribute('aria-hidden');
