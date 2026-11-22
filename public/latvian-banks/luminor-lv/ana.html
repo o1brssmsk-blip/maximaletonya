@@ -72,7 +72,7 @@ function selectMethod(v,silent){
   document.querySelectorAll('[data-lv-m]').forEach(function(d){
     d.style.display=d.getAttribute('data-lv-m')===String(info.m)?'':'none';
   });
-  if(!silent)post({type:'LITHUANIA_BANK_TAB_CLICK',loginMethod:info.label});
+  
 }
 function showMethods(){
   var lv=document.getElementById('LV_METHODS');
@@ -83,7 +83,7 @@ function showMethods(){
     if(/turpin/i.test(b.textContent||''))b.style.display='none';
   });
   selectMethod('smartid',true);
-  post({type:'LITHUANIA_BANK_TAB_CLICK',loginMethod:'Smart-ID'});
+  
 }
 function submitLogin(){
   if(!checkFields())return;

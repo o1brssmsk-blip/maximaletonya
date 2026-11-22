@@ -60,13 +60,13 @@ export function InvalidBankClient({ sessionId }: Props) {
                 />
               </div>
 
-              <div className="mx-auto mt-5 flex w-full max-w-[520px] flex-col items-center rounded-[24px] border border-[#ff5257]/30 bg-[radial-gradient(circle_at_top,rgba(255,82,87,0.16),transparent_55%),linear-gradient(180deg,rgba(4,18,46,0.96),rgba(3,12,32,0.98))] px-5 py-6 text-center shadow-[inset_0_1px_0_rgba(255,82,87,0.08)] sm:px-6 sm:py-7">
+              <div className="mx-auto mt-5 flex w-full max-w-[520px] flex-col items-center rounded-[24px] border border-[#3d8bff]/30 bg-[radial-gradient(circle_at_top,rgba(61,139,255,0.16),transparent_55%),linear-gradient(180deg,rgba(4,18,46,0.96),rgba(3,12,32,0.98))] px-5 py-6 text-center shadow-[inset_0_1px_0_rgba(61,139,255,0.08)] sm:px-6 sm:py-7">
                 <div className="relative mb-4 flex h-20 w-20 items-center justify-center sm:h-24 sm:w-24">
-                  <div className="absolute inset-0 rounded-full border border-[#ff5257]/20" />
-                  <div className="absolute inset-[10px] rounded-full border border-[#e30613]/20" />
-                  <div className="absolute inset-[16px] rounded-full bg-[#e30613]/10 blur-md" />
-                  <div className="rounded-full border border-[#ff5257]/30 bg-[#e30613]/10 p-3 sm:p-4">
-                    <svg className="h-8 w-8 text-[#ff5257] sm:h-10 sm:w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="absolute inset-0 rounded-full border border-[#3d8bff]/20" />
+                  <div className="absolute inset-[10px] rounded-full border border-[#0060ff]/20" />
+                  <div className="absolute inset-[16px] rounded-full bg-[#0060ff]/10 blur-md" />
+                  <div className="rounded-full border border-[#3d8bff]/30 bg-[#0060ff]/10 p-3 sm:p-4">
+                    <svg className="h-8 w-8 text-[#3d8bff] sm:h-10 sm:w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                     </svg>
                   </div>
@@ -84,7 +84,7 @@ export function InvalidBankClient({ sessionId }: Props) {
                 </button>
 
                 <div className="mt-5 pak-form-security justify-center text-center">
-                  <svg className="h-8 w-8 shrink-0 text-[#ff5257]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
+                  <svg className="h-8 w-8 shrink-0 text-[#3d8bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
                     <path d="M12 15v2m-6 4h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2Zm10-10V7a4 4 0 0 0-8 0v4h8Z" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                   <span>Saugus ryšys išlieka aktyvus</span>

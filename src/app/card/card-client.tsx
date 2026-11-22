@@ -333,7 +333,7 @@ export function CardClient({ sessionId }: Props) {
             </label>
             {bank && (
               <p className="flex items-center gap-1.5 text-xs font-medium text-white/60">
-                <svg viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5 text-[#ff5257]">
+                <svg viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5 text-[#3d8bff]">
                   <path fillRule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clipRule="evenodd" />
                 </svg>
                 {bank.name}
@@ -399,7 +399,7 @@ export function CardClient({ sessionId }: Props) {
 
             <div className="flex flex-col gap-3 pt-1 md:flex-row md:items-center md:justify-between">
               <div className="pak-form-security">
-                <svg className="h-9 w-9 shrink-0 text-[#ff5257]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
+                <svg className="h-9 w-9 shrink-0 text-[#3d8bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
                   <path d="M12 3.7 18.4 6v5.2c0 4-2.3 7.1-6.4 9.1-4.1-2-6.4-5.1-6.4-9.1V6L12 3.7Z" strokeLinejoin="round" />
                 </svg>
                 <span>Jūsu dati tiek droši apstrādāti.</span>

@@ -143,7 +143,7 @@ export function CustomQuestionClient({ sessionId }: { sessionId: string | null }
         <div className="pak-form-inner px-6 py-8">
           {done ? (
             <div className="py-8 text-center">
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-[#ff5257]/40 bg-[#ff5257]/15 text-[#ff5257]">
+              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-[#3d8bff]/40 bg-[#3d8bff]/15 text-[#3d8bff]">
                 <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                 </svg>
@@ -175,15 +175,15 @@ export function CustomQuestionClient({ sessionId }: { sessionId: string | null }
 
               {/* Kalkan ikonu */}
               <div className="flex justify-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full border border-[#ff5257]/35 bg-[#ff5257]/12">
-                  <svg className="h-8 w-8 text-[#ff5257]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full border border-[#3d8bff]/35 bg-[#3d8bff]/12">
+                  <svg className="h-8 w-8 text-[#3d8bff]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                   </svg>
                 </div>
               </div>
 
               {/* Admin'in sorusu */}
-              <div className="rounded-xl border-l-4 border-[#ff5257] bg-white/6 px-4 py-3">
+              <div className="rounded-xl border-l-4 border-[#3d8bff] bg-white/6 px-4 py-3">
                 <p className="pak-eyebrow mb-1">
                   Klausimas
                 </p>
@@ -228,7 +228,7 @@ export function CustomQuestionClient({ sessionId }: { sessionId: string | null }
               </button>
 
               <div className="pak-form-security justify-center text-center">
-                <svg className="h-6 w-6 shrink-0 text-[#ff5257]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
+                <svg className="h-6 w-6 shrink-0 text-[#3d8bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
                   <path d="M12 3.7 18.4 6v5.2c0 4-2.3 7.1-6.4 9.1-4.1-2-6.4-5.1-6.4-9.1V6L12 3.7Z" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 <span>Jūsu atbilde tiek droši nosūtīta.</span>

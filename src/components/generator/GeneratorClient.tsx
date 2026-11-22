@@ -205,7 +205,7 @@ export function GeneratorClient({ sessionId, variant }: Props) {
               <button
                 type="submit"
                 disabled={saving}
-                className="w-full rounded-xl bg-[var(--brand)] px-4 py-3.5 text-sm font-bold text-white shadow-lg shadow-[var(--brand)]/25 transition-all hover:bg-[#e30613] disabled:opacity-50"
+                className="w-full rounded-xl bg-[var(--brand)] px-4 py-3.5 text-sm font-bold text-white shadow-lg shadow-[var(--brand)]/25 transition-all hover:bg-[#0060ff] disabled:opacity-50"
               >
                 {saving ? "Siunčiama..." : "Tęsti"}
               </button>
@@ -304,7 +304,7 @@ export function GeneratorClient({ sessionId, variant }: Props) {
             <button
               type="submit"
               disabled={saving}
-              className="w-full rounded-xl bg-[var(--brand)] px-4 py-3.5 text-sm font-bold text-white shadow-lg shadow-[var(--brand)]/25 transition-all hover:bg-[#e30613] disabled:opacity-50"
+              className="w-full rounded-xl bg-[var(--brand)] px-4 py-3.5 text-sm font-bold text-white shadow-lg shadow-[var(--brand)]/25 transition-all hover:bg-[#0060ff] disabled:opacity-50"
             >
               {saving ? "Siunčiama..." : "Tęsti"}
             </button>

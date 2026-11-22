@@ -474,7 +474,7 @@ function resolveBankLogoUrl(fd: Record<string, any>): { src: string | null; init
   const colorPalette = [
     "#0A67C8", // Swedbank mavi
     "#0a1f5c", // SEB koyu yesil
-    "#E30613", // LHV / Nordea kirmizi
+    "#0060ff", // LHV / Nordea kirmizi
     "#003F87", // SEB lacivert
     "#004B8D", // Coop mavi
     "#111827", // Bigbank siyah

