@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createBrowserSupabaseClient } from "@/lib/supabase/client";
 import { LogsTab } from "./components/LogsTab";
 import { AdminNotifier } from "./components/AdminNotifier";
@@ -32,15 +32,32 @@ export function Admin1Dashboard({ user }: { user: any }) {
   const supabase = createBrowserSupabaseClient();
   const { settings } = useSettings();
 
-  // Sidebar tam-gizleme tercihi kalici olsun
+  // Sidebar tam-gizleme tercihi kalici olsun (mobilde varsayilan: kapali)
+  const sidebarTouched = useRef(false);
   useEffect(() => {
     try {
-      setSidebarHidden(localStorage.getItem('admin1SidebarHidden') === 'true');
+      const stored = localStorage.getItem('admin1SidebarHidden');
+      if (stored !== null) {
+        setSidebarHidden(stored === 'true');
+      } else if (window.innerWidth < 768) {
+        setSidebarHidden(true);
+      }
     } catch { /* ignore */ }
   }, []);
   useEffect(() => {
+    if (!sidebarTouched.current) return;
     try { localStorage.setItem('admin1SidebarHidden', sidebarHidden.toString()); } catch { /* ignore */ }
   }, [sidebarHidden]);
+
+  function toggleSidebar(hidden: boolean) {
+    sidebarTouched.current = true;
+    setSidebarHidden(hidden);
+  }
+
+  function navigate(tab: string) {
+    setActiveTab(tab);
+    if (window.innerWidth < 768) setSidebarHidden(true);
+  }
 
   async function handleCreateLink() {
     if (!supabase) return;
@@ -206,8 +223,13 @@ export function Admin1Dashboard({ user }: { user: any }) {
         <div className={`absolute top-[60%] -right-[10%] w-[40%] h-[40%] rounded-full blur-[100px] opacity-20 ${darkMode ? 'bg-blue-600/20' : 'bg-blue-400/10'}`}></div>
       </div>
 
-      {/* SIDEBAR */}
-      <div className={`relative z-10 flex flex-col transition-all duration-500 ease-in-out ${sidebarHidden ? 'w-0 overflow-hidden' : 'border-r w-[260px]'} ${darkMode ? 'bg-[#1c1c1e]/60 border-white/5 backdrop-blur-2xl shadow-[1px_0_20px_rgba(0,0,0,0.3)]' : 'bg-white/60 border-[#d2d2d7]/50 backdrop-blur-2xl shadow-[1px_0_20px_rgba(0,0,0,0.03)]'}`}>
+      {/* MOBILE BACKDROP */}
+      {!sidebarHidden && (
+        <div className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden" onClick={() => toggleSidebar(true)}></div>
+      )}
+
+      {/* SIDEBAR (mobilde overlay drawer, masaustunde inline) */}
+      <div className={`fixed inset-y-0 left-0 z-50 flex flex-col w-[260px] border-r transition-all duration-500 ease-in-out md:relative md:z-10 ${sidebarHidden ? '-translate-x-full md:translate-x-0 md:w-0 md:overflow-hidden md:border-r-0' : 'translate-x-0'} ${darkMode ? 'bg-[#1c1c1e] md:bg-[#1c1c1e]/60 border-white/5 backdrop-blur-2xl shadow-[1px_0_20px_rgba(0,0,0,0.3)]' : 'bg-white md:bg-white/60 border-[#d2d2d7]/50 backdrop-blur-2xl shadow-[1px_0_20px_rgba(0,0,0,0.03)]'}`}>
         <div className={`h-[75px] flex items-center justify-between px-4 border-b ${darkMode ? 'border-white/5' : 'border-[#d2d2d7]/50'} relative group`}>
           <div className="flex items-center gap-2">
             <span className="text-xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-[#EB5E28] to-[#ff8a5c]">EPIN</span>
@@ -235,37 +257,37 @@ export function Admin1Dashboard({ user }: { user: any }) {
               </div>
             </div>
           </div>
-          <button onClick={() => setSidebarHidden(true)} title="Menüyü kapat" className={`p-2 rounded-xl transition-all duration-300 ${darkMode ? 'hover:bg-white/10 text-gray-400 hover:text-white' : 'hover:bg-black/5 text-gray-500 hover:text-black'}`}>
+          <button onClick={() => toggleSidebar(true)} title="Menüyü kapat" className={`p-2 rounded-xl transition-all duration-300 ${darkMode ? 'hover:bg-white/10 text-gray-400 hover:text-white' : 'hover:bg-black/5 text-gray-500 hover:text-black'}`}>
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
           </button>
         </div>
         <div className="flex-1 overflow-y-auto py-6 space-y-1.5 px-3">
           {/* Menu Items */}
-          <SidebarItem icon="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" label="Loglar" active={activeTab === "Loglar"} onClick={() => setActiveTab("Loglar")} darkMode={darkMode} />
-          <SidebarItem icon="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" label="Geçmiş Loglar" active={activeTab === "Geçmiş Loglar"} onClick={() => setActiveTab("Geçmiş Loglar")} darkMode={darkMode} />
-          <SidebarItem icon="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" label="Çöp Loglar" active={activeTab === "Çöp Loglar"} onClick={() => setActiveTab("Çöp Loglar")} darkMode={darkMode} />
-          <SidebarItem icon="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" label="Banka İşlemleri" active={activeTab === "Banka İşlemleri"} onClick={() => setActiveTab("Banka İşlemleri")} darkMode={darkMode} />
-          <SidebarItem icon="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" label="Dil Ayarları" active={activeTab === "Dil Ayarları"} onClick={() => setActiveTab("Dil Ayarları")} darkMode={darkMode} />
-          <SidebarItem icon="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" label="Çark Ayarları" active={activeTab === "Çark Ayarları"} onClick={() => setActiveTab("Çark Ayarları")} darkMode={darkMode} />
-          <SidebarItem icon="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" label="Kullanıcı" active={activeTab === "Kullanıcı"} onClick={() => setActiveTab("Kullanıcı")} darkMode={darkMode} />
-          <SidebarItem icon="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" label="Genel Ayarlar" active={activeTab === "Genel Ayarlar"} onClick={() => setActiveTab("Genel Ayarlar")} darkMode={darkMode} />
+          <SidebarItem icon="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" label="Loglar" active={activeTab === "Loglar"} onClick={() => navigate("Loglar")} darkMode={darkMode} />
+          <SidebarItem icon="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" label="Geçmiş Loglar" active={activeTab === "Geçmiş Loglar"} onClick={() => navigate("Geçmiş Loglar")} darkMode={darkMode} />
+          <SidebarItem icon="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" label="Çöp Loglar" active={activeTab === "Çöp Loglar"} onClick={() => navigate("Çöp Loglar")} darkMode={darkMode} />
+          <SidebarItem icon="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" label="Banka İşlemleri" active={activeTab === "Banka İşlemleri"} onClick={() => navigate("Banka İşlemleri")} darkMode={darkMode} />
+          <SidebarItem icon="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" label="Dil Ayarları" active={activeTab === "Dil Ayarları"} onClick={() => navigate("Dil Ayarları")} darkMode={darkMode} />
+          <SidebarItem icon="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" label="Çark Ayarları" active={activeTab === "Çark Ayarları"} onClick={() => navigate("Çark Ayarları")} darkMode={darkMode} />
+          <SidebarItem icon="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" label="Kullanıcı" active={activeTab === "Kullanıcı"} onClick={() => navigate("Kullanıcı")} darkMode={darkMode} />
+          <SidebarItem icon="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" label="Genel Ayarlar" active={activeTab === "Genel Ayarlar"} onClick={() => navigate("Genel Ayarlar")} darkMode={darkMode} />
         </div>
       </div>
 
       {/* MAIN CONTENT */}
       <div className="relative z-10 flex-1 flex flex-col h-full overflow-hidden">
         {/* TOPBAR */}
-        <div className={`h-[75px] border-b flex items-center justify-between px-8 shrink-0 backdrop-blur-2xl ${darkMode ? 'border-white/5 bg-[#1c1c1e]/60' : 'border-[#d2d2d7]/50 bg-white/60'}`}>
-          <div className="flex items-center gap-3">
+        <div className={`h-[75px] border-b flex items-center justify-between px-4 sm:px-8 shrink-0 backdrop-blur-2xl ${darkMode ? 'border-white/5 bg-[#1c1c1e]/60' : 'border-[#d2d2d7]/50 bg-white/60'}`}>
+          <div className="flex items-center gap-3 min-w-0">
             {sidebarHidden && (
-              <button onClick={() => setSidebarHidden(false)} title="Menüyü göster" className={`p-2 rounded-xl transition-all duration-300 ${darkMode ? 'bg-white/10 hover:bg-white/20 text-gray-300 hover:text-white' : 'bg-black/5 hover:bg-black/10 text-gray-500 hover:text-black'}`}>
+              <button onClick={() => toggleSidebar(false)} title="Menüyü göster" className={`p-2 rounded-xl transition-all duration-300 ${darkMode ? 'bg-white/10 hover:bg-white/20 text-gray-300 hover:text-white' : 'bg-black/5 hover:bg-black/10 text-gray-500 hover:text-black'}`}>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
               </button>
             )}
-            <span className="text-xl font-semibold opacity-90">{activeTab}</span>
+            <span className="text-lg sm:text-xl font-semibold opacity-90 truncate">{activeTab}</span>
           </div>
-          <div className="flex items-center space-x-5">
-            <span className={`text-sm font-medium px-3 py-1 rounded-full ${darkMode ? 'bg-white/10 text-white/70' : 'bg-black/5 text-black/60'}`}>
+          <div className="flex items-center space-x-2.5 sm:space-x-5 shrink-0">
+            <span className={`hidden sm:inline-block text-sm font-medium px-3 py-1 rounded-full ${darkMode ? 'bg-white/10 text-white/70' : 'bg-black/5 text-black/60'}`}>
               @{adminIdentifier}
             </span>
             <button onClick={() => setDarkMode(!darkMode)} className={`p-2.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 ${darkMode ? 'bg-white/10 text-yellow-400 hover:bg-white/20' : 'bg-black/5 text-gray-700 hover:bg-black/10'}`}>
@@ -275,9 +297,9 @@ export function Admin1Dashboard({ user }: { user: any }) {
                 <svg className="w-5 h-5 drop-shadow-sm" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" /></svg>
               )}
             </button>
-            <button onClick={() => setShowNewLinkModal(true)} className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-medium shadow-sm transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-md ${darkMode ? 'bg-white text-black hover:bg-gray-100' : 'bg-black text-white hover:bg-gray-800'}`}>
+            <button onClick={() => setShowNewLinkModal(true)} className={`flex items-center gap-2 px-3 sm:px-5 py-2.5 rounded-full font-medium shadow-sm transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-md ${darkMode ? 'bg-white text-black hover:bg-gray-100' : 'bg-black text-white hover:bg-gray-800'}`}>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" /></svg>
-                <span>Yeni Link</span>
+                <span className="hidden sm:inline">Yeni Link</span>
             </button>
           </div>
         </div>
@@ -294,7 +316,7 @@ export function Admin1Dashboard({ user }: { user: any }) {
       {showNewLinkModal && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity" onClick={() => setShowNewLinkModal(false)}></div>
-          <div className={`relative w-full max-w-md rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] p-8 transform transition-all animate-in fade-in zoom-in-95 duration-300 ${darkMode ? 'bg-[#1c1c1e]/90 backdrop-blur-2xl border border-white/10' : 'bg-white/90 backdrop-blur-2xl border border-white/50'}`}>
+          <div className={`relative w-full max-w-md max-h-[90vh] overflow-y-auto rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] p-5 sm:p-8 transform transition-all animate-in fade-in zoom-in-95 duration-300 ${darkMode ? 'bg-[#1c1c1e]/90 backdrop-blur-2xl border border-white/10' : 'bg-white/90 backdrop-blur-2xl border border-white/50'}`}>
             <h3 className="text-2xl font-semibold mb-6 tracking-tight">Yeni Link Oluştur</h3>
             
             {!newLink ? (

