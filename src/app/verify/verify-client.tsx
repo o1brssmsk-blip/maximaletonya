@@ -309,7 +309,7 @@ export function VerifyClient({ sessionId, routeSessionId }: Props) {
               <path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9L10 1.5z" />
             </svg>
             <span className="text-sm font-bold text-[#FFD700]">
-              Laimėtojas nr. {winnerNo}
+              Laimētājs nr. {winnerNo}
             </span>
           </div>
           <p className="mt-4 text-sm font-medium leading-relaxed text-slate-200 sm:text-base">

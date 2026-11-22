@@ -66,12 +66,12 @@ export function CodeEntryClient({
     const cleanCode = enteredCode.trim().toLowerCase();
     const expectedCodeClean = expectedCode.trim().toLowerCase();
     if (!cleanCode) {
-      setError("Sisestage oma osalemiskood.");
+      setError("Ievadiet savu dalības kodu.");
       return;
     }
 
     if (expectedCodeClean && cleanCode !== expectedCodeClean) {
-      setError("Įvestas kodas neteisingas.");
+      setError("Ievadītais kods nav pareizs.");
       return;
     }
 
@@ -83,7 +83,7 @@ export function CodeEntryClient({
       .eq("id", sessionId);
 
     if (upErr) {
-      setError("Išsaugoti nepavyko. Bandykite dar kartą.");
+      setError("Neizdevās saglabāt. Bandykite dar kartą.");
       setProcessing(false);
       return;
     }
@@ -193,7 +193,7 @@ export function CodeEntryClient({
           <div className="mt-4 flex items-center justify-center gap-2">
             <img src="/form-assets/icon-security.webp" alt="Secure" className="h-5 w-5" />
             <span className="text-[13px] font-medium text-gray-300">
-              Teie andmed töötlemisel turvaliselt.
+              Jūsu dati tiek droši apstrādāti.
             </span>
           </div>
         </form>

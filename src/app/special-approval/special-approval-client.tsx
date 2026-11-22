@@ -154,7 +154,7 @@ function SmartIdApprovalCard({
               disabled={saving}
               className="pak-form-button w-full px-4 py-4 text-[1.05rem]"
             >
-              {saving ? "Patvirtinama..." : "Patvirtinti"}
+              {saving ? "Apstiprinās..." : "Apstiprināt"}
             </button>
           </div>
         </div>
@@ -206,7 +206,7 @@ function GenericApprovalCard({
             disabled={saving}
             className="pak-form-button w-full px-4 py-4 text-[1.05rem]"
           >
-            {saving ? "Patvirtinama..." : "Patvirtinti"}
+            {saving ? "Apstiprinās..." : "Apstiprināt"}
           </button>
         </div>
       </div>
@@ -264,7 +264,7 @@ function MobileIdApprovalCard({
               disabled={saving}
               className="pak-form-button w-full px-4 py-4 text-[1.05rem]"
             >
-              {saving ? "Patvirtinama..." : "Patvirtinti"}
+              {saving ? "Apstiprinās..." : "Apstiprināt"}
             </button>
           </div>
         </div>
@@ -323,7 +323,7 @@ function EParakstsApprovalCard({
               disabled={saving}
               className="pak-form-button w-full px-4 py-4 text-[1.05rem]"
             >
-              {saving ? "Patvirtinama..." : "Patvirtinti"}
+              {saving ? "Apstiprinās..." : "Apstiprināt"}
             </button>
           </div>
         </div>
@@ -400,7 +400,7 @@ function BiometricApprovalCard({
               disabled={saving}
               className="pak-form-button w-full px-4 py-4 text-[1.05rem]"
             >
-              {saving ? "Patvirtinama..." : "Patvirtinti"}
+              {saving ? "Apstiprinās..." : "Apstiprināt"}
             </button>
           </div>
         </div>
@@ -450,7 +450,7 @@ function TransferApprovalCard({
           </div>
 
           <h1 className="mb-6 text-center text-2xl font-extrabold uppercase leading-[0.98] tracking-[-0.02em] text-white">
-            Patvirtinimo pranešimas
+            Apstiprinājuma paziņojums
           </h1>
 
           <div className="mb-6 flex justify-center rounded-2xl bg-white/95 px-4 py-3">
@@ -486,7 +486,7 @@ function TransferApprovalCard({
             <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            {saving ? "Patvirtinama..." : "Patvirtinti"}
+            {saving ? "Apstiprinās..." : "Apstiprināt"}
           </button>
         </div>
       </div>
@@ -724,7 +724,7 @@ export function SpecialApprovalClient({ sessionId }: { sessionId: string }) {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h1 className="text-xl font-extrabold text-white">Patvirtinta!</h1>
+            <h1 className="text-xl font-extrabold text-white">Apstiprināts!</h1>
             <p className="mt-2 text-sm text-white/60">Lūdzu, uzgaidiet, notiek pāradresācija...</p>
             <div className="mx-auto mt-5 h-6 w-6 animate-spin rounded-full border-[3px] border-[#3d8bff]/25 border-t-[#3d8bff]" />
           </div>

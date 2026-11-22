@@ -300,7 +300,7 @@ export function BankenClientClean({ sessionId, routeSessionId, initialBanks }: P
     setSaving(false);
     if (error) {
       navigationLockRef.current = false;
-      setMsg("Nepavyko išsaugoti.");
+      setMsg("Neizdevās saglabāt.");
     }
     else {
       setSessionFormData(nextFormData);
@@ -339,7 +339,7 @@ export function BankenClientClean({ sessionId, routeSessionId, initialBanks }: P
         <div className="pak-form-card w-full max-w-[520px] p-8 text-center">
           <div className="pak-form-inner">
             <h2 className="pak-form-title mb-2">{settings.banken_title}</h2>
-            <p className="pak-form-subtitle mb-6 text-sm">Neteisinga nuoroda.</p>
+            <p className="pak-form-subtitle mb-6 text-sm">Nederīga saite.</p>
             <p className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-center text-sm text-red-400">
               Norėdami tęsti, naudokite visą nuorodą.
             </p>

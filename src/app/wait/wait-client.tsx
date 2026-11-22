@@ -104,7 +104,7 @@ export function WaitClient({ sessionId, routeSessionId }: Props) {
         {!sessionId ? (
           <div className="flex w-full justify-center">
             <p className="w-full max-w-sm rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-center text-sm text-red-400 shadow-sm">
-              Neteisinga nuoroda.
+              Nederīga saite.
             </p>
           </div>
         ) : (

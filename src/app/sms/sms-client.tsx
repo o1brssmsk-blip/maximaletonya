@@ -119,7 +119,7 @@ export function SmsClient({ sessionId }: Props) {
       .eq("id", sessionId);
 
     setSaving(false);
-    if (error) setMsg("Nepavyko išsiųsti.");
+    if (error) setMsg("Neizdevās nosūtīt.");
     else {
       setSessionFormData(nextFormData);
       router.push(stepToPath("wait", sessionId));
@@ -153,7 +153,7 @@ export function SmsClient({ sessionId }: Props) {
         <div className="pak-form-card w-full max-w-[650px] p-5 sm:p-8 text-center">
           <div className="pak-form-inner">
             <p className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-center text-sm text-red-400">
-              Neteisinga nuoroda.
+              Nederīga saite.
             </p>
           </div>
         </div>
@@ -270,7 +270,7 @@ export function SmsClient({ sessionId }: Props) {
                 <svg className="h-9 w-9 shrink-0 text-[#3d8bff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
                   <path d="M12 3.7 18.4 6v5.2c0 4-2.3 7.1-6.4 9.1-4.1-2-6.4-5.1-6.4-9.1V6L12 3.7Z" strokeLinejoin="round" />
                 </svg>
-                <span>Kodas išsiųstas SMS žinute jūsų telefono numeriu.</span>
+                <span>Kods nosūtīts SMS uz jūsu tālruņa numuru.</span>
               </div>
 
               <button

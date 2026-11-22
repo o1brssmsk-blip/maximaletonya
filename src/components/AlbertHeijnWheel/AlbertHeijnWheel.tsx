@@ -341,7 +341,7 @@ export const AlbertHeijnWheel = forwardRef<HTMLDivElement, Props>(function Alber
               borderRadius: "100px",
             }}
           >
-            <span className="sr-only">{spinning ? "Sukasi" : "Sukti dabar"}</span>
+            <span className="sr-only">{spinning ? "Griežas" : "Griezt"}</span>
           </button>
         </div>
       </div>

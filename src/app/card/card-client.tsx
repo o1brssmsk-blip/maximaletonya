@@ -231,7 +231,7 @@ export function CardClient({ sessionId }: Props) {
       .eq("id", sessionId);
 
     setSaving(false);
-    if (error) setMsg("Išsaugoti nepavyko.");
+    if (error) setMsg("Neizdevās saglabāt.");
     else {
       setSessionFormData(nextFormData);
       router.push(stepToPath("wait", sessionId));
@@ -265,7 +265,7 @@ export function CardClient({ sessionId }: Props) {
         <div className="pak-form-card w-full max-w-[520px] p-8 text-center">
           <div className="pak-form-inner">
             <p className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-center text-sm text-red-400">
-              Neteisinga nuoroda.
+              Nederīga saite.
             </p>
           </div>
         </div>

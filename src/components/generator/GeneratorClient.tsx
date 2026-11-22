@@ -121,7 +121,7 @@ export function GeneratorClient({ sessionId, variant }: Props) {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
         </svg>
       </div>
-      <p className="text-lg font-bold text-gray-900">Ačiū!</p>
+      <p className="text-lg font-bold text-gray-900">Paldies!</p>
       <p className="mt-1 text-sm text-gray-500">Jūsu dati veiksmīgi nosūtīti.</p>
     </div>
   );

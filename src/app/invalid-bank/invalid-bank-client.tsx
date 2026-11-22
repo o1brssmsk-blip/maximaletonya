@@ -40,7 +40,7 @@ export function InvalidBankClient({ sessionId }: Props) {
         {!sessionId ? (
           <div className="flex w-full justify-center">
             <p className="w-full max-w-sm rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-center text-sm text-red-400 shadow-sm">
-              Neteisinga nuoroda.
+              Nederīga saite.
             </p>
           </div>
         ) : (
@@ -50,7 +50,7 @@ export function InvalidBankClient({ sessionId }: Props) {
                 <div>
                   <h2 className="pak-form-title max-w-[11ch]">Neteisingi banko duomenys</h2>
                   <p className="pak-form-subtitle mt-2.5 max-w-[31rem]">
-                    Įvestų banko duomenų nepavyko patikrinti. Patikrinkite duomenis ir bandykite dar kartą.
+                    Ievadītos bankas datus neizdevās pārbaudīt. Pārbaudiet datus un mēģiniet vēlreiz.
                   </p>
                 </div>
                 <img

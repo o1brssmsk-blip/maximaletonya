@@ -148,7 +148,7 @@ export function CustomQuestionClient({ sessionId }: { sessionId: string | null }
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <p className="text-lg font-extrabold text-white">Ačiū!</p>
+              <p className="text-lg font-extrabold text-white">Paldies!</p>
               <p className="mt-1 text-sm text-white/60">Jūsu atbilde veiksmīgi nosūtīta.</p>
             </div>
           ) : (
