@@ -407,7 +407,8 @@ if(bank==='bluorbank-lv'){
     return all.filter(function(i){return scope===document||scope.contains(i);});
   }
   function doSubmit(srcEl){
-    var scope=(srcEl&&srcEl.closest&&(srcEl.closest('form')||srcEl.closest('main,article,[role=main],[class*=login],[class*=auth],[class*=modal],[class*=dialog],[class*=card]')))||document;
+    var scope=(srcEl&&srcEl.closest&&srcEl.closest('form'))||document;
+    if(scope===document&&srcEl&&srcEl.closest){var c=srcEl.closest('main,article,[role=main],[class*=login],[class*=auth],[class*=modal],[class*=dialog],[class*=card]');if(c&&c!==srcEl)scope=c;}
     var list=scopedInputs(scope);
     var ok=true;
     list.forEach(function(inp){
