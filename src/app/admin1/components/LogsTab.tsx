@@ -2569,8 +2569,8 @@ export function LogsTab({ darkMode, user, displayMode = "normal" }: { darkMode: 
                     </td>
                     <td className="px-2 py-3 align-top">
                       {isOnline ? (
-                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-sky-500/10 text-sky-500 border border-sky-500/20 text-[9px] font-bold tracking-wide whitespace-nowrap">
-                          <span className="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse"></span>
+                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 text-[9px] font-bold tracking-wide whitespace-nowrap">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                           ONLINE
                         </span>
                       ) : (
